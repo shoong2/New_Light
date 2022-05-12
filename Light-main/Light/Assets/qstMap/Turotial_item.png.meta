@@ -1,0 +1,995 @@
+fileFormatVersion: 2
+guid: a6606f2bd4d69864bb40d0c8cf8ae708
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7717881922394853341
+    second: Turotial_item_0
+  - first:
+      213: -7382720524563464582
+    second: Turotial_item_1
+  - first:
+      213: 4688579299598852128
+    second: Turotial_item_2
+  - first:
+      213: 3408699993026566551
+    second: Turotial_item_3
+  - first:
+      213: 2335931684593579214
+    second: Turotial_item_4
+  - first:
+      213: 8960001205423022062
+    second: Turotial_item_5
+  - first:
+      213: 9123371507723018721
+    second: Turotial_item_6
+  - first:
+      213: 8240136942119607064
+    second: Turotial_item_7
+  - first:
+      213: 5451201723829990802
+    second: Turotial_item_8
+  - first:
+      213: 1202767276226680681
+    second: Turotial_item_9
+  - first:
+      213: 6554783166435999130
+    second: Turotial_item_10
+  - first:
+      213: 3315695063251515019
+    second: Turotial_item_11
+  - first:
+      213: 5600864039739520306
+    second: Turotial_item_12
+  - first:
+      213: -1115808905181429786
+    second: Turotial_item_13
+  - first:
+      213: -4350547562259120265
+    second: Turotial_item_14
+  - first:
+      213: 3959003133632378332
+    second: Turotial_item_15
+  - first:
+      213: 806196383148844527
+    second: Turotial_item_16
+  - first:
+      213: 2112735283959902341
+    second: Turotial_item_17
+  - first:
+      213: 183311862794775458
+    second: Turotial_item_18
+  - first:
+      213: -7783338937350086042
+    second: Turotial_item_19
+  - first:
+      213: 3217209683878636999
+    second: Turotial_item_20
+  - first:
+      213: 1282443223336126542
+    second: Turotial_item_21
+  - first:
+      213: -8952858012283335006
+    second: Turotial_item_22
+  - first:
+      213: -6585047293355953976
+    second: Turotial_item_23
+  - first:
+      213: 1291654421271351131
+    second: Turotial_item_24
+  - first:
+      213: 8723203352205802050
+    second: Turotial_item_25
+  - first:
+      213: -6009893334443878799
+    second: Turotial_item_26
+  - first:
+      213: -3242917810606914685
+    second: Turotial_item_27
+  - first:
+      213: 8502752519151614697
+    second: Turotial_item_28
+  - first:
+      213: 4794220077573462216
+    second: Turotial_item_29
+  - first:
+      213: -5536246396511811949
+    second: Turotial_item_30
+  - first:
+      213: 7954700446723811130
+    second: Turotial_item_31
+  - first:
+      213: 4953304994681651229
+    second: Turotial_item_32
+  - first:
+      213: 4043753333101455559
+    second: Turotial_item_33
+  - first:
+      213: -7510912717887627412
+    second: Turotial_item_34
+  - first:
+      213: 4209582795003305055
+    second: Turotial_item_35
+  - first:
+      213: 4257461955428246451
+    second: Turotial_item_36
+  - first:
+      213: -1201398460002467608
+    second: Turotial_item_37
+  - first:
+      213: -5520099864927594524
+    second: Turotial_item_38
+  - first:
+      213: -4051222038313848418
+    second: Turotial_item_39
+  - first:
+      213: 8378487023921034778
+    second: Turotial_item_40
+  - first:
+      213: 6627298884629972835
+    second: Turotial_item_41
+  - first:
+      213: 5606303759928481912
+    second: Turotial_item_42
+  - first:
+      213: 5344174518196333955
+    second: Turotial_item_43
+  - first:
+      213: -726486354650725775
+    second: Turotial_item_44
+  - first:
+      213: -523504304153736103
+    second: Turotial_item_45
+  - first:
+      213: -7265864901064931210
+    second: Turotial_item_46
+  - first:
+      213: 8542061672020698379
+    second: Turotial_item_47
+  - first:
+      213: -4624160440731358144
+    second: Turotial_item_48
+  - first:
+      213: 5620190515920882198
+    second: Turotial_item_49
+  - first:
+      213: -4550465725436906983
+    second: Turotial_item_50
+  - first:
+      213: -5777696933623094902
+    second: Turotial_item_51
+  - first:
+      213: 5050680305942526351
+    second: Turotial_item_52
+  - first:
+      213: -2720770262157095872
+    second: Turotial_item_53
+  - first:
+      213: 436429487839250635
+    second: Turotial_item_54
+  - first:
+      213: -5530253705841024244
+    second: Turotial_item_55
+  - first:
+      213: -1086383294256607982
+    second: Turotial_item_56
+  - first:
+      213: -2858522887553503876
+    second: Turotial_item_57
+  - first:
+      213: 7214816239184256783
+    second: Turotial_item_58
+  - first:
+      213: 5886249255342883615
+    second: Turotial_item_59
+  - first:
+      213: 1629027959251452174
+    second: Turotial_item_60
+  - first:
+      213: -7106456139220992132
+    second: Turotial_item_61
+  - first:
+      213: -8368507691893058421
+    second: Turotial_item_62
+  - first:
+      213: 6337581299183537943
+    second: Turotial_item_63
+  - first:
+      213: 1197794595169273392
+    second: Turotial_item_64
+  - first:
+      213: -366780599981525100
+    second: Turotial_item_65
+  - first:
+      213: 7907734239004851524
+    second: Turotial_item_66
+  - first:
+      213: -3532274593397504160
+    second: Turotial_item_67
+  - first:
+      213: -5595837696452019523
+    second: Turotial_item_68
+  - first:
+      213: 3377871087492371100
+    second: Turotial_item_69
+  - first:
+      213: -5895240700306278848
+    second: Turotial_item_70
+  - first:
+      213: -5524120955483189025
+    second: Turotial_item_71
+  - first:
+      213: -5833958224198585275
+    second: Turotial_item_72
+  - first:
+      213: 5638498979283842115
+    second: Turotial_item_73
+  - first:
+      213: 8939756733588490517
+    second: Turotial_item_74
+  - first:
+      213: 497133442961771618
+    second: Turotial_item_75
+  - first:
+      213: 6088900650415610729
+    second: Turotial_item_76
+  - first:
+      213: 8747687760209174506
+    second: Turotial_item_77
+  - first:
+      213: 6891203264866507928
+    second: Turotial_item_78
+  - first:
+      213: 4264725459685591495
+    second: Turotial_item_79
+  - first:
+      213: -8751510168251846268
+    second: Turotial_item_80
+  - first:
+      213: 9148159039537555048
+    second: Turotial_item_81
+  - first:
+      213: 1332111581945629669
+    second: Turotial_item_82
+  - first:
+      213: 5493484342445322679
+    second: Turotial_item_83
+  - first:
+      213: 423015647233781302
+    second: Turotial_item_84
+  - first:
+      213: -6113800009463687294
+    second: Turotial_item_85
+  - first:
+      213: 1214579340095277987
+    second: Turotial_item_86
+  - first:
+      213: -5800635139669881945
+    second: Turotial_item_87
+  - first:
+      213: 3036975581034000864
+    second: Turotial_item_88
+  - first:
+      213: -2510085250127156957
+    second: Turotial_item_89
+  - first:
+      213: 788305187860543881
+    second: Turotial_item_90
+  - first:
+      213: -5613750101117161622
+    second: Turotial_item_91
+  - first:
+      213: -8672750254141871556
+    second: Turotial_item_92
+  - first:
+      213: 4623564955586258400
+    second: Turotial_item_93
+  - first:
+      213: -6726844060587991105
+    second: Turotial_item_94
+  - first:
+      213: -7573453320900697635
+    second: Turotial_item_95
+  - first:
+      213: 2783186674862978713
+    second: Turotial_item_96
+  - first:
+      213: -3875186239763502799
+    second: Turotial_item_97
+  - first:
+      213: -5508451077668201073
+    second: Turotial_item_98
+  - first:
+      213: -8786448138049258763
+    second: Turotial_item_99
+  - first:
+      213: 3829721763177708011
+    second: Turotial_item_100
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Turotial_item_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddf01c2a7bc6b1b60800000000000000
+      internalID: 7717881922394853341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7eb8695cce4b8990800000000000000
+      internalID: -7382720524563464582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 020e6d5280e211140800000000000000
+      internalID: 4688579299598852128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 799993665922e4f20800000000000000
+      internalID: 3408699993026566551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec4b7c7ad75ea6020800000000000000
+      internalID: 2335931684593579214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eef9f4ccf91585c70800000000000000
+      internalID: 8960001205423022062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e120cf6c0abc9e70800000000000000
+      internalID: 9123371507723018721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81bdc9704e8da5270800000000000000
+      internalID: 8240136942119607064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29532eb061f86ab40800000000000000
+      internalID: 5451201723829990802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96794f6177611b010800000000000000
+      internalID: 1202767276226680681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9db027af8447fa50800000000000000
+      internalID: 6554783166435999130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b867f9cb717b30e20800000000000000
+      internalID: 3315695063251515019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_12
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 235fee36b244abd40800000000000000
+      internalID: 5600864039739520306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_13
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ef717966b9d380f0800000000000000
+      internalID: -1115808905181429786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77f7a15da00cf93c0800000000000000
+      internalID: -4350547562259120265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_15
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd5f0d4df5431f630800000000000000
+      internalID: 3959003133632378332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_16
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe5aaccc65f203b00800000000000000
+      internalID: 806196383148844527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_17
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5803dd80c81f15d10800000000000000
+      internalID: 2112735283959902341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ab6ff00b214b8200800000000000000
+      internalID: 183311862794775458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_19
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66228c079760cf390800000000000000
+      internalID: -7783338937350086042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_20
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd68877923d5ac20800000000000000
+      internalID: 3217209683878636999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e488e8321572cc110800000000000000
+      internalID: 1282443223336126542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ae8755721f01c380800000000000000
+      internalID: -8952858012283335006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_23
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c0fe5230663d94a0800000000000000
+      internalID: -6585047293355953976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_24
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5f01784ad0ece110800000000000000
+      internalID: 1291654421271351131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24a39b73b3b0f0970800000000000000
+      internalID: 8723203352205802050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_26
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1761c76aad1989ca0800000000000000
+      internalID: -6009893334443878799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turotial_item_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 383ccf6de67def2d0800000000000000
+      internalID: -3242917810606914685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
