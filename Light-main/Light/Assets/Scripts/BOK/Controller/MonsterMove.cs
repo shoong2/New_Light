@@ -2,44 +2,143 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
-
-public class MonsterMove : CreatureController
+using UnityEditor.Tilemaps;
+public class MonsterMove : MonoBehaviour
 {
-    protected override void Init()
+    Animator animator;
+    CreatureState _state=CreatureState.Idle;
+    bool isDelay = false;
+    int currentDir = 0;
+    Vector3Int destCellPos;
+    MoveDir Dir;
+    Grid tile;
+    float moveTime = 2.0f;
+    private void Start()
     {
-        base.Init();
-        State = CreatureState.Idle;
-        Dir = MoveDir.None;
+        tile = FindObjectOfType<Grid>();
+        animator = GetComponent<Animator>();
     }
-    protected override void UpdateController()
+
+    void UpdateAnimation()
     {
-        base.UpdateController();
+        if (_state == CreatureState.Idle)
+        {
+            switch (Dir)
+            {
+                case MoveDir.Up:
+                    animator.Play("IDLE_UP");
+                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+                case MoveDir.Down:
+                    animator.Play("IDLE_UP");
+                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+                case MoveDir.Right:
+                    animator.Play("IDLE_LEFT");
+                    transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    break;
+                case MoveDir.Left:
+                    animator.Play("IDLE_LEFT");
+                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+            }
+        }
+        else if (_state == CreatureState.Moving)
+        {
+            switch (Dir)
+            {
+                case MoveDir.Up:
+                    animator.Play("WALK_UP");
+                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+                case MoveDir.Down:
+
+                    animator.Play("WALK_LEFT");
+                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+                case MoveDir.Right:
+
+                    animator.Play("WALK_LEFT");
+                    transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    break;
+                case MoveDir.Left:
+                    animator.Play("WALK_LEFT");
+                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    break;
+            }
+        }
     }
-    void GetDirInput()
+    Vector3 Pattern()
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            //transform.position += Vector3.up * Time.deltaTime * 5f;
-            Dir = MoveDir.Up;
+        Vector3 reVector=Vector3Int.zero;
+        if (Dir == MoveDir.Right) {
+            reVector = new Vector3(3,0,0);
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Dir == MoveDir.Left)
         {
-            //transform.position += Vector3.down * Time.deltaTime * 5f;
-            Dir = MoveDir.Down;
+            reVector = new Vector3(-3, 0, 0);
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Dir == MoveDir.Up)
         {
-            //transform.position += Vector3.left * Time.deltaTime * 5f;
-            Dir = MoveDir.Left;
+            reVector = new Vector3(0, 2, 0);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Dir == MoveDir.Down)
         {
-            //transform.position += Vector3.right * Time.deltaTime * 5f;
-            Dir = MoveDir.Right;
+            reVector = new Vector3(0,-2,0);
         }
-        else
+        return reVector;
+    }
+    void Update()
+    {
+        UpdateAnimation();
+        if (!isDelay)
         {
-            Dir = MoveDir.None;
+            
+            isDelay = true;
+            currentDir = (int)Dir;
+            currentDir++;
+            if (currentDir == 4)
+            {
+                currentDir = 0;
+            }
+            Dir = (MoveDir)(currentDir);
+            
+            _state = CreatureState.Moving;
+            Debug.Log(Dir);
+            Vector3 dest = Pattern();
+            StartCoroutine(MovePattern(dest));
         }
+        
+    }
+    //IEnumerator moveBlockTime(Vector3Int dir)
+    //{
+    //    isDelay = false;
+    //    float elapsedTime = 0.0f;
+    //    Vector3 currentPosition = transform.position;
+    //    Vector3 targetPosition = Pattern() + dir;
+
+    //    while (elapsedTime < moveTime)
+    //    {
+    //        transform.position = Vector3.Lerp(currentPosition, targetPosition, elapsedTime / blockMoveTime);
+    //        elapsedTime += Time.deltaTime;
+    //        yield return null;
+    //    }
+    //    transform.position = targetPosition;
+    //    isDelay = true;
+    //}
+    IEnumerator MovePattern(Vector3 dir)
+    {
+        float elapsedTime = 0.0f;
+        Vector3 current = transform.position;
+        Vector3 targetPosition = current+dir;
+        while (elapsedTime < moveTime)
+        {
+            transform.position = Vector3.Lerp(current, targetPosition, elapsedTime / moveTime);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        transform.position=targetPosition;
+        yield return new WaitForSeconds(1);
+        isDelay = false;
     }
 }

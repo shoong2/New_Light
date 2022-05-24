@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class GameScene : BaseScene
     protected override void Init()
     {
         base.Init();
-
+        int count = 1;
         SceneType = Define.Scene.Game;
         Managers.Map.LoadMap(1);
 
@@ -15,36 +16,26 @@ public class GameScene : BaseScene
 
         player.name = "Player";
         Managers.Object.Add(player);
+        GameObject monster = Managers.Resource.Instantiate("Creature/Monster_Ming");
+        monster.name = $"Monster_Ming{count}";
+        MonsterMove mv = monster.GetComponent<MonsterMove>();
+        Managers.Object.Add(monster);
 
-        for(int i = 0; i < 5; i++)
-        {
-            GameObject monster = Managers.Resource.Instantiate("Creature/Monster_Ming");
-            monster.name = $"Monster_Ming{i+1}";
-            Vector3Int pos = new Vector3Int()
-            {
-                x = Random.Range(-20, 20),
-                y = Random.Range(-10, 10)
-            };
-            MonsterMove mv = monster.GetComponent<MonsterMove>();
-            mv.CellPos = pos;
-            Managers.Object.Add(monster);
-
-        }
-        //Managers.UI.ShowSceneUI<UI_Inven>();
-        //Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
-        //gameObject.GetOrAddComponent<CursorController>();
-
-        //GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
-        //Camera.main.gameObject.GetOrAddComponent<CameraController>().SetPlayer(player);
-
-        ////Managers.Game.Spawn(Define.WorldObject.Monster, "Knight");
-        //GameObject go = new GameObject { name = "SpawningPool" };
-        //SpawningPool pool = go.GetOrAddComponent<SpawningPool>();
-        //pool.SetKeepMonsterCount(2);
     }
+    //Managers.UI.ShowSceneUI<UI_Inven>();
+    //Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
+    //gameObject.GetOrAddComponent<CursorController>();
+
+    //GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
+    //Camera.main.gameObject.GetOrAddComponent<CameraController>().SetPlayer(player);
+
+    ////Managers.Game.Spawn(Define.WorldObject.Monster, "Knight");
+    //GameObject go = new GameObject { name = "SpawningPool" };
+    //SpawningPool pool = go.GetOrAddComponent<SpawningPool>();
+    //pool.SetKeepMonsterCount(2);
 
     public override void Clear()
     {
-        
+
     }
 }

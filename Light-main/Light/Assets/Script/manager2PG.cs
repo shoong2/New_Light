@@ -8,7 +8,10 @@ public class manager2PG : MonoBehaviour
     Animation ani;
     public GameObject tree;
     public GameObject apple;
+    public GameObject stick;
     GameObject item;
+    int appleCount =0;
+    int stickCount = 0;
     float randomX;
     float time;
     float fadeTime =1;
@@ -30,16 +33,47 @@ public class manager2PG : MonoBehaviour
     {
         if(player.attack1 == 1)
         {
-            randomX = Random.Range(-2.5f, -5.0f);
-            randomPos= new Vector2(randomX, -4.5f);
             ani.Play("apple");
-            item = Instantiate(apple,randomPos, Quaternion.identity);
+            int randomRange = Random.Range(0,4);
+            if(appleCount <10 && randomRange ==1)
+            {
+                appleCount+=1;
+                randomX = Random.Range(-2.5f, -5.0f);
+                randomPos= new Vector2(randomX, -4.5f);
+                item = Instantiate(apple,randomPos, Quaternion.identity);
+                
+            }
+            else if(stickCount <3 &&randomRange == 2)
+            {
+                stickCount+=1;
+                randomX = Random.Range(-2.5f, -5.0f);
+                randomPos= new Vector2(randomX, -4.5f);
+                item = Instantiate(stick,randomPos, Quaternion.identity);
+            }
+            
             // Invoke("fadeOut", 1f);
-            manager.quest.getApple+=1;
             player.attack1 = 0;
 
         }
+
+
+
+
+
+        
+
+    
     }
+    // void OnTriggerEnter2D(Collider2D other) 
+    // {
+    //     if(other.tag == "apple" && player.get1 ==1)
+    //     {
+    //         Debug.Log("hi");
+    //         Destroy(other);
+    //         manager.quest.getApple+=1;
+    //         player.get1 = 0;
+    //     }
+    // }
 
     // void fadeOut()
     // {

@@ -16,6 +16,7 @@ TagManager:
   - Item
   - home
   - attack
+  - apple
   layers:
   - Default
   - TransparentFX

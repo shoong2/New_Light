@@ -7,11 +7,16 @@ public class uiManager : MonoBehaviour
 {
     public GameObject map;
     public Text apple;
+    public Image tutorial;
     GameManager mg;
     int on = 0;
+    float time;
+    float fadeTime =1;
 
     void Start() {
         mg = GameObject.Find("GameManager").GetComponent<GameManager>();
+        StartCoroutine(Fade());
+        
     }
 
     void Update() 
@@ -32,4 +37,26 @@ public class uiManager : MonoBehaviour
             on =0;
         }
     }
+
+    IEnumerator Fade()
+    {
+        float fadeCount = 0;
+        while (fadeCount <1.0f)
+        {
+            fadeCount +=0.005f;
+            yield return new WaitForSeconds(0.01f);
+            tutorial.color = new Color(1,1,1, fadeCount);
+        }
+        yield return new WaitForSeconds(1.3f);
+        while(fadeCount>0)
+        {
+            fadeCount -= 0.01f;
+            yield return new WaitForSeconds(0.01f);
+            tutorial.color = new Color(1,1,1, fadeCount);
+        }
+
+        tutorial.gameObject.SetActive(false);
+    }
+
+    
 }

@@ -11,9 +11,11 @@ public class testPlayer : MonoBehaviour
     joyStick joystick;
     public GameObject talk;
     public GameObject attack;
+    public GameObject get;
     public GameObject mainUI;
     public int talkCheck=0;
     public int attack1 = 0;
+    public int get1 = 0;
     // public GameObject treeSoul;
 
     // private void Awake() {
@@ -209,7 +211,44 @@ public class testPlayer : MonoBehaviour
             transform.position = new Vector3(-0.4f, -3.9f,0);
             transform.localScale = new Vector3(1f,1f,1f);
         }
+
+        // if(other.tag == "apple")
+        // {
+        //     attack.SetActive(false);
+        //     get.SetActive(true);
+        //     // if(get1 == 1)
+        //     // {
+        //     //     Debug.Log("hi");
+        //     //     Destroy(other.gameObject);
+        //     // //     // manager.quest.getApple+=1;
+        //     //     get1 = 0;
+        //     // // }
+        //     // }
+        // }
+
+       
+
         
+    }
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.tag == "apple")
+        {
+            Destroy(other.gameObject);
+        }
+        // if(get1==0 && other.tag == "apple")
+        // {
+        //     attack.SetActive(false);
+        //     get.SetActive(true);
+        //     if(get1 == 1)
+        //     {
+        //         Destroy(other.gameObject);
+        //         get1= 0;
+        //         Debug.Log(get1);
+        //     }
+    
+        // }
+    
     }
 
     private void OnTriggerExit2D(Collider2D other) {
@@ -219,9 +258,10 @@ public class testPlayer : MonoBehaviour
             talkCheck =0;
         }
 
-        if(other.tag == "attack")
+
+        if(other.tag == "apple")
         {
-            attack.SetActive(false);
+            get.SetActive(false);
         }
     }
     
@@ -246,4 +286,12 @@ public class testPlayer : MonoBehaviour
         attack1 = 1;
         Debug.Log(attack1);
     }
+
+    public void destroyApple()
+    {
+        get1 = 1;
+        Debug.Log("get1:"+get1);
+    }
+
+  
 }
