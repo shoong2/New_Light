@@ -10,7 +10,7 @@ public class Define
     }
     public enum MoveDir
     {
-        None,Up,Down,Left,Right
+        Right,Down, Left,Up
     }
     public enum Scene
     {

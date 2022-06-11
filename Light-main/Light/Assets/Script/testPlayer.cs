@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
+using UnityEngine.UI;
 
 public class testPlayer : MonoBehaviour
 {
@@ -15,7 +17,11 @@ public class testPlayer : MonoBehaviour
     public GameObject mainUI;
     public int talkCheck=0;
     public int attack1 = 0;
-    public int get1 = 0;
+    public Text apple;
+
+    bool getClick = false;
+    bool isApple = false;
+    GameManager manager;
     // public GameObject treeSoul;
 
     // private void Awake() {
@@ -31,24 +37,11 @@ public class testPlayer : MonoBehaviour
     void Start()
     {
         joystick = GameObject.FindObjectOfType<joyStick>();
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    // void Update()
-    // {
-    //     float inputX = Input.GetAxisRaw("Horizontal");
-    //     float inputY = Input.GetAxisRaw("Vertical");
-    //     if(inputX !=0 || inputY != 0)
-    //         anim.SetBool("ismove", true);
-    //     else
-    //         anim.SetBool("ismove", false);
-
-    //     anim.SetFloat("inputx", inputX);
-    //     anim.SetFloat("inputy", inputY);
-
-    //     transform.Translate(new Vector2(inputX, inputY)* Time.deltaTime * moveSpeed);
-    // }
+    
 
     private void FixedUpdate() {
         if(joystick.Horizontal !=0 || joystick.Vertical !=0)
@@ -58,7 +51,8 @@ public class testPlayer : MonoBehaviour
         }
 
     }
-
+    
+  
     
     public void moveControl()
     {
@@ -70,7 +64,7 @@ public class testPlayer : MonoBehaviour
 
         transform.Translate(move);
     }
-    private void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other) 
     {
         if(other.tag == "GoRight")
         {
@@ -177,12 +171,12 @@ public class testPlayer : MonoBehaviour
                 transform.position = new Vector3(4.4f,3.8f,0);
             }
 
-            else if((SceneManager.GetActiveScene().name == "S_room"))
-            {
-                SceneManager.LoadScene("main");
-                transform.localScale = new Vector3(0.55f,0.55f,0.55f);
-                transform.position = new Vector3(-3.4f,0.25f,0);
-            }
+            // else if((SceneManager.GetActiveScene().name == "S_room"))
+            // {
+            //     SceneManager.LoadScene("main");
+            //     transform.localScale = new Vector3(0.55f,0.55f,0.55f);
+            //     transform.position = new Vector3(-3.4f,0.25f,0);
+            // }
 
             else if((SceneManager.GetActiveScene().name == "S_PlayGround"))
             {
@@ -200,17 +194,19 @@ public class testPlayer : MonoBehaviour
 
         }
 
-        if(other.tag =="attack")
-        {
-            attack.SetActive(true);
-        }
+        // if(other.tag =="attack")
+        // {
+        //     attack.SetActive(true);
+        // }
 
         if(other.tag =="home")
         {
             SceneManager.LoadScene("S_room");
-            transform.position = new Vector3(-0.4f, -3.9f,0);
+            transform.position = new Vector3(-2.65f, -1.04f,0);
             transform.localScale = new Vector3(1f,1f,1f);
         }
+
+        
 
         // if(other.tag == "apple")
         // {
@@ -228,40 +224,42 @@ public class testPlayer : MonoBehaviour
 
        
 
+    }
+
+    void OnTriggerStay2D(Collider2D other) {
         
-    }
-
-    private void OnTriggerStay2D(Collider2D other) {
-        if(other.tag == "apple")
+        if(other.tag == "attack" && isApple == false)
         {
-            Destroy(other.gameObject);
+            attack.SetActive(true);
         }
-        // if(get1==0 && other.tag == "apple")
-        // {
-        //     attack.SetActive(false);
-        //     get.SetActive(true);
-        //     if(get1 == 1)
-        //     {
-        //         Destroy(other.gameObject);
-        //         get1= 0;
-        //         Debug.Log(get1);
-        //     }
-    
-        // }
-    
+
+        if(other.tag =="apple")
+        {
+            isApple = true;
+            attack.SetActive(false);
+            get.SetActive(true);
+            StartCoroutine(clickCheck(other.gameObject));
+            
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D other) {
+    void OnTriggerExit2D(Collider2D other) {
         if(other.tag == "chat")
         {
             talk.SetActive(false);
             talkCheck =0;
         }
 
+        if(other.tag =="attack")
+        {
+            attack.SetActive(false);
+        }
 
         if(other.tag == "apple")
         {
+            isApple = false;
             get.SetActive(false);
+            
         }
     }
     
@@ -287,11 +285,40 @@ public class testPlayer : MonoBehaviour
         Debug.Log(attack1);
     }
 
-    public void destroyApple()
+    public void click()
     {
-        get1 = 1;
-        Debug.Log("get1:"+get1);
+        getClick = true;
     }
+
+    // IEnumerator destroyAp()
+    // {
+    //     void OnTriggerStay2D(Collider2D other) {
+    //         if(other.tag =="apple")
+    //         {
+
+    //         }
+    //     }
+    // }
+
+    public IEnumerator clickCheck(GameObject plz)
+    {
+        while(true)
+        {
+            if(getClick == true)
+            {
+                Destroy(plz);
+                manager.loadData.getApple +=1;
+                string jsonData = JsonUtility.ToJson(manager.loadData);
+                File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+                apple.text = "사과 10개를 가져오자 ("+manager.loadData.getApple+"/10)";
+                getClick = false;
+            }
+            yield return null;
+        }
+        
+    }
+
+
 
   
 }

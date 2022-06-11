@@ -4,18 +4,18 @@ using UnityEngine;
 using static Define;
 public class PlayerMove : CreatureController
 {
-    protected override void Init()
-    {
-        base.Init();
-    }
-    protected override void UpdateController()
-    {
-        GetDirInput();
-        base.UpdateController();
-    }
+    MoveDir Dir;
     void LateUpdate()
     {
         Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
+    }
+    void Update()
+    {
+        
+    }
+    void UpdateIdle()
+    {
+        _state = CreatureState.Idle;
     }
     void GetDirInput()
     {
@@ -38,10 +38,6 @@ public class PlayerMove : CreatureController
         {
             //transform.position += Vector3.right * Time.deltaTime * 5f;
             Dir = MoveDir.Right;
-        }
-        else
-        {
-            Dir = MoveDir.None;
         }
     }
 }
