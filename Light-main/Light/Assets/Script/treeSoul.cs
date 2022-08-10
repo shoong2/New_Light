@@ -8,9 +8,11 @@ public class treeSoul : MonoBehaviour
     public GameObject ChatBar;
     public GameObject select;
     public GameObject tree;
-    //public GameObject Lia_sad;
+    public GameObject question;
+    public GameObject QuestOK;
     public Text treeName;
     public Text ChatText;
+    public Image compensation;
     public string writerText = "";
 
     public float waitTime =0.01f;
@@ -26,6 +28,15 @@ public class treeSoul : MonoBehaviour
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         face = GameObject.Find("Lia_face_").GetComponent<Lia_face>();
+        if(manager.loadData.TreeQuest ==true)
+        {
+            question.SetActive(false);
+        }
+
+        if(manager.loadData.isTreeeQuest2 == true)
+        {
+            QuestOK.SetActive(true);
+        }
     }
     
     public void startChat() {
@@ -34,11 +45,25 @@ public class treeSoul : MonoBehaviour
             StartCoroutine(chating());
         }
 
-        if(manager.loadData.TreeQuest == true)
+        if(manager.loadData.TreeQuest == true && manager.loadData.isTreeeQuest1 == false)
         {
             StartCoroutine(AfterAcceptChat());
         }
         
+        if(manager.loadData.isTreeeQuest1 == true && manager.loadData.StartNextQuest == false)
+        {
+            StartCoroutine(QuestComplete());
+        }
+
+        if(manager.loadData.StartNextQuest == true)
+        {
+            StartCoroutine(NoCompleteQst2());
+        }
+
+        if(manager.loadData.isTreeeQuest2 == true)
+        {
+            StartCoroutine(Quest2Complete());
+        }
     }
 
    public IEnumerator NormalChat(string narrator, string narration)
@@ -84,6 +109,7 @@ public class treeSoul : MonoBehaviour
     public IEnumerator acceptChat()
     {
         end = false;
+        question.SetActive(false);
         select.SetActive(false);
         tree.SetActive(true);
         yield return StartCoroutine(NormalChat("나무정령","고마워! 수련장1에 몬스터 들이 너무 많아져서 나무들이 너무 아파하고 있어.\r\n 수련장1로 가서 모든 몬스터 들을 물리치고 묽은 물방울 5개를 가져와 줄래?"));
@@ -134,7 +160,7 @@ public class treeSoul : MonoBehaviour
         face.shock();
         yield return StartCoroutine(NormalChat("리아", "나를 알고 있어?"));
         face.af();
-        yield return StartCoroutine(NormalChat("나무정령", "당연하지! 저 빨간 지붕에서 살았던 남자가 매일 이곳에 와서 수련하고 갔었어~"));
+        yield return StartCoroutine(NormalChat("나무정령", "당연하지! 저 빨간 지붕에서 살았던 남자가\n매일 이곳에 와서 수련하고 갔었어~"));
         face.shock();
         yield return StartCoroutine(NormalChat("리아", "우리 집에 사는 남자...? ...혹시 아빠?"));
         face.af();
@@ -159,12 +185,76 @@ public class treeSoul : MonoBehaviour
 
     }
 
+    public IEnumerator QuestComplete()
+    {
+        end = false;
+        yield return StartCoroutine(NormalChat("나무정령", "나무로 만든 나무 막대기를 줄게!"));
+        yield return StartCoroutine(NormalChat("나무정령", "그리고 획득한 사과를 단축기 등록하면\n체력을 높일 수 있어!"));
+        StartCoroutine(Fade());
+        ChatBar.SetActive(false);
+        tree.SetActive(false);
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        manager.loadData.StartNextQuest = true;
+        string jsonData = JsonUtility.ToJson(manager.loadData);
+        File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+        manager.QuestBox.SetActive(false);
+        manager.QuestBox2.SetActive(true);
+        
+
+    }
+
+    public IEnumerator Quest2Complete()
+    {
+        end = false;
+        yield return StartCoroutine(NormalChat("나무정령", "그러고 보니 휘두르는 자세가\n네 아버지랑 정말 똑같네!"));
+        yield return StartCoroutine(NormalChat("나무정령", "너라면 더 강해질 수 있을거야!"));
+        yield return StartCoroutine(NormalChat("나무정령", "아, 그러고 보니 숲1에서 비명 소리가 들렸는데\n무슨일이 생긴 건지 잘 모르겠네"));
+        face.none();
+        yield return StartCoroutine(NormalChat("리아", "요정이면 하늘을 날아서 볼 수 있는 거 아니야?"));
+        face.af();
+        yield return StartCoroutine(NormalChat("나무정령", "이래뵈도 난 나이가 꽤 많아서\n그렇게 높이까지 날아딘ㄹ 수 없어!"));
+        yield return StartCoroutine(NormalChat("나무정령", "리아 네가 숲2로 가서 확인해 보는 게 좋겠어"));
+        ChatBar.SetActive(false);
+        tree.SetActive(false);
+        
+    }
+
     public IEnumerator AfterAcceptChat()
     {
         ChatBar.SetActive(true);
         yield return StartCoroutine(NormalChat("나무정령", "나뭇가지 3개와 사과 10개를 가지고 오면 무기를 만들어줄게"));
+        tree.SetActive(false);
         ChatBar.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+    }
+
+    public IEnumerator NoCompleteQst2()
+    {
+        yield return StartCoroutine(NormalChat("나무정령", "몬스터를 물리치고 묽은 물방울 5개를 가져와줘"));
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        tree.SetActive(false);
+        ChatBar.SetActive(false);
+    }
+
+    IEnumerator Fade()
+    {
+        compensation.gameObject.SetActive(true);
+        float fadeCount = 0;
+        while (fadeCount <0.5f)
+        {
+            fadeCount +=0.01f;
+            yield return new WaitForSeconds(0.005f);
+            compensation.color = new Color(1,1,1, fadeCount);
+        }
+        yield return new WaitForSeconds(1.3f);
+        while(fadeCount>0)
+        {
+            fadeCount -= 0.02f;
+            yield return new WaitForSeconds(0.005f);
+            compensation.color = new Color(1,1,1, fadeCount);
+        }
+
+        compensation.gameObject.SetActive(false);
     }
     
 }

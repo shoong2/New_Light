@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Define;
-using UnityEditor.Tilemaps;
 public class MonsterMove : MonoBehaviour
 {
     Animator animator;
@@ -11,12 +10,14 @@ public class MonsterMove : MonoBehaviour
     int currentDir = 0;
     Vector3Int destCellPos;
     MoveDir Dir;
-    Grid tile;
-    float moveTime = 2.0f;
+    //Grid tile;
+    public float moveTime = 2.0f;
+    SpriteRenderer rend;
     private void Start()
     {
-        tile = FindObjectOfType<Grid>();
-        animator = GetComponent<Animator>();
+        //tile = FindObjectOfType<Grid>();
+        //animator = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
     }
 
     void UpdateAnimation()
@@ -26,20 +27,20 @@ public class MonsterMove : MonoBehaviour
             switch (Dir)
             {
                 case MoveDir.Up:
-                    animator.Play("IDLE_UP");
-                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("IDLE_UP");
+                    //transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     break;
                 case MoveDir.Down:
-                    animator.Play("IDLE_UP");
-                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("IDLE_UP");
+                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     break;
                 case MoveDir.Right:
-                    animator.Play("IDLE_LEFT");
-                    transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                     //animator.Play("IDLE_LEFT");
+                    //transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
                     break;
                 case MoveDir.Left:
-                    animator.Play("IDLE_LEFT");
-                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    // animator.Play("IDLE_LEFT");
+                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     break;
             }
         }
@@ -48,22 +49,23 @@ public class MonsterMove : MonoBehaviour
             switch (Dir)
             {
                 case MoveDir.Up:
-                    animator.Play("WALK_UP");
-                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                   //animator.Play("WALK_UP");
+                    //transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     break;
                 case MoveDir.Down:
 
-                    animator.Play("WALK_LEFT");
-                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                   // animator.Play("WALK_LEFT");
+                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     break;
                 case MoveDir.Right:
-
-                    animator.Play("WALK_LEFT");
-                    transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    rend.flipX= false;
+                    //animator.Play("WALK_LEFT");
+                   // transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
                     break;
                 case MoveDir.Left:
-                    animator.Play("WALK_LEFT");
-                    transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    rend.flipX = true;
+                    //animator.Play("WALK_LEFT");
+                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                     break;
             }
         }
@@ -104,7 +106,7 @@ public class MonsterMove : MonoBehaviour
             Dir = (MoveDir)(currentDir);
             
             _state = CreatureState.Moving;
-            Debug.Log(Dir);
+           
             Vector3 dest = Pattern();
             StartCoroutine(MovePattern(dest));
         }

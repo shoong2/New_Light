@@ -5,23 +5,25 @@ using UnityEngine;
 public class manager2PG : MonoBehaviour
 {
     testPlayer player;
-    Animation ani;
+    Animator ani;
     public GameObject tree;
     public GameObject apple;
     public GameObject stick;
-    GameObject item;
+    GameObject AppleItem;
+    GameObject StickItem;
     int appleCount =0;
     int stickCount = 0;
     float randomX;
     float time;
     float fadeTime =1;
     Vector2 randomPos;
+    
     // SpriteRenderer fade;
 
     GameManager manager;
     void Start()
     {
-        ani = tree.GetComponent<Animation>();
+        ani = tree.GetComponent<Animator>();
         player = GameObject.Find("TOP1").GetComponent<testPlayer>();
         // fade = apple.GetComponent<SpriteRenderer>();
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -33,22 +35,22 @@ public class manager2PG : MonoBehaviour
     {
         if(player.attack1 == 1)
         {
-            ani.Play("apple");
+            ani.Play("newApple", -1, 0f);
             int randomRange = Random.Range(0,4);
-            if(appleCount <10 && randomRange ==1)
+            if(appleCount <10 && randomRange ==1 &&manager.loadData.TreeQuest == true)
             {
                 appleCount+=1;
-                randomX = Random.Range(-2.5f, -5.0f);
+                randomX = Random.Range(-3.37f, -1.09f);
                 randomPos= new Vector2(randomX, -4.5f);
-                item = Instantiate(apple,randomPos, Quaternion.identity);
+                AppleItem = Instantiate(apple,randomPos, Quaternion.identity);
                 
             }
-            else if(stickCount <3 &&randomRange == 2)
+            else if(stickCount <3 &&randomRange == 2 &&manager.loadData.TreeQuest == true)
             {
                 stickCount+=1;
-                randomX = Random.Range(-2.5f, -5.0f);
+                randomX = Random.Range(-3.37f, -1.09f);
                 randomPos= new Vector2(randomX, -4.5f);
-                item = Instantiate(stick,randomPos, Quaternion.identity);
+                StickItem = Instantiate(stick,randomPos, Quaternion.identity);
             }
             
             // Invoke("fadeOut", 1f);
@@ -56,48 +58,10 @@ public class manager2PG : MonoBehaviour
 
         }
 
-
-
-
-
+        
         
 
     
     }
-    // void OnTriggerEnter2D(Collider2D other) 
-    // {
-    //     if(other.tag == "apple" && player.get1 ==1)
-    //     {
-    //         Debug.Log("hi");
-    //         Destroy(other);
-    //         manager.quest.getApple+=1;
-    //         player.get1 = 0;
-    //     }
-    // }
-
-    // void fadeOut()
-    // {
-    //     while(time < fadeTime)
-    //     {
-    //         apple.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1f - time/fadeTime);
-    //     }
-    //     // else
-    //     // {
-    //     //     time = 0;
-    //     //     apple.SetActive(false);
-    //     // }
-    //     time += Time.deltaTime;
-    // }
-
-
-    // IEnumerator fadeOut(GameObject item)
-    // {
-    //     Debug.Log("hi");
-    //     while(fadeTime >0)
-    //     {
-    //         time = Time.deltaTime;
-    //         fadeTime=1f;
-    //         color = new Color(1,1,1, 1f - time/fadeTime);
-    //     }
-    // }
+    
 }

@@ -2,47 +2,96 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class JoyStick1 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class JoyStick1 : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField]
-    RectTransform lever;
-    RectTransform rectTransform;
+    RectTransform rect;
+    Vector2 touch = Vector2.zero;
+    public RectTransform handle;
 
-    [SerializeField, Range(10,200)]
-    float leverRange;
+    public GameObject player;
+    Animator playerAni;
+    SpriteRenderer spriteRenderer;
+    float widthHalf;
 
-    private void Awake() {
-        rectTransform = GetComponent<RectTransform>();
-    }
-    public void OnBeginDrag(PointerEventData eventData)
+    public float Horizontal {get {return handle.localPosition.x;}}
+    public float Vertical {get {return handle.localPosition.y;}}
+
+    public bool isDown;
+
+    private void Start()
     {
-        var inputPos = eventData.position - rectTransform.anchoredPosition;
-        var inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
-        lever.anchoredPosition = inputVector;
+        rect = GetComponent<RectTransform>();
+        widthHalf = rect.sizeDelta.x*0.5f;
+        playerAni = player.GetComponent<Animator>();
+        spriteRenderer = player.GetComponent<SpriteRenderer>();
+
+        isDown = false;
+    }
+
+    public void InitTrigger()
+    {
+        isDown = false;
+        playerAni.SetBool("ismove", false);
+    }
+    
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("PointerDown");
+        isDown = true;
+        // OnDrag(eventData);
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        Debug.Log("PointerUp");
+        handle.anchoredPosition = Vector2.zero;
+        playerAni.SetBool("ismove", false);
+
+        isDown = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        var inputPos = eventData.position - rectTransform.anchoredPosition;
-        var inputVector = inputPos.magnitude < leverRange ? inputPos : inputPos.normalized * leverRange;
-        lever.anchoredPosition = inputVector;
-    }
+        Debug.Log("ondrag");
+        // Debug.Log("isDown : " + isDown);
+        if(isDown == false) return;
 
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        lever.anchoredPosition = Vector2.zero;
-    }
+        playerAni.SetBool("ismove", true);
+        touch = (eventData.position - rect.anchoredPosition)/widthHalf;
+        if(touch.magnitude >1)
+        {
+            touch = touch.normalized;
+        }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+        handle.anchoredPosition = touch*widthHalf;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(touch.x >=0 && touch.y <0.4f && touch.y >-0.4)
+        {
+            spriteRenderer.flipX = false;
+            playerAni.SetFloat("inputx", 1);
+            playerAni.SetFloat("inputy", 0);
+        }
+
+        if(touch.x <0 && touch.y <0.4f && touch.y >-0.4)
+        {
+            spriteRenderer.flipX = true;
+            playerAni.SetFloat("inputx", -1);
+            playerAni.SetFloat("inputy", 0);
+        }
+
+        if(touch.y >=0.4)
+        {
+            playerAni.SetFloat("inputx", 0);
+            playerAni.SetFloat("inputy", 1);
+        }
+
+        if(touch.y <=-0.4)
+        {
+            playerAni.SetFloat("inputx", 0);
+            playerAni.SetFloat("inputy", -1);
+        }
     }
 }

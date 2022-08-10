@@ -9,15 +9,12 @@ public class story : MonoBehaviour
     public Text ChatText; // 실제 채팅이 나오는 텍스트
     public Text CharacterName; // 캐릭터 이름이 나오는 텍스트
     public GameObject ChatBar;
-    public GameObject grid;
-    public GameObject outgrid;
-    //public GameObject Lia;
+    public GameObject home;
+    public GameObject outhome;
     public GameObject mom;
+    public GameObject background;
     Lia_face face;
-    // public GameObject Lia_ang;
-    // public GameObject Lia_emb;
-    // public GameObject Lia_disa;
-    // public GameObject Lia_shock;
+    
     
     public string writerText = "";
 
@@ -138,7 +135,7 @@ public class story : MonoBehaviour
     }
 
 
-    public IEnumerator gridfade()
+    public IEnumerator homefade()
     {
         float fadeCount = 1;
         while(fadeCount>0)
@@ -167,9 +164,10 @@ public class story : MonoBehaviour
     public IEnumerator TextPractice()
     {
         yield return StartCoroutine(chat("이곳은 평화로운 마을 이었지만 '빛의 기둥' 이 생기고 나서 부터\n 사람들에게 해를 가하는 몬스터들이 생겨나기 시작했다.."));
-        yield return StartCoroutine(chat("이 몬스터들을 토벌하고 이 '빛의 기둥'을 없애기 위해 \n왕궁에서 영웅들을 차출하여 파견하였으나 실패하였고,\n왕궁의 힘은 점점 약해져갔다."));
+        yield return StartCoroutine(chat("몬스터들을 토벌하고 이 '빛의 기둥'을 없애기 위해 \n왕궁에서 영웅들을 보냈으나 실패하였고,\n왕궁의 힘은 점점 약해져갔다."));
         yield return StartCoroutine(chat("그 와중에 급진 무력파인 '십자가 군단' 이 권력을 잡게 되면서 \n아이들을 무작위로 강제 징용하기 시작하였다...."));
         yield return new WaitForSeconds(1f);
+        background.SetActive(false);
         yield return StartCoroutine(NormalChat("???" , "살려줘...!"));
         yield return new WaitUntil(()=>click==true);
         yield return StartCoroutine(NormalChat("리아" , "...누구?"));
@@ -189,7 +187,7 @@ public class story : MonoBehaviour
         yield return new WaitUntil(()=>click==true);
         ChatBar.SetActive(false);
         yield return new WaitForSeconds(1f);
-        grid.SetActive(true);
+        home.SetActive(true);
         yield return StartCoroutine(Fade());
         yield return new WaitForSeconds(1f);
         ChatBar.SetActive(true);
@@ -217,11 +215,11 @@ public class story : MonoBehaviour
         yield return StartCoroutine(NormalChat("엄마" , "그나저나 요즘에 몬스터들이 너무 많아져서 걱정이구나..."));
         click = false;
         yield return new WaitUntil(()=>click==true);
+        mom.SetActive(false);
+        face.disappoint();
         yield return StartCoroutine(NormalChat("리아" , "빛의 기둥이 생긴 뒤로 여기에 사는 이웃 사람들도 다 떠나가던데"));
         click = false;
         yield return new WaitUntil(()=>click==true);
-        mom.SetActive(false);
-        face.disappoint();
         yield return StartCoroutine(NormalChat("리아" , "저희도 얼른 다른 곳으로 가면 안돼요?"));
         click = false;
         yield return new WaitUntil(()=>click==true);
@@ -254,10 +252,10 @@ public class story : MonoBehaviour
         face.af();
         ChatBar.SetActive(false);
         eye.gameObject.SetActive(true);
-        grid.SetActive(false);
-        outgrid.SetActive(true);
+        home.SetActive(false);
+        outhome.SetActive(true);
         yield return new WaitForSeconds(1f);
-        yield return StartCoroutine(gridfade());
+        yield return StartCoroutine(homefade());
         face.disappoint();
         yield return StartCoroutine(NormalChat("리아", "엄마한테 저렇게 소리쳤지만 엄마는 아프고 나는 강하지 않아."));
         click = false;

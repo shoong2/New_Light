@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public qData quest;
     public qData loadData;
     public GameObject QuestBox;
+    public GameObject QuestBox2;
 
     public GameObject map;
     public Text AppleText;
+    public Text BranchText;
     public Image tutorial;
 
     int on = 0;
@@ -37,15 +39,31 @@ public class GameManager : MonoBehaviour
    }
     void Start()
     {   
+    
         if(loadData.TreeQuest == true)
         {
             QuestBox.SetActive(true);
         }
 
-        if(loadData != null)
+        if(loadData != null && loadData.getApple<10 && loadData.getBranch<3)
         {
-            AppleText.text = "사과 10개를 가져오자 ("+loadData.getApple+"/10)"; //제이슨 저장 코드 핋요
+            AppleText.text = "사과 10개를 가져오자 ("+loadData.getApple+"/10)"; 
+            BranchText.text = "나뭇가지 3개를 가져오자 ("+loadData.getBranch+"/3)";
         }
+
+        if(loadData != null && loadData.getApple>=10 &&loadData.getBranch>=3 &&loadData.isTreeeQuest1 == false)
+        {
+            AppleText.text = "사과 10개를 가져오자 (완료)";
+            BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
+        }
+
+        if(loadData != null && loadData.isTreeeQuest1 == true)
+        {
+            QuestBox.SetActive(false);
+            QuestBox2.SetActive(true);
+        }
+
+        
         StartCoroutine(Fade());
     }
 
@@ -129,9 +147,13 @@ public class GameManager : MonoBehaviour
 [System.Serializable] 
 public class qData
  {
-    public bool tutorial= false;
+    public bool tutorial= false; //튜토리얼 화면
     public bool TreeQuest = false;
+    public bool isTreeeQuest1 = false; // 사과, 나뭇가지 줍기 퀘스트 완료
+    public bool StartNextQuest = false; //다음 퀘스트 수락 후
+    public bool isTreeeQuest2 = false;
     public int getApple = 0; 
+    public int getBranch = 0;
     
  }
 

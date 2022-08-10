@@ -12,7 +12,12 @@ public class joyStick : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, ID
     public float moveSpeed;
     Rigidbody2D playerRigid;
     Vector3 input = Vector3.zero;
+    Vector2 movement;
     Animator playerAni;
+
+    public Rigidbody2D rb;
+
+    public float speed = 0.5f;
     
     SpriteRenderer spriteRenderer;
 
@@ -28,6 +33,17 @@ public class joyStick : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, ID
        
         
     }
+
+    // private void Update() 
+    // {
+    //     movement.x = Horizontal;
+    //     movement.y = Vertical;
+    // }
+
+    // private void FixedUpdate() 
+    // {
+    //     playerRigid.position()
+    // }
    
     public void OnDrag(PointerEventData eventData)
     {
@@ -44,17 +60,23 @@ public class joyStick : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, ID
         
         if(Horizontal >= 0)
         {
+            Debug.Log(stick.position.x);
             spriteRenderer.flipX = false;
             playerAni.SetFloat("inputx", 1);
             playerAni.SetFloat("inputy", 0);
         }
 
-        if(Horizontal <= 0)
+        else if(Horizontal <= 0)
         {
             spriteRenderer.flipX = true;
             playerAni.SetFloat("inputx", -1);
             playerAni.SetFloat("inputy", 0);
         }
+
+        // if(Vertical > 0.5f)
+        // {
+
+        // }
         
         // playerAni.SetFloat("inputx", stick.localPosition.x /Mathf.Abs(stick.localPosition.x));
         // playerAni.SetFloat("inputy", stick.localPosition.y/ Mathf.Abs(stick.localPosition.y));
@@ -72,6 +94,12 @@ public class joyStick : MonoBehaviour,IPointerDownHandler, IPointerUpHandler, ID
         playerAni.SetBool("ismove", false);
         
     }
+
+    // IEnumerator joyMove()
+    // {
+    //     movement.x = Horizontal;
+    //     movement.y = Vertical;
+    // }
 
     // void FixedUpdate() {
     //     if(Horizontal !=0 || Vertical != 0)
