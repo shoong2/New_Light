@@ -168,11 +168,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead6ae57e8021d244ae4399efddfdb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
-  normalAttackClick: {fileID: 0}
-  canUseSkill: 1
-  hpbar: {fileID: 350616282}
-  hp: 100
+  AttackClick: []
+  SkillClick: []
+  AttackEffect: {fileID: 0}
+  player: []
+  attackMoveAnim: 0
 --- !u!1 &350616280
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,11 +625,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ead6ae57e8021d244ae4399efddfdb96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 30
-  normalAttackClick: {fileID: 1749986433}
-  canUseSkill: 1
-  hpbar: {fileID: 0}
-  hp: 100
+  AttackClick: []
+  SkillClick: []
+  AttackEffect: {fileID: 0}
+  player: []
+  attackMoveAnim: 0
 --- !u!114 &1108617123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,7 +743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
-  hpbar: {fileID: 43119014}
+  hpbar: {fileID: 0}
+  ishalfHP: 0
 --- !u!1 &1749986431
 GameObject:
   m_ObjectHideFlags: 0

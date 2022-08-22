@@ -4,82 +4,145 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SkillManager : MonoBehaviour
 {
-    public int damage = 30;
-    public Image normalAttackClick;
-    public Image Skill0;
+    int damage = 5;//리아 일반공격력
+    public Image[] AttackClick;
+    public Image[] SkillClick;
     float currentCoolTime;
-    float coolTime=5;
-    public bool canUseSkill = true;
-    public Image hpbar;
-    public Image mpbar;
-    public int mp = 30;
-    Animator playerAttackAnim;
+    float coolTime=3;
+    bool canUseSkill =true;
+    bool canUseNormalAttack = true;
+    int mp = 3;//mp감소 크기
+    //public Animator playerAttackAnim;
+    public Animator AttackEffect;
+    public GameObject[] player;
+    public bool attackMoveAnim=false;
     // Start is called before the first frame update
     void Start()
     {
-        normalAttackClick.fillAmount = 0;
-        playerAttackAnim = FindObjectOfType<Animator>();
+        for(int i = 0; i < AttackClick.Length; i++)
+        {
+            AttackClick[i].fillAmount = 0;
+        }
+        for (int i = 0; i < AttackClick.Length; i++)
+        {
+            SkillClick[i].fillAmount = 0;
+        }
     }
-            
-    public void UseSkill0()
+    public void CallNormalAttack(int characterNum)
     {
-        coolTime = 5;
-        damage = 30;
-        mp = 30;
+        switch (characterNum)
+        {
+            case 0:
+                UseNormalSkill(characterNum);
+                Debug.Log("평타실행?");
+                break;
+        }
+    }
+    public void CallSkillAttack(int characterNum)
+    {
+        switch (characterNum)
+        {
+            case 0:
+                UseSkill0(characterNum);
+                Debug.Log("스킬실행?");
+                break;
+        }
+    }
+    public void UseSkill0(int characterNum)//휘두르기스킬
+    {
+        Debug.Log("실행은함?");
+        attackMoveAnim = true;
+        coolTime = 10;
+        damage = 5;
+        mp = 3;
         if (canUseSkill)
         {
+            Debug.Log("불리언실행후?");
+            switch (characterNum)
+            {
+                case 0:
+                    player[characterNum].GetComponent<Animator>().Play("Lia_Skill0Attack");
+                    break;
+            }
             
-            PlayerHP player = FindObjectOfType<PlayerHP>();
+            AttackEffect.Play("SkillEffect");
+            PlayerHP playerHP = FindObjectOfType<PlayerHP>();
             MonsterHP monsterHP = FindObjectOfType<MonsterHP>();
             if (monsterHP != null)
             {
                 monsterHP.GetDamage(damage);
-                player.GetMP(mp);
+                playerHP.GetMP(mp);
             }
-            normalAttackClick.fillAmount = 1;
-            StartCoroutine("CoolTime");
+            SkillClick[characterNum].fillAmount = 1;
+            Debug.Log("코루틴실행전?");
+            StartCoroutine(SkillCoolTime(characterNum));
+            
             currentCoolTime = coolTime;
-            StartCoroutine("CoolTimeCounter");
+            
+            StartCoroutine(CoolTimeCounter());
             canUseSkill = false;
+            attackMoveAnim = false;
+            Debug.Log("실행은함");
         }
         else
         {
             return;
         }
     }
-    public void UseNormalSkill(){
-        coolTime = 5;
-        playerAttackAnim.SetBool("isAttack", true);
-        if (canUseSkill)
+    public void UseNormalSkill(int characterNum){
+        Debug.Log("실행은함?");
+        attackMoveAnim = true;
+        coolTime = 3;
+        damage = 5;
+        if (canUseNormalAttack)
         {
-            PlayerHP player = FindObjectOfType<PlayerHP>();
+            Debug.Log("불리언실행후?");
+            switch (characterNum)
+            {
+                case 0:
+                    player[characterNum].GetComponent<Animator>().Play("Lia_NormalAttack");
+                    break;
+            }
             
+            AttackEffect.Play("AttackEffect");
             MonsterHP monsterHP = FindObjectOfType<MonsterHP>();
             if (monsterHP != null)
             {
                 monsterHP.GetDamage(damage);
                 //player.GetMP(mp);
             }
-            normalAttackClick.fillAmount = 1;
-            StartCoroutine("CoolTime");
+            AttackClick[characterNum].fillAmount = 1;
+            Debug.Log("코루틴실행전?");
+            StartCoroutine(CoolTime(characterNum));
             currentCoolTime = coolTime;
-            StartCoroutine("CoolTimeCounter");
-            canUseSkill = false;
+            StartCoroutine(CoolTimeCounter());
+            canUseNormalAttack = false;
+            StartCoroutine(AttackMove());
+            Debug.Log("평타실행은함");
         }
         else
         {
             return;
         }
     }
-    IEnumerator CoolTime()
+    IEnumerator CoolTime(int characterNum)
     {
-        while (normalAttackClick.fillAmount > 0)
+        while (AttackClick[characterNum].fillAmount > 0)
         {
-            normalAttackClick.fillAmount -= Time.deltaTime / coolTime;
+            AttackClick[characterNum].fillAmount -= Time.deltaTime / coolTime;
+            yield return null;
+        }
+        canUseNormalAttack = true;
+        yield break;
+    }
+    IEnumerator SkillCoolTime(int characterNum)
+    {
+        while (SkillClick[characterNum].fillAmount > 0)
+        {
+            SkillClick[characterNum].fillAmount -= Time.deltaTime / coolTime;
             yield return null;
         }
         canUseSkill = true;
-        playerAttackAnim.SetBool("isAttack", false);
         yield break;
     }
     IEnumerator CoolTimeCounter() { 
@@ -89,12 +152,9 @@ public class SkillManager : MonoBehaviour
         }
         yield break; 
     }
-    public void SetHP(int hp)
+    IEnumerator AttackMove()
     {
-        hpbar.fillAmount = (float)hp / 100f;
-    }
-    public void SetMP(int mp)
-    {
-        mpbar.fillAmount = (float)mp / 100f;
+        yield return new WaitForSeconds(1f);
+        attackMoveAnim = false;
     }
 }

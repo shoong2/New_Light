@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 public class MonsterSkill : MonoBehaviour
 {
-    public int damage = 30;
+    int damage = 3;
     float coolTime = 5;
     float currentCoolTime;
     public bool canUseSkill = true;
     Animator attackAnim;
+
+    
     //player
     // Start is called before the first frame update
     void Start()

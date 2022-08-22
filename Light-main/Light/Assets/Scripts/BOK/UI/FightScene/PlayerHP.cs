@@ -4,14 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerHP : MonoBehaviour
 {
-    public int hp = 100;
-    public int mp = 100;
+    public int hp = 120;//Lia HP
+    public int mp = 100;//Lia MP
     public MonsterSkill monsterAttack;
     public SkillManager playerSkill;
     public Image hpbar;
-    public Image Smoothhpbar;
-    
-    
+    public Image mpbar;
+    bool isHPDown = true;
+    bool isMPDown = true;
+    public float MaxHP;
+    public float MaxMP;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,35 +27,47 @@ public class PlayerHP : MonoBehaviour
     }
     public void GetDamage(int damage)
     {
-        
-        SetHP(hp);
-        
-        StartCoroutine(SmoothHP(hp));
+        if (isHPDown)
+        {
+            StartCoroutine(SmoothHP(hp));
+            isHPDown = false;
+        }
         hp -= damage;
-        if (hp <= 0)
-        {
-            //Die();
-        }
     }
-    public void GetMP(int mp)
+    public void GetMP(int decrease_mp)
     {
-        this.mp -= mp;
-        playerSkill.SetMP(this.mp);
-        if (mp <= 0)
+        if (isMPDown)
         {
-            Debug.Log("Dont Skill");
+            StartCoroutine(SmoothMP(mp));
+            isMPDown = false;
         }
+        mp -= decrease_mp;
     }
-    public void SetHP(int hp)
-    {
-        hpbar.fillAmount = (float)hp / 100f;
-    }
-    IEnumerator SmoothHP(int hp)
+    IEnumerator SmoothMP(int mp)
     {
         for (int i = 0; i <= 100; i++)
         {
-            hpbar.fillAmount = Mathf.Lerp(hp/100f,this.hp/100f, i * 0.01f);
+            mpbar.fillAmount = Mathf.Lerp(mp / MaxMP, this.mp /MaxMP, i * 0.01f);
+            if (mpbar.fillAmount <= 0)
+            {
+                mpbar.fillAmount = 0;
+            }
             yield return new WaitForSeconds(0.01f);
         }
+        isMPDown = true;
+    }
+    IEnumerator SmoothHP(int hp)
+    {
+        for (int i = 0; i <= MaxHP; i++)
+        {
+            hpbar.fillAmount = Mathf.Lerp(hp / MaxHP, this.hp / MaxHP, i * 0.01f);
+            if (hpbar.fillAmount <= 0)
+            {
+                hpbar.fillAmount = 0;
+            }
+            yield return new WaitForSeconds(0.01f);
+            
+        }
+        isHPDown = true;
     }
 }
