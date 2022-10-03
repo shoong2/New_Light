@@ -107,41 +107,7 @@ public class GameManager : MonoBehaviour
         tutorial.gameObject.SetActive(false);
     }
 
-    // public IEnumerator chat()
-    // {
-    //     panel.gameObject.SetActive(true);
-    //     text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
-    //     panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, 0);
-        
-    //     while (text.color.a < 1.0f)
-    //     {
-    //         text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a + (Time.deltaTime / 1.5f));
-    //         panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, panel.color.a + (Time.deltaTime / 3f));
-
-    //         yield return null;
-    //     }
-    //     // StartCoroutine(FadeTextToZero());
-
-    //     while (text.color.a > 0.0f)
-    //     {
-    //         text.color = new Color(text.color.r, text.color.g, text.color.b, text.color.a - (Time.deltaTime / 1.5f));
-    //         panel.color = new Color(panel.color.r, panel.color.g, panel.color.b, panel.color.a - (Time.deltaTime / 3f));
-    //         yield return null;
-    //     }
-    //     panel.gameObject.SetActive(false);
-    //     yield return null;
-    // }
     
-    // public void SavaData(bool tutorial, bool TreeQuest, int getApple)
-    // {
-    //     qData data = new qData();
-    //     data.tutorial = tutorial;
-    //     data.TreeQuest = TreeQuest;
-    //     data.getApple = getApple;
-
-    //     string qwer = JsonUtility.ToJson(data);
-    //     File.WriteAllText(Application.persistentDataPath + "/Data.json", qwer);
-    // }
 }
 
 [System.Serializable] 
@@ -154,6 +120,8 @@ public class qData
     public bool isTreeeQuest2 = false;
     public int getApple = 0; 
     public int getBranch = 0;
+
+ 
     
  }
 

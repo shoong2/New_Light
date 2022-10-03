@@ -15,8 +15,6 @@ public class MonsterMove : MonoBehaviour
     SpriteRenderer rend;
     private void Start()
     {
-        //tile = FindObjectOfType<Grid>();
-        //animator = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
     }
 
@@ -27,20 +25,16 @@ public class MonsterMove : MonoBehaviour
             switch (Dir)
             {
                 case MoveDir.Up:
-                    //animator.Play("IDLE_UP");
-                    //transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("Laing_back");
                     break;
                 case MoveDir.Down:
-                    //animator.Play("IDLE_UP");
-                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("Laing_back");
                     break;
                 case MoveDir.Right:
-                     //animator.Play("IDLE_LEFT");
-                    //transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    //animator.Play("Laing_Idle");
                     break;
                 case MoveDir.Left:
-                    // animator.Play("IDLE_LEFT");
-                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("Laing_Idle");
                     break;
             }
         }
@@ -49,23 +43,18 @@ public class MonsterMove : MonoBehaviour
             switch (Dir)
             {
                 case MoveDir.Up:
-                   //animator.Play("WALK_UP");
-                    //transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("Laing_back");
                     break;
                 case MoveDir.Down:
-
-                   // animator.Play("WALK_LEFT");
-                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                    //animator.Play("mingAni");
                     break;
                 case MoveDir.Right:
                     rend.flipX= false;
-                    //animator.Play("WALK_LEFT");
-                   // transform.localScale = new Vector3(-1.0f, 1.0f, 1.0f);
+                    //animator.Play("mingAni");
                     break;
                 case MoveDir.Left:
                     rend.flipX = true;
-                    //animator.Play("WALK_LEFT");
-                   // transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+                   // animator.Play("mingAni");
                     break;
             }
         }
@@ -90,6 +79,7 @@ public class MonsterMove : MonoBehaviour
         }
         return reVector;
     }
+    
     void Update()
     {
         UpdateAnimation();
