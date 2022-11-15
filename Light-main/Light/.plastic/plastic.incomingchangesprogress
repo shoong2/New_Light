@@ -1,0 +1,148 @@
+[
+  {
+    "MountId": "56e62dd7-241f-41e9-8c6b-dd4ca4513e62",
+    "AncestorCsetIds": [
+      61
+    ],
+    "SourceCsetId": 63,
+    "DestinationCsetId": 61,
+    "FileConflicts": [
+      {
+        "Path": "/Packages/packages-lock.json",
+        "ItemId": 129,
+        "ParentItemId": 124,
+        "BaseRevId": 7789,
+        "SourceRevId": 10635,
+        "DestinationRevId": 7789
+      },
+      {
+        "Path": "/Assets/battle/Skills/Lia_skill_tree.png.meta",
+        "ItemId": 9482,
+        "ParentItemId": 9362,
+        "BaseRevId": 8326,
+        "SourceRevId": 10627,
+        "DestinationRevId": 8326
+      },
+      {
+        "Path": "/Assets/Resources/item/red_apple.png.meta",
+        "ItemId": 9488,
+        "ParentItemId": 5561,
+        "BaseRevId": 8370,
+        "SourceRevId": 10591,
+        "DestinationRevId": 8370
+      },
+      {
+        "Path": "/Assets/Resources/Prefabs/Map/Palette/Turotial_house.png.meta",
+        "ItemId": 2269,
+        "ParentItemId": 2225,
+        "BaseRevId": 1135,
+        "SourceRevId": 10628,
+        "DestinationRevId": 1135
+      },
+      {
+        "Path": "/Assets/Resources/Prefabs/Map/Palette/Tuto_road.png.meta",
+        "ItemId": 2271,
+        "ParentItemId": 2225,
+        "BaseRevId": 1137,
+        "SourceRevId": 10630,
+        "DestinationRevId": 1137
+      },
+      {
+        "Path": "/Assets/Resources/Prefabs/Map/Palette/Tuto_tree.png.meta",
+        "ItemId": 2273,
+        "ParentItemId": 2225,
+        "BaseRevId": 1139,
+        "SourceRevId": 10631,
+        "DestinationRevId": 1139
+      },
+      {
+        "Path": "/Assets/Resources/Prefabs/Map/Palette/Tutorial_tileset.png.meta",
+        "ItemId": 2275,
+        "ParentItemId": 2225,
+        "BaseRevId": 1141,
+        "SourceRevId": 10632,
+        "DestinationRevId": 1141
+      },
+      {
+        "Path": "/Assets/Resources/Prefabs/Map/Palette/Turotial_item.png.meta",
+        "ItemId": 3185,
+        "ParentItemId": 2225,
+        "BaseRevId": 2484,
+        "SourceRevId": 10629,
+        "DestinationRevId": 2484
+      },
+      {
+        "Path": "/Assets/Scenes/main.unity",
+        "ItemId": 1265,
+        "ParentItemId": 1223,
+        "BaseRevId": 8405,
+        "SourceRevId": 10592,
+        "DestinationRevId": 8405
+      },
+      {
+        "Path": "/Assets/Scenes/S_2PlayGround.unity",
+        "ItemId": 3049,
+        "ParentItemId": 1223,
+        "BaseRevId": 8406,
+        "SourceRevId": 10593,
+        "DestinationRevId": 8406
+      },
+      {
+        "Path": "/Assets/Script/Item.cs",
+        "ItemId": 9422,
+        "ParentItemId": 1226,
+        "BaseRevId": 8433,
+        "SourceRevId": 10596,
+        "DestinationRevId": 8433
+      },
+      {
+        "Path": "/Assets/Script/testPlayer.cs",
+        "ItemId": 1293,
+        "ParentItemId": 1226,
+        "BaseRevId": 8442,
+        "SourceRevId": 10599,
+        "DestinationRevId": 8442
+      },
+      {
+        "Path": "/Assets/Script/ui/Inventory.cs",
+        "ItemId": 9500,
+        "ParentItemId": 9431,
+        "BaseRevId": 8447,
+        "SourceRevId": 10600,
+        "DestinationRevId": 8447
+      },
+      {
+        "Path": "/Assets/UI/Effect/Lia_skill_sowrd.png.meta",
+        "ItemId": 7844,
+        "ParentItemId": 7804,
+        "BaseRevId": 7680,
+        "SourceRevId": 10633,
+        "DestinationRevId": 7680
+      },
+      {
+        "Path": "/ProjectSettings/ProjectVersion.txt",
+        "ItemId": 141,
+        "ParentItemId": 126,
+        "BaseRevId": 3890,
+        "SourceRevId": 10637,
+        "DestinationRevId": 3890
+      },
+      {
+        "Path": "/ProjectSettings/PackageManagerSettings.asset",
+        "ItemId": 5969,
+        "ParentItemId": 126,
+        "BaseRevId": 5824,
+        "SourceRevId": 10636,
+        "DestinationRevId": 5824
+      },
+      {
+        "Path": "/ProjectSettings/TagManager.asset",
+        "ItemId": 143,
+        "ParentItemId": 126,
+        "BaseRevId": 9298,
+        "SourceRevId": 10601,
+        "DestinationRevId": 9298
+      }
+    ]
+  }
+]
