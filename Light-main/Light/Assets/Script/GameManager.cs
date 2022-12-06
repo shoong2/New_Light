@@ -6,11 +6,11 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-//    public Image panel;
+    public static GameManager instance = null;
     public Text text;
    
-    public qData quest;
-    public qData loadData;
+    //public SaveData quest;
+    //public SaveData qdata;
     public GameObject QuestBox;
     public GameObject QuestBox2;
 
@@ -19,45 +19,76 @@ public class GameManager : MonoBehaviour
     public Text BranchText;
     public Image tutorial;
 
+    public SaveData saveData; //= new SaveData();
+
     int on = 0;
 
-   private void Awake() {
-        print(Application.persistentDataPath);
-        string JsonLoad= File.ReadAllText(Application.persistentDataPath + "/Data.json");
-        
-        loadData = JsonUtility.FromJson<qData>(JsonLoad);
-        if(loadData == null)
+    private void Awake()
+    {
+        if(instance == null)
         {
-            Debug.Log("?");
-            quest = new qData();
-            string jsonData = JsonUtility.ToJson(quest);
-            File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+            instance = this;
         }
-        JsonLoad= File.ReadAllText(Application.persistentDataPath + "/Data.json");
-        
-        loadData = JsonUtility.FromJson<qData>(JsonLoad);
-   }
-    void Start()
-    {   
+
+    }
+    //private void Awake() {
+    //     print(Application.dataPath);
+    //     //quest = new qData();
+    //     string JsonLoad= File.ReadAllText(Application.dataPath + "/Data.json");
+    //     //string path = Path.Combine(Application.dataPath, "data.json");
+
+
+    //     if(loadData == null)
+    //     {
+    //         Debug.Log("?");
+    //         quest = new qData();
+    //         string jsonData = JsonUtility.ToJson(quest);
+    //         File.WriteAllText(Application.dataPath + "/Data.json", jsonData);
+    //     }
+    //     JsonLoad= File.ReadAllText(Application.dataPath + "/Data.json");
+
+    //     loadData = JsonUtility.FromJson<qData>(JsonLoad);
+    //}
+
     
-        if(loadData.TreeQuest == true)
+
+    private string SAVE_DATA_DIRECTORY;
+    private string SAVE_FILENAME = "/SaveFile.txt";
+
+    void Start()
+    {
+        Debug.Log(Application.persistentDataPath);
+        SAVE_DATA_DIRECTORY = Application.persistentDataPath + "/Saves/";
+
+        if (!Directory.Exists(SAVE_DATA_DIRECTORY))
+        {
+            Debug.Log("make file");
+            saveData = new SaveData();
+            Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
+            tutorial.gameObject.SetActive(true);
+        }
+            
+
+        //SaveData();
+        LoadData();
+        if (saveData.TreeQuest == true)
         {
             QuestBox.SetActive(true);
         }
 
-        if(loadData != null && loadData.getApple<10 && loadData.getBranch<3)
+        if(saveData != null && saveData.getApple<10 && saveData.getBranch<3)
         {
-            AppleText.text = "사과 10개를 가져오자 ("+loadData.getApple+"/10)"; 
-            BranchText.text = "나뭇가지 3개를 가져오자 ("+loadData.getBranch+"/3)";
+            AppleText.text = "사과 10개를 가져오자 ("+saveData.getApple+"/10)"; 
+            BranchText.text = "나뭇가지 3개를 가져오자 ("+saveData.getBranch+"/3)";
         }
 
-        if(loadData != null && loadData.getApple>=10 &&loadData.getBranch>=3 &&loadData.isTreeeQuest1 == false)
+        if(saveData != null && saveData.getApple>=10 &&saveData.getBranch>=3 &&saveData.isTreeeQuest1 == false)
         {
             AppleText.text = "사과 10개를 가져오자 (완료)";
             BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
         }
 
-        if(loadData != null && loadData.isTreeeQuest1 == true)
+        if(saveData != null && saveData.isTreeeQuest1 == true)
         {
             QuestBox.SetActive(false);
             QuestBox2.SetActive(true);
@@ -67,9 +98,26 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Fade());
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SaveData()
     {
+        string json = JsonUtility.ToJson(saveData);
+
+        File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json);
+
+        Debug.Log("Save");
+    }
+
+    public void LoadData()
+    {
+        if (File.Exists(SAVE_DATA_DIRECTORY + SAVE_FILENAME))
+        {
+            string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
+            saveData = JsonUtility.FromJson<SaveData>(loadJson);
+        }
+
+        else
+            Debug.Log("세이브 파일이 없습니다");
+
     }
 
     public void mapButton()
@@ -107,11 +155,12 @@ public class GameManager : MonoBehaviour
         tutorial.gameObject.SetActive(false);
     }
 
-    
+
+
 }
 
 [System.Serializable] 
-public class qData
+public class SaveData
  {
     public bool tutorial= false; //튜토리얼 화면
     public bool TreeQuest = false;
@@ -120,8 +169,6 @@ public class qData
     public bool isTreeeQuest2 = false;
     public int getApple = 0; 
     public int getBranch = 0;
-
- 
     
  }
 

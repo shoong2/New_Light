@@ -11,22 +11,28 @@ public class testPlayer : MonoBehaviour
     public float moveSpeed;
     Animator anim;
     JoyStick1 joystick;
+
     public GameObject talk;
     public GameObject attack;
     public GameObject get;
     public GameObject mainUI;
     public GameObject battleButton;
+
     public int talkCheck=0;
     public int attack1 = 0;
+
     public Text apple;
     public Text branch;
+
     public Image QuestComplete;
+
     bool getClick = false;
     bool isApple = false;
     bool isBranch = false;
-    GameManager manager;
 
+    //GameManager manager;
     SpriteRenderer sprite;
+    Inventory theInventory;
     // public GameObject treeSoul;
 
     // private void Awake() {
@@ -42,7 +48,7 @@ public class testPlayer : MonoBehaviour
     void Start()
     {
         joystick = GameObject.FindObjectOfType<JoyStick1>();
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+       // manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -312,7 +318,7 @@ public class testPlayer : MonoBehaviour
         }
     }
     
-    public void GetApple() //나무 접근하고 클릭했을 때 작동
+    public void GetApple() //?�무 ?�근?�고 ?�릭?�을 ???�동
     {
         attack1 = 1;
         Debug.Log(attack1);
@@ -326,7 +332,7 @@ public class testPlayer : MonoBehaviour
         getClick = true;
     }
 
-    public void acceptBattle() //밍 전투 수락
+    public void acceptBattle() //�??�투 ?�락
     {
         _LoadScene("BattleScene");
         battleButton.SetActive(false);
@@ -335,7 +341,7 @@ public class testPlayer : MonoBehaviour
 
     }
 
-    public void denyBattle() //밍 전투 거절
+    public void denyBattle() //�??�투 거절
     {
         battleButton.SetActive(false);
     }
@@ -350,7 +356,7 @@ public class testPlayer : MonoBehaviour
     //     }
     // }
 
-    public IEnumerator clickCheck(GameObject plz) //이거 게임매니저로 보내고 싶은데 충돌처리때문에 불가능
+    public IEnumerator clickCheck(GameObject plz) //?�거 게임매니?��?보내�??��???충돌처리?�문??불�???
     {
         while(true)
         {
@@ -358,20 +364,24 @@ public class testPlayer : MonoBehaviour
             {
                 if(plz.tag == "apple")
                 {
-                    manager.loadData.getApple +=1;
-                    apple.text = "사과 10개를 가져오자 ("+manager.loadData.getApple+"/10)";
+                    GameManager.instance.saveData.getApple += 1;
+                    //manager.saveData.getApple +=1;
+                    apple.text = "��� 10���� ��������("+GameManager.instance.saveData.getApple+"/10)";
+                    //theInventory.AcquireItem();
                     StartCoroutine(QuestCheck());
                 }
 
                 if(plz.tag == "branch")
                 {
-                    manager.loadData.getBranch +=1;
-                    branch.text = "나뭇가지 3개를 가져오자 ("+manager.loadData.getBranch+"/3)";
+                    GameManager.instance.saveData.getBranch +=1;
+                    branch.text = "?�뭇가지 3개�? 가?�오??("+GameManager.instance.saveData.getBranch+"/3)";
                     StartCoroutine(QuestCheck());
                 }
-                
-                string jsonData = JsonUtility.ToJson(manager.loadData);
-                File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+
+                GameManager.instance.SaveData();
+                Debug.Log(" get apple");
+                //string jsonData = JsonUtility.ToJson(manager.saveData);
+               // File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
                 Destroy(plz);
                 getClick = false;
             }
@@ -380,15 +390,16 @@ public class testPlayer : MonoBehaviour
         
     }
 
-    public IEnumerator QuestCheck() //제이슨 데이터로 코드 수정 필요 
+    public IEnumerator QuestCheck() //?�이???�이?�로 코드 ?�정 ?�요 
     {
-        if(manager.loadData.getApple ==10 && manager.loadData.getBranch == 3)
+        if(GameManager.instance.saveData.getApple ==10 && GameManager.instance.saveData.getBranch == 3)
         {
-            apple.text = "사과 10개를 가져오자 (완료)";
-            branch.text = "나뭇가지 3개를 가져오자 (완료)";
-            manager.loadData.isTreeeQuest1 = true;
-            string jsonData = JsonUtility.ToJson(manager.loadData);
-            File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+            apple.text = "?�과 10개�? 가?�오??(?�료)";
+            branch.text = "?�뭇가지 3개�? 가?�오??(?�료)";
+            GameManager.instance.saveData.isTreeeQuest1 = true;
+            GameManager.instance.SaveData();
+            //string jsonData = JsonUtility.ToJson(manager.saveData);
+            //File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
             StartCoroutine(Fade());
         }
 
@@ -421,7 +432,7 @@ public class testPlayer : MonoBehaviour
         while (true)
         {
             Debug.Log("qqqq");
-        	// sortingOrder를 y값으로 계속 변경해준다.
+        	// sortingOrder�?y값으�?계속 변경해준??
             yield return new WaitForEndOfFrame();
             
             sprite.sortingOrder = -(int)this.transform.position.y+3;

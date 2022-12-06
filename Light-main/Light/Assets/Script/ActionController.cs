@@ -16,9 +16,12 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private LayerMask layerMask;
 
-    private void Update()
+    [SerializeField]
+    Inventory theInventory;
+
+    private void Start()
     {
-       
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,7 +42,15 @@ public class ActionController : MonoBehaviour
             InfoDisappear();
     }
 
-   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Item")
+        {
+            getImage.SetActive(false);
+        }
+    }
+
+
 
     void ItemInfoAppear()
     {
@@ -54,15 +65,30 @@ public class ActionController : MonoBehaviour
     
     public IEnumerator CheckButton(GameObject item)
     {
-        Debug.Log("qwer");
-        if(pickupActivated && ActiveButton)
+        Debug.Log(item.transform.GetComponent<ItemPickUp>().item.name);
+        Item test = item.transform.GetComponent<ItemPickUp>().item;
+        while (true)
         {
-            Destroy(item);
-            InfoDisappear();
-            Debug.Log("get apple");
+            if (pickupActivated && ActiveButton)
+            {
+                theInventory.AcquireItem(test);
+                Debug.Log("destroy");
+                Destroy(item);
+                InfoDisappear();
+                Debug.Log("get apple");
+                ActiveButton = false;
+                yield return null;
+            }
+            yield return null;
         }
+        //if(pickupActivated && ActiveButton)
+        //{
+        //    Destroy(item);
+        //    InfoDisappear();
+        //    Debug.Log("get apple");
+        //}
 
-        yield return null;
+        //yield return null;
     }
 
     public void IsGetButton()

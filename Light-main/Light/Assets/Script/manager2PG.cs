@@ -20,13 +20,13 @@ public class manager2PG : MonoBehaviour
     
     // SpriteRenderer fade;
 
-    GameManager manager;
+    //GameManager manager;
     void Start()
     {
         ani = tree.GetComponent<Animator>();
         player = GameObject.Find("TOP1").GetComponent<testPlayer>();
         // fade = apple.GetComponent<SpriteRenderer>();
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //manager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
     }
 
@@ -37,7 +37,7 @@ public class manager2PG : MonoBehaviour
         {
             ani.Play("newApple", -1, 0f);
             int randomRange = Random.Range(0,4);
-            if(appleCount <10 && randomRange ==1 &&manager.loadData.TreeQuest == true)
+            if (appleCount < 10 && randomRange == 1 && GameManager.instance.saveData.TreeQuest == true)
             {
                 appleCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);
@@ -45,7 +45,7 @@ public class manager2PG : MonoBehaviour
                 AppleItem = Instantiate(apple,randomPos, Quaternion.identity);
                 
             }
-            else if(stickCount <3 &&randomRange == 2 &&manager.loadData.TreeQuest == true)
+            else if(stickCount <3 &&randomRange == 2 && GameManager.instance.saveData.TreeQuest == true)
             {
                 stickCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);

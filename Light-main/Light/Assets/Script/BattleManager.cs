@@ -9,7 +9,7 @@ public class BattleManager : MonoBehaviour
 
     private void Start() 
     {
-        Debug.Log("hello");
+        //Debug.Log("hello");
         Lia_anim = Lia.GetComponent<Animator>();
     }
 

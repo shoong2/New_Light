@@ -15,9 +15,9 @@ public class uiManager : MonoBehaviour
 
     void Start() {
         mg = GameObject.Find("GameManager").GetComponent<GameManager>();
-        if(mg.loadData != null)
+        if(mg.saveData != null)
         {
-            apple.text = "사과 10개를 가져오자 ("+mg.loadData.getApple+"/10)"; //제이슨 저장 코드 핋요
+            apple.text = "사과 10개를 가져오자 ("+mg.saveData.getApple+"/10)"; //제이슨 저장 코드 핋요
         }
         StartCoroutine(Fade());
         

@@ -8,8 +8,8 @@ public class treeSoul : MonoBehaviour
     public GameObject ChatBar;
     public GameObject select;
     public GameObject tree;
-    public GameObject question;
-    public GameObject QuestOK;
+    public GameObject noGetQst;
+    public GameObject doneQst;
     public Text treeName;
     public Text ChatText;
     public Image compensation;
@@ -21,46 +21,47 @@ public class treeSoul : MonoBehaviour
     bool click = false;
     bool end = false;
 
-    GameManager manager;
+    // GameManager;
+    [SerializeField]
     Lia_face face;
 
     void Start()
     {
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        face = GameObject.Find("Lia_face_").GetComponent<Lia_face>();
-        if(manager.loadData.TreeQuest ==true)
+        //GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        //face = gameObject.GetComponent<Lia_face>();
+        if(GameManager.instance.saveData.TreeQuest ==true)
         {
-            question.SetActive(false);
+            noGetQst.SetActive(false);
         }
 
-        if(manager.loadData.isTreeeQuest2 == true)
+        if(GameManager.instance.saveData.isTreeeQuest2 == true)
         {
-            QuestOK.SetActive(true);
+            doneQst.SetActive(true);
         }
     }
     
     public void startChat() {
-        if(manager.loadData.TreeQuest == false)
+        if(GameManager.instance.saveData.TreeQuest == false)
         {
             StartCoroutine(chating());
         }
 
-        if(manager.loadData.TreeQuest == true && manager.loadData.isTreeeQuest1 == false)
+        if(GameManager.instance.saveData.TreeQuest == true && GameManager.instance.saveData.isTreeeQuest1 == false)
         {
             StartCoroutine(AfterAcceptChat());
         }
         
-        if(manager.loadData.isTreeeQuest1 == true && manager.loadData.StartNextQuest == false)
+        if(GameManager.instance.saveData.isTreeeQuest1 == true && GameManager.instance.saveData.StartNextQuest == false)
         {
             StartCoroutine(QuestComplete());
         }
 
-        if(manager.loadData.StartNextQuest == true)
+        if(GameManager.instance.saveData.StartNextQuest == true)
         {
             StartCoroutine(NoCompleteQst2());
         }
 
-        if(manager.loadData.isTreeeQuest2 == true)
+        if(GameManager.instance.saveData.isTreeeQuest2 == true)
         {
             StartCoroutine(Quest2Complete());
         }
@@ -102,53 +103,11 @@ public class treeSoul : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         ChatBar.SetActive(false);
+        tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         escape = 1;
     }
 
-    public IEnumerator acceptChat()
-    {
-        end = false;
-        question.SetActive(false);
-        select.SetActive(false);
-        tree.SetActive(true);
-        yield return StartCoroutine(NormalChat("나무정령","고마워! 수련장1에 몬스터 들이 너무 많아져서 나무들이 너무 아파하고 있어.\r\n 수련장1로 가서 모든 몬스터 들을 물리치고 묽은 물방울 5개를 가져와 줄래?"));
-        tree.SetActive(false);
-        face.sad();
-        yield return StartCoroutine(NormalChat("리아", "하지만 난 무기를 갖고 있지 않은걸?"));
-        tree.SetActive(true);
-        face.af();
-        yield return StartCoroutine(NormalChat("나무정령", "앗 그러면 수련장1에 사과 나무가 있는데\r\n 흔들어서 나뭇가지를 가져 오면 무기를 줄게!"));
-        ChatBar.SetActive(false);
-        tree.SetActive(false);
-        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
-        manager.QuestBox.SetActive(true);
-        manager.loadData.TreeQuest = true;
-        string jsonData = JsonUtility.ToJson(manager.loadData);
-        File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
-    }
-
-    public void acceptQ()
-    {
-        StartCoroutine(acceptChat());
-    }
-
-    public void escapeQ()
-    {
-        if(escape ==1)
-        {
-            StartCoroutine(NormalChat("나무정령", "정말 거절할거야? 내 부탁을 들어주면 보상을 해줄게!"));
-            escape +=1;
-        }
-    
-        else if(escape == 2)
-        {
-            StartCoroutine(NormalChat("나무정령", "알겠어..."));
-            select.SetActive(false);
-            StartCoroutine(wait());
-            
-        }
-    }
 
     public IEnumerator chating()
     {
@@ -185,6 +144,52 @@ public class treeSoul : MonoBehaviour
 
     }
 
+    public IEnumerator acceptChat()
+    {
+        end = false;
+        noGetQst.SetActive(false);
+        select.SetActive(false);
+        tree.SetActive(true);
+        yield return StartCoroutine(NormalChat("나무정령", "고마워! 수련장1에 몬스터들이 너무 많아져서 나무들이 아파하고 있어.\r\n " +
+            "수련장1로 가서 몬스터들을 물리치고 묽은 물방울 5개를 가져와 줄래?"));
+        tree.SetActive(false);
+        face.sad();
+        yield return StartCoroutine(NormalChat("리아", "하지만 난 무기를 갖고 있지 않은걸?"));
+        tree.SetActive(true);
+        face.af();
+        yield return StartCoroutine(NormalChat("나무정령", "앗 그러면 수련장1에 사과 나무가 있는데\r\n 흔들어서 나뭇가지를 가져 오면 무기를 줄게!"));
+        ChatBar.SetActive(false);
+        tree.SetActive(false);
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        GameManager.instance.QuestBox.SetActive(true);
+        GameManager.instance.saveData.TreeQuest = true;
+        GameManager.instance.SaveData();
+        //string jsonData = JsonUtility.ToJson(GameManager.instance.saveData);
+        //File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+    }
+
+    public void escapeQ()
+    {
+        if (escape == 1)
+        {
+            StartCoroutine(NormalChat("나무정령", "정말 거절할거야? 내 부탁을 들어주면 보상을 해줄게!"));
+            escape += 1;
+        }
+
+        else if (escape == 2)
+        {
+            StartCoroutine(NormalChat("나무정령", "알겠어..."));
+            select.SetActive(false);
+            StartCoroutine(wait());
+
+        }
+    }
+
+    public void acceptQ()
+    {
+        StartCoroutine(acceptChat());
+    }
+
     public IEnumerator QuestComplete()
     {
         end = false;
@@ -194,11 +199,11 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
-        manager.loadData.StartNextQuest = true;
-        string jsonData = JsonUtility.ToJson(manager.loadData);
+        GameManager.instance.saveData.StartNextQuest = true;
+        string jsonData = JsonUtility.ToJson(GameManager.instance.saveData);
         File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
-        manager.QuestBox.SetActive(false);
-        manager.QuestBox2.SetActive(true);
+        GameManager.instance.QuestBox.SetActive(false);
+        GameManager.instance.QuestBox2.SetActive(true);
         
 
     }
