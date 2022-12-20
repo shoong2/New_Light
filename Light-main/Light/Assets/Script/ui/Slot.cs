@@ -11,8 +11,13 @@ public class Slot : MonoBehaviour
     [SerializeField]
     private Text text_Count;
 
-   // [SerializeField]
+    // [SerializeField]
     //private GameObject IsActive_Text;
+
+    private void Start()
+    {
+        
+    }
 
 
     //이미지 투명도 조절
@@ -26,11 +31,13 @@ public class Slot : MonoBehaviour
     public void AddItem(Item _item, int _count =1)
     {
         item = _item;
-        itemCount = _count;
+        //itemCount = _count;
+        GameManager.instance.saveData.getApple += _count;
         itemImage.sprite = item.itemImage;
 
         //IsActive_Text.SetActive(true);
-        text_Count.text = itemCount.ToString();
+        //text_Count.text = itemCount.ToString();
+        text_Count.text = GameManager.instance.saveData.getApple.ToString();
 
         SetColor(1);
     }
@@ -39,11 +46,13 @@ public class Slot : MonoBehaviour
     //아이템 갯수 조절
     public void SetSlotCount(int _count)
     {
-        itemCount += _count;
-        text_Count.text = itemCount.ToString();
+        //itemCount += _count;
+        GameManager.instance.saveData.getApple += _count;
+        //text_Count.text = itemCount.ToString();
+        text_Count.text = GameManager.instance.saveData.getApple.ToString();
 
-        if (itemCount <= 0)
-            ClearSlot();
+        //if (itemCount <= 0)
+            //ClearSlot();
 
 
 

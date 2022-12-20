@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour
         Debug.Log("hello");
         for(int i =0; i< slots.Length; i++)
         {
-            Debug.Log(i);
+            //Debug.Log(i);
             if(slots[i].item != null)
             {
                 if (slots[i].item.itemName == _item.itemName)

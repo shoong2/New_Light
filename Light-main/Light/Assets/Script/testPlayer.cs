@@ -89,7 +89,7 @@ public class testPlayer : MonoBehaviour
     {
         if(other.tag == "AppleTree")
         {
-            StartCoroutine(SetLayer());
+            //StartCoroutine(SetLayer());
             Debug.Log("ggg");
         }
         if(other.tag == "GoRight")
@@ -254,21 +254,21 @@ public class testPlayer : MonoBehaviour
             attack.SetActive(true);
         }
 
-        if(other.tag =="apple")
+        if (other.tag == "apple")
         {
             isApple = true;
             attack.SetActive(false);
             get.SetActive(true);
-            StartCoroutine(clickCheck(other.gameObject));
-            
+            //StartCoroutine(clickCheck(other.gameObject));
+
         }
 
-        if(other.tag == "branch")
+        if (other.tag == "branch")
         {
             isBranch = true;
             attack.SetActive(false);
             get.SetActive(true);
-            StartCoroutine(clickCheck(other.gameObject));
+            //StartCoroutine(clickCheck(other.gameObject));
         }
     }
 
@@ -288,14 +288,14 @@ public class testPlayer : MonoBehaviour
             attack.SetActive(false);
         }
 
-        if(other.tag == "apple")
+        if (other.tag == "apple")
         {
             isApple = false;
             get.SetActive(false);
-            
+
         }
 
-        if(other.tag == "branch")
+        if (other.tag == "branch")
         {
             isBranch = false;
             get.SetActive(false);

@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             QuestBox.SetActive(true);
         }
 
-        if(saveData != null && saveData.getApple<10 && saveData.getBranch<3)
+        if(saveData != null && (saveData.getApple<10 || saveData.getBranch<3))
         {
             AppleText.text = "사과 10개를 가져오자 ("+saveData.getApple+"/10)"; 
             BranchText.text = "나뭇가지 3개를 가져오자 ("+saveData.getBranch+"/3)";

@@ -19,17 +19,19 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     Inventory theInventory;
 
+    //bool hitItem = false;
     private void Start()
     {
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Item")
+        if (collision.tag == "apple")
         {
-            ItemInfoAppear();
+            ItemInfoAppear(); //pickup true
             getImage.SetActive(true);
+            //hitItem = true;
             StartCoroutine(CheckButton(collision.gameObject));
             //if (pickupActivated && ActiveButton)
             //{
@@ -37,18 +39,22 @@ public class ActionController : MonoBehaviour
             //    InfoDisappear();
             //    Debug.Log("get apple");
             //}
+
         }
         else
-            InfoDisappear();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.tag == "Item")
         {
-            getImage.SetActive(false);
+            InfoDisappear();         
         }
     }
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if(collision.tag == "apple")
+    //    {
+    //        getImage.SetActive(false);
+    //        //hitItem = false;
+    //    }
+    //}
 
 
 
@@ -71,13 +77,32 @@ public class ActionController : MonoBehaviour
         {
             if (pickupActivated && ActiveButton)
             {
-                theInventory.AcquireItem(test);
-                Debug.Log("destroy");
-                Destroy(item);
-                InfoDisappear();
-                Debug.Log("get apple");
-                ActiveButton = false;
-                yield return null;
+                if(item.tag == "apple")
+                {
+                    GameManager.instance.saveData.getApple += 1;
+                    theInventory.AcquireItem(test);
+                    Debug.Log("destroy");
+                    Destroy(item);
+                    InfoDisappear();
+                    Debug.Log("get apple");
+                    ActiveButton = false;
+                    GameManager.instance.SaveData();
+
+                }
+                
+                if(item.tag =="branch")
+                {
+                    GameManager.instance.saveData.getBranch += 1;
+                    theInventory.AcquireItem(test);
+                    //Debug.Log("destroy");
+                    Destroy(item);
+                    InfoDisappear();
+                    Debug.Log("get branch");
+                    ActiveButton = false;
+                    GameManager.instance.SaveData();
+                }
+                
+                //yield return null;
             }
             yield return null;
         }
