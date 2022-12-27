@@ -247,59 +247,61 @@ public class testPlayer : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D other) {
-        
-        if(other.tag == "attack" && isApple == false && isBranch == false)
-        {
-            attack.SetActive(true);
-        }
+    void OnTriggerStay2D(Collider2D other)
+    {
 
-        if (other.tag == "apple")
-        {
-            isApple = true;
-            attack.SetActive(false);
-            get.SetActive(true);
-            //StartCoroutine(clickCheck(other.gameObject));
-
-        }
-
-        if (other.tag == "branch")
-        {
-            isBranch = true;
-            attack.SetActive(false);
-            get.SetActive(true);
-            //StartCoroutine(clickCheck(other.gameObject));
-        }
+        //if (other.tag == "attack" && isApple == false && isBranch == false)
+        //{
+        //    attack.SetActive(true);
+        //}
     }
 
+        //    if (other.tag == "apple")
+        //    {
+        //        isApple = true;
+        //        attack.SetActive(false);
+        //        get.SetActive(true);
+        //        //StartCoroutine(clickCheck(other.gameObject));
+
+        //    }
+
+        //    if (other.tag == "branch")
+        //    {
+        //        isBranch = true;
+        //        attack.SetActive(false);
+        //        get.SetActive(true);
+        //        //StartCoroutine(clickCheck(other.gameObject));
+        //    }
+        //}
+
     void OnTriggerExit2D(Collider2D other) {
-        if(other.tag == "AppleTree")
-        {
-            StopAllCoroutines();
-        }
+        //if(other.tag == "AppleTree")
+        //{
+        //    StopAllCoroutines();
+        //}
         if(other.tag == "chat")
         {
             talk.SetActive(false);
             talkCheck =0;
         }
 
-        if(other.tag =="attack")
-        {
-            attack.SetActive(false);
-        }
+        //if(other.tag =="attack")
+        //{
+        //    attack.SetActive(false);
+        //}
 
-        if (other.tag == "apple")
-        {
-            isApple = false;
-            get.SetActive(false);
+        //if (other.tag == "apple")
+        //{
+        //    isApple = false;
+        //    get.SetActive(false);
 
-        }
+        //}
 
-        if (other.tag == "branch")
-        {
-            isBranch = false;
-            get.SetActive(false);
-        }
+        //if (other.tag == "branch")
+        //{
+        //    isBranch = false;
+        //    get.SetActive(false);
+        //}
     }
     
     // private void OnTriggerStay(Collider other) {
@@ -318,14 +320,14 @@ public class testPlayer : MonoBehaviour
         }
     }
     
-    public void GetApple() //?˜ë¬´ ?‘ê·¼?˜ê³  ?´ë¦­?ˆì„ ???‘ë™
-    {
-        attack1 = 1;
-        Debug.Log(attack1);
-        anim.SetTrigger("tree");
-        sprite.sortingOrder =10;
+    //public void GetApple() //?˜ë¬´ ?‘ê·¼?˜ê³  ?´ë¦­?ˆì„ ???‘ë™
+    //{
+    //    attack1 = 1;
+    //    Debug.Log(attack1);
+    //    anim.SetTrigger("tree");
+    //    sprite.sortingOrder =10;
         
-    }
+    //}
 
     public void click()
     {
@@ -356,39 +358,39 @@ public class testPlayer : MonoBehaviour
     //     }
     // }
 
-    public IEnumerator clickCheck(GameObject plz) //?´ê±° ê²Œì„ë§¤ë‹ˆ?€ë¡?ë³´ë‚´ê³??¶ì???ì¶©ëŒì²˜ë¦¬?Œë¬¸??ë¶ˆê???
-    {
-        while(true)
-        {
-            if(getClick == true)
-            {
-                if(plz.tag == "apple")
-                {
-                    GameManager.instance.saveData.getApple += 1;
-                    //manager.saveData.getApple +=1;
-                    apple.text = "»ç°ú 10°³¸¦ °¡Á®¿ÀÀÚ("+GameManager.instance.saveData.getApple+"/10)";
-                    //theInventory.AcquireItem();
-                    StartCoroutine(QuestCheck());
-                }
+    //public IEnumerator clickCheck(GameObject plz) //?´ê±° ê²Œì„ë§¤ë‹ˆ?€ë¡?ë³´ë‚´ê³??¶ì???ì¶©ëŒì²˜ë¦¬?Œë¬¸??ë¶ˆê???
+    //{
+    //    while(true)
+    //    {
+    //        if(getClick == true)
+    //        {
+    //            if(plz.tag == "apple")
+    //            {
+    //                GameManager.instance.saveData.getApple += 1;
+    //                //manager.saveData.getApple +=1;
+    //                apple.text = "»ç°ú 10°³¸¦ °¡Á®¿ÀÀÚ("+GameManager.instance.saveData.getApple+"/10)";
+    //                //theInventory.AcquireItem();
+    //                StartCoroutine(QuestCheck());
+    //            }
 
-                if(plz.tag == "branch")
-                {
-                    GameManager.instance.saveData.getBranch +=1;
-                    branch.text = "?˜ë­‡ê°€ì§€ 3ê°œë? ê°€?¸ì˜¤??("+GameManager.instance.saveData.getBranch+"/3)";
-                    StartCoroutine(QuestCheck());
-                }
+    //            if(plz.tag == "branch")
+    //            {
+    //                GameManager.instance.saveData.getBranch +=1;
+    //                branch.text = "?˜ë­‡ê°€ì§€ 3ê°œë? ê°€?¸ì˜¤??("+GameManager.instance.saveData.getBranch+"/3)";
+    //                StartCoroutine(QuestCheck());
+    //            }
 
-                GameManager.instance.SaveData();
-                Debug.Log(" get apple");
-                //string jsonData = JsonUtility.ToJson(manager.saveData);
-               // File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
-                Destroy(plz);
-                getClick = false;
-            }
-            yield return null;
-        }
+    //            GameManager.instance.SaveData();
+    //            Debug.Log(" get apple");
+    //            //string jsonData = JsonUtility.ToJson(manager.saveData);
+    //           // File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+    //            Destroy(plz);
+    //            getClick = false;
+    //        }
+    //        yield return null;
+    //    }
         
-    }
+    //}
 
     public IEnumerator QuestCheck() //?œì´???°ì´?°ë¡œ ì½”ë“œ ?˜ì • ?„ìš” 
     {

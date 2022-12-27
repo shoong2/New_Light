@@ -10,35 +10,57 @@ public class ActionController : MonoBehaviour
     private bool pickupActivated = false;
     bool ActiveButton =false;
 
-    //private RaycastHit hitInfo;
+    //right button
     public GameObject getImage;
+    public GameObject attackImage;
+
 
     [SerializeField]
     private LayerMask layerMask;
 
+
     [SerializeField]
     Inventory theInventory;
+
+    GameObject appleTree;
+    Animator appleTreeAnim;
+    Animator anim;
+
+    bool isItem = false;
+    public bool isShakeTree = false; // 나무 흔들었는지 체크
 
     //bool hitItem = false;
     private void Start()
     {
-        
+        //appleTree = GameObject.FindGameObjectWithTag("AppleTree");
+        //appleTreeAnim = appleTree.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.tag=="AppleTree" && isItem == false)
+    //    {
+    //        attackImage.SetActive(true);
+
+    //    }
+    //}
+  
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "apple")
+        if (collision.tag == "AppleTree" && isItem == false)
         {
+            attackImage.SetActive(true);
+
+        }
+
+        if (collision.tag == "apple" || collision.tag =="branch")
+        {
+            isItem = true;
             ItemInfoAppear(); //pickup true
+            attackImage.SetActive(false);
             getImage.SetActive(true);
-            //hitItem = true;
             StartCoroutine(CheckButton(collision.gameObject));
-            //if (pickupActivated && ActiveButton)
-            //{
-            //    Destroy(collision.gameObject);
-            //    InfoDisappear();
-            //    Debug.Log("get apple");
-            //}
 
         }
         else
@@ -47,14 +69,21 @@ public class ActionController : MonoBehaviour
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if(collision.tag == "apple")
-    //    {
-    //        getImage.SetActive(false);
-    //        //hitItem = false;
-    //    }
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "apple" || collision.tag =="branch")
+        {
+            getImage.SetActive(false);
+            InfoDisappear();
+            isItem = false;
+            //hitItem = false;
+        }
+
+        if(collision.tag == "AppleTree")
+        {
+            attackImage.SetActive(false);
+        }
+    }
 
 
 
@@ -71,6 +100,7 @@ public class ActionController : MonoBehaviour
     
     public IEnumerator CheckButton(GameObject item)
     {
+        Debug.Log("branch problem?");
         Debug.Log(item.transform.GetComponent<ItemPickUp>().item.name);
         Item test = item.transform.GetComponent<ItemPickUp>().item;
         while (true)
@@ -90,7 +120,7 @@ public class ActionController : MonoBehaviour
 
                 }
                 
-                if(item.tag =="branch")
+                else if(item.tag =="branch")
                 {
                     GameManager.instance.saveData.getBranch += 1;
                     theInventory.AcquireItem(test);
@@ -101,23 +131,24 @@ public class ActionController : MonoBehaviour
                     ActiveButton = false;
                     GameManager.instance.SaveData();
                 }
-                
+                GameManager.instance.UpdateUI();
                 //yield return null;
             }
             yield return null;
         }
-        //if(pickupActivated && ActiveButton)
-        //{
-        //    Destroy(item);
-        //    InfoDisappear();
-        //    Debug.Log("get apple");
-        //}
-
-        //yield return null;
+        
     }
 
-    public void IsGetButton()
+    public void IsGetButton() // 아이템먹기
     {
         ActiveButton = true;
+    }
+
+    public void GetApple() //나무 흔들기
+    {
+        isShakeTree = true;
+        anim.SetTrigger("tree");
+        //sprite.sortingOrder = 10;
+
     }
 }

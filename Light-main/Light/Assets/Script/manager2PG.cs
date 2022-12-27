@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class manager2PG : MonoBehaviour
 {
+    ActionController playerAction;
+
     testPlayer player;
     Animator ani;
     public GameObject tree;
@@ -27,38 +29,40 @@ public class manager2PG : MonoBehaviour
         player = GameObject.Find("TOP1").GetComponent<testPlayer>();
         // fade = apple.GetComponent<SpriteRenderer>();
         //manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+        playerAction = GameObject.Find("TOP1").GetComponent<ActionController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.attack1 == 1)
+        if(playerAction.isShakeTree) // (player.attack1 == 1)
         {
-            ani.Play("newApple", -1, 0f);
+            Debug.Log("change tree");
+            ani.SetTrigger("Shake");
+            //ani.Play("newApple", -1, 0f);
             int randomRange = Random.Range(0,4);
-            if (appleCount < 10 && randomRange == 1 && GameManager.instance.saveData.TreeQuest == true)
+            if (/*appleCount*/GameManager.instance.saveData.getApple < 10 && randomRange == 1 && GameManager.instance.saveData.TreeQuest == true)
             {
-                appleCount+=1;
+               // appleCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);
                 randomPos= new Vector2(randomX, -4.5f);
                 AppleItem = Instantiate(apple,randomPos, Quaternion.identity);
                 
             }
-            else if(stickCount <3 &&randomRange == 2 && GameManager.instance.saveData.TreeQuest == true)
+            else if(/*stickCount*/GameManager.instance.saveData.getBranch <3 &&randomRange == 2 && GameManager.instance.saveData.TreeQuest == true)
             {
-                stickCount+=1;
+                //stickCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);
                 randomPos= new Vector2(randomX, -4.5f);
                 StickItem = Instantiate(stick,randomPos, Quaternion.identity);
             }
-            
-            // Invoke("fadeOut", 1f);
-            player.attack1 = 0;
 
+            // Invoke("fadeOut", 1f);
+            //player.attack1 = 0;
+            playerAction.isShakeTree = false;
         }
 
-        
+
         
 
     

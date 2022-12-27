@@ -9491,10 +9491,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupActivated: 0
   getImage: {fileID: 1252453387}
+  attackImage: {fileID: 1255858723}
   layerMask:
     serializedVersion: 2
     m_Bits: 512
   theInventory: {fileID: 350022936}
+  isShakeTree: 0
 --- !u!1 &845939993
 GameObject:
   m_ObjectHideFlags: 0
@@ -15777,8 +15779,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 829570229}
-        m_TargetAssemblyTypeName: testPlayer, Assembly-CSharp
+      - m_Target: {fileID: 829570233}
+        m_TargetAssemblyTypeName: ActionController, Assembly-CSharp
         m_MethodName: GetApple
         m_Mode: 1
         m_Arguments:
