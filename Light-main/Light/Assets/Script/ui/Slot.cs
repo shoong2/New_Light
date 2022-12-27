@@ -16,7 +16,7 @@ public class Slot : MonoBehaviour
 
     private void Start()
     {
-        
+       
     }
 
 
@@ -32,7 +32,7 @@ public class Slot : MonoBehaviour
     {
         item = _item;
         //itemCount = _count;
-        GameManager.instance.saveData.getApple += _count;
+        //GameManager.instance.saveData.getApple += _count;
         itemImage.sprite = item.itemImage;
 
         //IsActive_Text.SetActive(true);
@@ -47,7 +47,7 @@ public class Slot : MonoBehaviour
     public void SetSlotCount(int _count)
     {
         //itemCount += _count;
-        GameManager.instance.saveData.getApple += _count;
+        //GameManager.instance.saveData.getApple += _count;
         //text_Count.text = itemCount.ToString();
         text_Count.text = GameManager.instance.saveData.getApple.ToString();
 

@@ -1851,7 +1851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tree: {fileID: 1907648633}
   apple: {fileID: 1224074054}
-  stick: {fileID: 6809625165910347514, guid: 1d9ebbbf2d215734ea012e127383e3ec, type: 3}
+  stick: {fileID: 8976296489195705663, guid: cff126d097a7ad34fb3b4b1f480e2367, type: 3}
 --- !u!4 &522770657
 Transform:
   m_ObjectHideFlags: 0
