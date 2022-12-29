@@ -3300,6 +3300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_SlotsParent: {fileID: 649165745}
+  items: []
 --- !u!1 &286601720
 GameObject:
   m_ObjectHideFlags: 0
@@ -3831,6 +3832,9 @@ MonoBehaviour:
     isTreeeQuest2: 0
     getApple: 0
     getBranch: 0
+    invenArrayNumber: 
+    invenItemName: []
+    invenItemNumber: 
 --- !u!1001 &339568668
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4078,6 +4082,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_SlotsParent: {fileID: 649165745}
+  items:
+  - {fileID: 11400000, guid: 0dadedf22b3890240a276817d92511c6, type: 2}
+  - {fileID: 11400000, guid: a41c0883b78a1db45887c0f6206c9e4f, type: 2}
 --- !u!1 &350194284
 GameObject:
   m_ObjectHideFlags: 0
@@ -7819,6 +7826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_SlotsParent: {fileID: 649165745}
+  items: []
 --- !u!1 &666598034
 GameObject:
   m_ObjectHideFlags: 0

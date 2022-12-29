@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public SaveData saveData; //= new SaveData();
 
+    private Inventory theInven;
+
     int on = 0;
 
     private void Awake()
@@ -100,6 +102,18 @@ public class GameManager : MonoBehaviour
 
     public void SaveData()
     {
+        theInven = FindObjectOfType<Inventory>();
+
+        Slot[] slots = theInven.GetSlots();
+        for(int i = 0; i < slots.Length; i++)
+        {
+            if(slots[i].item != null)
+            {
+                saveData.invenArrayNumber.Add(i);
+                saveData.invenItemName.Add(slots[i].item.itemName);
+                saveData.invenItemNumber.Add(slots[i].itemCount);
+            }
+        }
         string json = JsonUtility.ToJson(saveData);
 
         File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json);
@@ -113,6 +127,14 @@ public class GameManager : MonoBehaviour
         {
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
+
+            theInven = FindObjectOfType<Inventory>();
+
+            for(int i =0; i< saveData.invenItemName.Count; i++)
+            {
+                theInven.LoadToInven(saveData.invenArrayNumber[i], saveData.invenItemName[i], saveData.invenItemNumber[i]);
+
+            }
         }
 
         else
@@ -182,6 +204,10 @@ public class SaveData
     public bool isTreeeQuest2 = false;
     public int getApple = 0; 
     public int getBranch = 0;
+
+    public List<int> invenArrayNumber = new List<int>();
+    public List<string> invenItemName = new List<string>();
+    public List<int> invenItemNumber = new List<int>();
     
  }
 
