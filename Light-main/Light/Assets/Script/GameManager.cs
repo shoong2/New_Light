@@ -122,16 +122,15 @@ public class GameManager : MonoBehaviour
 
     public void mapButton()
     {
-        if(on == 0)
+        if(map.activeSelf == true)
         {
-            map.SetActive(true);
-            on =1;
-        }
+            map.SetActive(false);
+        }          
         
         else
         {
-            map.SetActive(false);
-            on =0;
+            map.SetActive(true);
+            
         }
     }
 
