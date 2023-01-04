@@ -30,8 +30,8 @@ TagManager:
   - UI
   - 
   - 
-  - aa
-  - 
+  - Player
+  - Tree
   - 
   - 
   - 
@@ -57,4 +57,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 889154521
+    locked: 0
+  - name: Background
+    uniqueID: 2576650943
     locked: 0
