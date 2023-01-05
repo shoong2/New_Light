@@ -215,6 +215,13 @@ public class testPlayer : MonoBehaviour
                 transform.position = new Vector3(-0.5f,3.6f,0);
             }
 
+            else if((SceneManager.GetActiveScene().name == "S_room"))
+            {
+                _LoadScene("main");
+                transform.localScale = new Vector3(0.55f, 0.55f, 0.55f);
+                transform.position = new Vector3(-3.6f,-1.46f,0);
+            }
+
 
         }
 
@@ -234,7 +241,7 @@ public class testPlayer : MonoBehaviour
         {
             _LoadScene("S_room");
             transform.position = new Vector3(-2.65f, -1.04f,0);
-            transform.localScale = new Vector3(1f,1f,1f);
+            transform.localScale = new Vector3(0.8f,0.8f,1f);
         }
 
         
