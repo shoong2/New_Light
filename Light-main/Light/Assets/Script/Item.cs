@@ -13,6 +13,7 @@ public class Item : ScriptableObject
     public enum ItemType
     {
         fruit,
-        material
+        material,
+        Equipment
     }
 }

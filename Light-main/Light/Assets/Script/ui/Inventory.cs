@@ -31,20 +31,22 @@ public class Inventory : MonoBehaviour
 
     public void AcquireItem(Item _item, int _count=1)
     {
-        Debug.Log("hello");
-        for(int i =0; i< slots.Length; i++)
+        if(Item.ItemType.Equipment != _item.itemType)
         {
-            //Debug.Log(i);
-            if(slots[i].item != null)
+            for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].item.itemName == _item.itemName)
+                if (slots[i].item != null)
                 {
-                    slots[i].SetSlotCount(_count);
-                    return;
+                    if (slots[i].item.itemName == _item.itemName)
+                    {
+                        slots[i].SetSlotCount(_count);
+                        return;
+                    }
                 }
+
             }
-            
         }
+        
 
         for (int i = 0; i < slots.Length; i++)
         {
