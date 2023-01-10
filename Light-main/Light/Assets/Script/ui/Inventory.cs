@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private GameObject go_SlotsParent;
 
-    Slot[] slots;
+    private Slot[] slots;
 
     public Slot[] GetSlots() { return slots; }
 

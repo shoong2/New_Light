@@ -14,21 +14,16 @@ public class manager2PG : MonoBehaviour
     GameObject AppleItem;
     GameObject StickItem;
     int appleCount =0;
-    int stickCount = 0;
+    int branchCount = 0;
     float randomX;
     float time;
     float fadeTime =1;
     Vector2 randomPos;
-    
-    // SpriteRenderer fade;
 
-    //GameManager manager;
     void Start()
     {
         ani = tree.GetComponent<Animator>();
         player = GameObject.Find("TOP1").GetComponent<testPlayer>();
-        // fade = apple.GetComponent<SpriteRenderer>();
-        //manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         playerAction = GameObject.Find("TOP1").GetComponent<ActionController>();
     }
 
@@ -39,19 +34,20 @@ public class manager2PG : MonoBehaviour
         {
             Debug.Log("change tree");
             ani.SetTrigger("Shake");
-            //ani.Play("newApple", -1, 0f);
             int randomRange = Random.Range(0,4);
-            if (/*appleCount*/GameManager.instance.saveData.getApple < 10 && randomRange == 1 && GameManager.instance.saveData.TreeQuest == true)
+            if (GameManager.instance.saveData.getApple < 10 && randomRange == 1 
+                && GameManager.instance.saveData.TreeQuest == true && appleCount<10)
             {
-               // appleCount+=1;
+                appleCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);
                 randomPos= new Vector2(randomX, -4.5f);
                 AppleItem = Instantiate(apple,randomPos, Quaternion.identity);
                 
             }
-            else if(/*stickCount*/GameManager.instance.saveData.getBranch <3 &&randomRange == 2 && GameManager.instance.saveData.TreeQuest == true)
+            else if(GameManager.instance.saveData.getBranch <3 &&randomRange == 2 
+                && GameManager.instance.saveData.TreeQuest == true &&branchCount<3)
             {
-                //stickCount+=1;
+                branchCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);
                 randomPos= new Vector2(randomX, -4.5f);
                 StickItem = Instantiate(stick,randomPos, Quaternion.identity);

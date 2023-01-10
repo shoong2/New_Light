@@ -32,19 +32,9 @@ public class ActionController : MonoBehaviour
     //bool hitItem = false;
     private void Start()
     {
-        //appleTree = GameObject.FindGameObjectWithTag("AppleTree");
-        //appleTreeAnim = appleTree.GetComponent<Animator>();
         anim = GetComponent<Animator>();
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if(collision.tag=="AppleTree" && isItem == false)
-    //    {
-    //        attackImage.SetActive(true);
-
-    //    }
-    //}
   
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -102,7 +92,7 @@ public class ActionController : MonoBehaviour
     {
         Debug.Log("branch problem?");
         Debug.Log(item.transform.GetComponent<ItemPickUp>().item.name);
-        Item test = item.transform.GetComponent<ItemPickUp>().item;
+        Item getItem = item.transform.GetComponent<ItemPickUp>().item;
         while (true)
         {
             if (pickupActivated && ActiveButton)
@@ -110,8 +100,7 @@ public class ActionController : MonoBehaviour
                 if(item.tag == "apple")
                 {
                     GameManager.instance.saveData.getApple += 1;
-                    theInventory.AcquireItem(test);
-                    Debug.Log("destroy");
+                    theInventory.AcquireItem(getItem);
                     Destroy(item);
                     InfoDisappear();
                     Debug.Log("get apple");
@@ -123,8 +112,7 @@ public class ActionController : MonoBehaviour
                 else if(item.tag =="branch")
                 {
                     GameManager.instance.saveData.getBranch += 1;
-                    theInventory.AcquireItem(test);
-                    //Debug.Log("destroy");
+                    theInventory.AcquireItem(getItem);
                     Destroy(item);
                     InfoDisappear();
                     Debug.Log("get branch");

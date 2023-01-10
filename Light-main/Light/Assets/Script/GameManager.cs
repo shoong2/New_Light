@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,12 +20,15 @@ public class GameManager : MonoBehaviour
     public Text BranchText;
     public Image tutorial;
 
-    public SaveData saveData; //= new SaveData();
 
-    private Inventory theInven;
+    int ClickCount = 0; // 두번 클릭해서 종료
+
 
     int on = 0;
 
+    
+
+    private Inventory theInven;
     private void Awake()
     {
         if(instance == null)
@@ -33,30 +37,13 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    //private void Awake() {
-    //     print(Application.dataPath);
-    //     //quest = new qData();
-    //     string JsonLoad= File.ReadAllText(Application.dataPath + "/Data.json");
-    //     //string path = Path.Combine(Application.dataPath, "data.json");
 
-
-    //     if(loadData == null)
-    //     {
-    //         Debug.Log("?");
-    //         quest = new qData();
-    //         string jsonData = JsonUtility.ToJson(quest);
-    //         File.WriteAllText(Application.dataPath + "/Data.json", jsonData);
-    //     }
-    //     JsonLoad= File.ReadAllText(Application.dataPath + "/Data.json");
-
-    //     loadData = JsonUtility.FromJson<qData>(JsonLoad);
-    //}
-
-    
-
+    ///////////////////////////////////DATA///////////////////////////////////
+    public SaveData saveData; //= new SaveData();
     private string SAVE_DATA_DIRECTORY;
     private string SAVE_FILENAME = "/SaveFile.txt";
-
+    /////////////////////////////////////////////////////////////////////////
+    
     void Start()
     {
         Debug.Log(Application.persistentDataPath);
@@ -69,10 +56,10 @@ public class GameManager : MonoBehaviour
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
             tutorial.gameObject.SetActive(true);
         }
-            
 
-        //SaveData();
-        LoadData();
+        //LoadData();
+        StartCoroutine(LoadCoroutine());
+
         if (saveData.TreeQuest == true)
         {
             QuestBox.SetActive(true);
@@ -84,13 +71,13 @@ public class GameManager : MonoBehaviour
             BranchText.text = "나뭇가지 3개를 가져오자 ("+saveData.getBranch+"/3)";
         }
 
-        if(saveData != null && saveData.getApple>=10 &&saveData.getBranch>=3 &&saveData.isTreeeQuest1 == false)
+        if(saveData != null && saveData.getApple>=10 &&saveData.getBranch>=3 &&saveData.isTreeQuest1 == false)
         {
             AppleText.text = "사과 10개를 가져오자 (완료)";
             BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
         }
 
-        if(saveData != null && saveData.isTreeeQuest1 == true)
+        if(saveData != null && saveData.isTreeQuest1 == true)
         {
             QuestBox.SetActive(false);
             QuestBox2.SetActive(true);
@@ -100,11 +87,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(Fade());
     }
 
+
     public void SaveData()
     {
         theInven = FindObjectOfType<Inventory>();
 
         Slot[] slots = theInven.GetSlots();
+        //Debug.Log(slots.Length);
         for(int i = 0; i < slots.Length; i++)
         {
             if(slots[i].item != null)
@@ -142,6 +131,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    IEnumerator LoadCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        LoadData();
+    }
+
     public void mapButton()
     {
         if(map.activeSelf == true)
@@ -161,11 +156,11 @@ public class GameManager : MonoBehaviour
         AppleText.text = "사과 10개를 가져오자 (" + saveData.getApple + "/10)";
         BranchText.text = "나뭇가지 3개를 가져오자 (" + saveData.getBranch + "/3)";
 
-        if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3 && saveData.isTreeeQuest1 == false)
+        if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3 && saveData.isTreeQuest1 == false)
         {
             AppleText.text = "사과 10개를 가져오자 (완료)";
             BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
-            saveData.isTreeeQuest1 = true;
+            saveData.isTreeQuest1 = true;
         }
     }
 
@@ -189,7 +184,28 @@ public class GameManager : MonoBehaviour
         tutorial.gameObject.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClickCount++;
+            if (!IsInvoking("DoubleClick"))
+                Invoke("DoubleClick", 1.0f);
 
+        }
+        else if (ClickCount == 2)
+        {
+            CancelInvoke("DoubleClick");
+            Application.Quit();
+        }
+
+
+    }
+
+    void DoubleClick()
+    {
+        ClickCount = 0;
+    }
 
 }
 
@@ -197,16 +213,19 @@ public class GameManager : MonoBehaviour
 public class SaveData
  {
     public bool tutorial= false; //튜토리얼 화면
-    public bool TreeQuest = false;
-    public bool isTreeeQuest1 = false; // 사과, 나뭇가지 줍기 퀘스트 완료
+
+    public bool TreeQuest = false; //나무정령 첫번째 퀘스트 수락 여부
+    public bool isTreeQuest1 = false; // 사과, 나뭇가지 줍기 퀘스트 완료
+    public int getApple = 0; //나무정령 퀘스트1 사과 개수
+    public int getBranch = 0; // 나무개수
+
     public bool StartNextQuest = false; //다음 퀘스트 수락 후
-    public bool isTreeeQuest2 = false;
-    public int getApple = 0; 
-    public int getBranch = 0;
+    public bool isTreeQuest2 = false;
+    
 
     public List<int> invenArrayNumber = new List<int>();
     public List<string> invenItemName = new List<string>();
     public List<int> invenItemNumber = new List<int>();
-    
- }
+
+}
 

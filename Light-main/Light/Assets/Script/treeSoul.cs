@@ -34,7 +34,7 @@ public class treeSoul : MonoBehaviour
             noGetQst.SetActive(false);
         }
 
-        if(GameManager.instance.saveData.isTreeeQuest2 == true)
+        if(GameManager.instance.saveData.isTreeQuest2 == true)
         {
             doneQst.SetActive(true);
         }
@@ -46,12 +46,12 @@ public class treeSoul : MonoBehaviour
             StartCoroutine(chating());
         }
 
-        if(GameManager.instance.saveData.TreeQuest == true && GameManager.instance.saveData.isTreeeQuest1 == false)
+        if(GameManager.instance.saveData.TreeQuest == true && GameManager.instance.saveData.isTreeQuest1 == false)
         {
             StartCoroutine(AfterAcceptChat());
         }
         
-        if(GameManager.instance.saveData.isTreeeQuest1 == true && GameManager.instance.saveData.StartNextQuest == false)
+        if(GameManager.instance.saveData.isTreeQuest1 == true && GameManager.instance.saveData.StartNextQuest == false)
         {
             StartCoroutine(QuestComplete());
         }
@@ -61,7 +61,7 @@ public class treeSoul : MonoBehaviour
             StartCoroutine(NoCompleteQst2());
         }
 
-        if(GameManager.instance.saveData.isTreeeQuest2 == true)
+        if(GameManager.instance.saveData.isTreeQuest2 == true)
         {
             StartCoroutine(Quest2Complete());
         }

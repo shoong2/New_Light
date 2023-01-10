@@ -61,10 +61,7 @@ public class testPlayer : MonoBehaviour
             moveControl();
             
         }
-        // //else if(joystick.Horizontal ==0 || joystick.Vertical ==0)
-        // {
-        //     moveSpeed = 0f;
-        // }
+        
 
     }
     
@@ -363,7 +360,7 @@ public class testPlayer : MonoBehaviour
         {
             apple.text = "?¬ê³¼ 10ê°œë? ê°€?¸ì˜¤??(?„ë£Œ)";
             branch.text = "?˜ë­‡ê°€ì§€ 3ê°œë? ê°€?¸ì˜¤??(?„ë£Œ)";
-            GameManager.instance.saveData.isTreeeQuest1 = true;
+            GameManager.instance.saveData.isTreeQuest1 = true;
             GameManager.instance.SaveData();
             //string jsonData = JsonUtility.ToJson(manager.saveData);
             //File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
