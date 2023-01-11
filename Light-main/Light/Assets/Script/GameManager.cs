@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,8 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject map;
     public Text AppleText;
     public Text BranchText;
-   // public Image tutorial;
+    // public Image tutorial;
 
+    public TMP_Text QuestText;
 
     int ClickCount = 0; // 두번 클릭해서 종료
 
@@ -57,8 +59,8 @@ public class GameManager : MonoBehaviour
             //tutorial.gameObject.SetActive(true);
         }
 
-        //LoadData();
-        StartCoroutine(LoadCoroutine());
+        LoadData();
+        //StartCoroutine(LoadCoroutine());
 
         if (saveData.TreeQuest == true)
         {
@@ -82,8 +84,8 @@ public class GameManager : MonoBehaviour
             QuestBox.SetActive(false);
             QuestBox2.SetActive(true);
         }
+        UpdateQuestUI();
 
-        
         //StartCoroutine(Fade());
     }
 
@@ -117,13 +119,14 @@ public class GameManager : MonoBehaviour
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
+            StartCoroutine(LoadCoroutine());
             theInven = FindObjectOfType<Inventory>();
 
-            for(int i =0; i< saveData.invenItemName.Count; i++)
-            {
-                theInven.LoadToInven(saveData.invenArrayNumber[i], saveData.invenItemName[i], saveData.invenItemNumber[i]);
+            //for(int i =0; i< saveData.invenItemName.Count; i++)
+            //{
+            //    theInven.LoadToInven(saveData.invenArrayNumber[i], saveData.invenItemName[i], saveData.invenItemNumber[i]);
 
-            }
+            //}
         }
 
         else
@@ -134,7 +137,13 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadCoroutine()
     {
         yield return new WaitForSeconds(1f);
-        LoadData();
+        theInven = FindObjectOfType<Inventory>();
+
+        for (int i = 0; i < saveData.invenItemName.Count; i++)
+        {
+            theInven.LoadToInven(saveData.invenArrayNumber[i], saveData.invenItemName[i], saveData.invenItemNumber[i]);
+
+        }
     }
 
     public void mapButton()
@@ -164,25 +173,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //IEnumerator Fade()
-    //{
-    //    float fadeCount = 0;
-    //    while (fadeCount <1.0f)
-    //    {
-    //        fadeCount +=0.01f;
-    //        yield return new WaitForSeconds(0.005f);
-    //        tutorial.color = new Color(1,1,1, fadeCount);
-    //    }
-    //    yield return new WaitForSeconds(1.3f);
-    //    while(fadeCount>0)
-    //    {
-    //        fadeCount -= 0.02f;
-    //        yield return new WaitForSeconds(0.005f);
-    //        tutorial.color = new Color(1,1,1, fadeCount);
-    //    }
-
-    //    tutorial.gameObject.SetActive(false);
-    //}
+    public void UpdateQuestUI()
+    {
+        QuestText.text = saveData.mainQuestText;
+    }
 
     private void Update()
     {
@@ -226,6 +220,8 @@ public class SaveData
     public List<int> invenArrayNumber = new List<int>();
     public List<string> invenItemName = new List<string>();
     public List<int> invenItemNumber = new List<int>();
+
+    public string mainQuestText = "";
 
 }
 

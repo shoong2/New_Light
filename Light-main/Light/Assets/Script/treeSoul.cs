@@ -163,6 +163,7 @@ public class treeSoul : MonoBehaviour
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         GameManager.instance.QuestBox.SetActive(true);
         GameManager.instance.saveData.TreeQuest = true;
+        GameManager.instance.saveData.mainQuestText = "나무정령의 부탁 1";
         GameManager.instance.SaveData();
         //string jsonData = JsonUtility.ToJson(GameManager.instance.saveData);
         //File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
