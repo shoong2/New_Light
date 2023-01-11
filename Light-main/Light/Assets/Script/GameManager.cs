@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject map;
     public Text AppleText;
     public Text BranchText;
-    public Image tutorial;
+   // public Image tutorial;
 
 
     int ClickCount = 0; // 두번 클릭해서 종료
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("make file");
             saveData = new SaveData();
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
-            tutorial.gameObject.SetActive(true);
+            //tutorial.gameObject.SetActive(true);
         }
 
         //LoadData();
@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         }
 
         
-        StartCoroutine(Fade());
+        //StartCoroutine(Fade());
     }
 
 
@@ -164,25 +164,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator Fade()
-    {
-        float fadeCount = 0;
-        while (fadeCount <1.0f)
-        {
-            fadeCount +=0.01f;
-            yield return new WaitForSeconds(0.005f);
-            tutorial.color = new Color(1,1,1, fadeCount);
-        }
-        yield return new WaitForSeconds(1.3f);
-        while(fadeCount>0)
-        {
-            fadeCount -= 0.02f;
-            yield return new WaitForSeconds(0.005f);
-            tutorial.color = new Color(1,1,1, fadeCount);
-        }
+    //IEnumerator Fade()
+    //{
+    //    float fadeCount = 0;
+    //    while (fadeCount <1.0f)
+    //    {
+    //        fadeCount +=0.01f;
+    //        yield return new WaitForSeconds(0.005f);
+    //        tutorial.color = new Color(1,1,1, fadeCount);
+    //    }
+    //    yield return new WaitForSeconds(1.3f);
+    //    while(fadeCount>0)
+    //    {
+    //        fadeCount -= 0.02f;
+    //        yield return new WaitForSeconds(0.005f);
+    //        tutorial.color = new Color(1,1,1, fadeCount);
+    //    }
 
-        tutorial.gameObject.SetActive(false);
-    }
+    //    tutorial.gameObject.SetActive(false);
+    //}
 
     private void Update()
     {

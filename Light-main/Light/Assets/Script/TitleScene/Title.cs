@@ -7,6 +7,7 @@ public class Title : MonoBehaviour
 {
     public GameObject touchToStart;
     public GameObject changeScene;
+    public AudioSource startSound;
     GameManager theSaveNLoad;
 
     
@@ -16,7 +17,13 @@ public class Title : MonoBehaviour
     }
     public void ChangeScene()
     {
-        //StartCoroutine(LoadScene());
+        StartCoroutine(StartChangeScene());
+    }
+
+    IEnumerator StartChangeScene()
+    {
+        startSound.Play();
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadScene("main");
     }
 
