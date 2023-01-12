@@ -21,7 +21,13 @@ public class GameManager : MonoBehaviour
     public Text BranchText;
     // public Image tutorial;
 
+
+    //Quest
     public TMP_Text QuestText;
+
+    public TMP_Text QuestName;
+    public TMP_Text QusetDetail;
+    public TMP_Text QuestInfo;
 
     int ClickCount = 0; // 두번 클릭해서 종료
 
@@ -171,11 +177,24 @@ public class GameManager : MonoBehaviour
             BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
             saveData.isTreeQuest1 = true;
         }
+
+        UpdateQuestUI();
     }
 
     public void UpdateQuestUI()
     {
         QuestText.text = saveData.mainQuestText;
+
+        QuestName.text = saveData.mainQuestText;
+        QusetDetail.text = saveData.QuestDetailText;
+
+        if(saveData.TreeQuest ==true)
+        {
+            if(saveData.getApple<=10 &&saveData.getBranch<=3)
+                QuestInfo.text = "사과    (" + saveData.getApple + "/10)\n" + "나뭇가지 (" + saveData.getBranch + "/3)";
+            else
+                QuestInfo.text = "사과     (완료)\n"+"나뭇가지 (완료)";
+        }
     }
 
     private void Update()
@@ -222,6 +241,7 @@ public class SaveData
     public List<int> invenItemNumber = new List<int>();
 
     public string mainQuestText = "";
+    public string QuestDetailText = "";
 
 }
 
