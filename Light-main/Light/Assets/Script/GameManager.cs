@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
     int ClickCount = 0; // 두번 클릭해서 종료
 
 
-    int on = 0;
+    //PopUP
+    public Image QuestEnd;
+    public Image QuestReward;
 
     
 
@@ -175,7 +177,9 @@ public class GameManager : MonoBehaviour
         {
             AppleText.text = "사과 10개를 가져오자 (완료)";
             BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
+            StartCoroutine(Fade(QuestEnd));
             saveData.isTreeQuest1 = true;
+            SaveData();
         }
 
         UpdateQuestUI();
@@ -190,7 +194,7 @@ public class GameManager : MonoBehaviour
 
         if(saveData.TreeQuest ==true)
         {
-            if(saveData.getApple<=10 &&saveData.getBranch<=3)
+            if(saveData.getApple<10 &&saveData.getBranch<3)
                 QuestInfo.text = "사과    (" + saveData.getApple + "/10)\n" + "나뭇가지 (" + saveData.getBranch + "/3)";
             else
                 QuestInfo.text = "사과     (완료)\n"+"나뭇가지 (완료)";
@@ -220,6 +224,26 @@ public class GameManager : MonoBehaviour
         ClickCount = 0;
     }
 
+    IEnumerator Fade(Image PopUp)
+    {
+        PopUp.gameObject.SetActive(true);
+        float fadeCount = 0;
+        while (fadeCount < 1f)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.005f);
+            PopUp.color = new Color(1, 1, 1, fadeCount);
+        }
+        yield return new WaitForSeconds(1.3f);
+        while (fadeCount > 0)
+        {
+            fadeCount -= 0.02f;
+            yield return new WaitForSeconds(0.005f);
+            PopUp.color = new Color(1, 1, 1, fadeCount);
+        }
+
+        PopUp.gameObject.SetActive(false);
+    }
 }
 
 [System.Serializable] 

@@ -35,8 +35,9 @@ public class manager2PG : MonoBehaviour
             Debug.Log("change tree");
             ani.SetTrigger("Shake");
             int randomRange = Random.Range(0,4);
-            if (GameManager.instance.saveData.getApple < 10 && randomRange == 1 
-                && GameManager.instance.saveData.TreeQuest == true && appleCount<10)
+            //if (GameManager.instance.saveData.getApple < 10 && randomRange == 1 
+            //    && GameManager.instance.saveData.TreeQuest == true && appleCount<10)
+            if(randomRange ==1)
             {
                 appleCount+=1;
                 randomX = Random.Range(-3.37f, -1.09f);
