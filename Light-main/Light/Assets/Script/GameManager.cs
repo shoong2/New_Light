@@ -9,7 +9,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-    public Text text;
+   
    
     //public SaveData quest;
     //public SaveData qdata;
@@ -23,10 +23,11 @@ public class GameManager : MonoBehaviour
 
 
     //Quest
+    public GameObject QuestDetails;
     public TMP_Text QuestText;
 
     public TMP_Text QuestName;
-    public TMP_Text QusetDetail;
+    public TMP_Text QuestExplain;
     public TMP_Text QuestInfo;
 
     int ClickCount = 0; // 두번 클릭해서 종료
@@ -187,14 +188,16 @@ public class GameManager : MonoBehaviour
 
     public void UpdateQuestUI()
     {
-        QuestText.text = saveData.mainQuestText;
-
-        QuestName.text = saveData.mainQuestText;
-        QusetDetail.text = saveData.QuestDetailText;
-
         if(saveData.TreeQuest ==true)
         {
-            if(saveData.getApple<10 &&saveData.getBranch<3)
+            QuestDetails.SetActive(true);
+            QuestText.gameObject.SetActive(true);
+            QuestText.text = saveData.mainQuestText;
+
+            QuestName.text = saveData.mainQuestText;
+            QuestExplain.text = saveData.QuestDetailText;
+
+            if (saveData.getApple<10 &&saveData.getBranch<3)
                 QuestInfo.text = "사과    (" + saveData.getApple + "/10)\n" + "나뭇가지 (" + saveData.getBranch + "/3)";
             else
                 QuestInfo.text = "사과     (완료)\n"+"나뭇가지 (완료)";
