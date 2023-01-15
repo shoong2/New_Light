@@ -39,7 +39,9 @@ public class treeSoul : MonoBehaviour
             doneQst.SetActive(true);
         }
     }
-    
+
+
+
     public void startChat() {
         if(GameManager.instance.saveData.TreeQuest == false)
         {
@@ -56,7 +58,7 @@ public class treeSoul : MonoBehaviour
             StartCoroutine(QuestComplete());
         }
 
-        if(GameManager.instance.saveData.StartNextQuest == true)
+        if(GameManager.instance.saveData.StartNextQuest == true && GameManager.instance.saveData.isTreeQuest2 == false)
         {
             StartCoroutine(NoCompleteQst2());
         }
@@ -203,8 +205,10 @@ public class treeSoul : MonoBehaviour
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         GameManager.instance.saveData.StartNextQuest = true;
-        string jsonData = JsonUtility.ToJson(GameManager.instance.saveData);
-        File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+        GameManager.instance.saveData.mainQuestText = "나무정령의 부탁 2";
+        GameManager.instance.saveData.QuestDetailText = "수련장1에 있는 몬스터를 처치해서\n나무정령에게 갖다주자";
+        GameManager.instance.SaveData();
+        GameManager.instance.UpdateQuestUI();
         GameManager.instance.QuestBox.SetActive(false);
         GameManager.instance.QuestBox2.SetActive(true);
         
@@ -248,7 +252,7 @@ public class treeSoul : MonoBehaviour
     {
         compensation.gameObject.SetActive(true);
         float fadeCount = 0;
-        while (fadeCount <0.5f)
+        while (fadeCount <1f)
         {
             fadeCount +=0.01f;
             yield return new WaitForSeconds(0.005f);

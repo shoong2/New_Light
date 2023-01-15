@@ -35,7 +35,16 @@ public class ActionController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-  
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameManager.instance.saveData.waterDrop += 1;
+            GameManager.instance.UpdateUI();
+        }
+    }
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "AppleTree" && isItem == false)

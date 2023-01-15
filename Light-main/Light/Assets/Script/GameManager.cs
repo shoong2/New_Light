@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject map;
     public Text AppleText;
     public Text BranchText;
+    public Text waterDropText;
     // public Image tutorial;
 
 
@@ -76,24 +77,27 @@ public class GameManager : MonoBehaviour
             QuestBox.SetActive(true);
         }
 
-        if(saveData != null && (saveData.getApple<10 || saveData.getBranch<3))
-        {
-            AppleText.text = "사과 10개를 가져오자 ("+saveData.getApple+"/10)"; 
-            BranchText.text = "나뭇가지 3개를 가져오자 ("+saveData.getBranch+"/3)";
-        }
+        //if(saveData != null && (saveData.getApple<10 || saveData.getBranch<3))
+        //{
+        //    AppleText.text = "사과 10개를 가져오자 ("+saveData.getApple+"/10)"; 
+        //    BranchText.text = "나뭇가지 3개를 가져오자 ("+saveData.getBranch+"/3)";
+        //}
 
-        if(saveData != null && saveData.getApple>=10 &&saveData.getBranch>=3 &&saveData.isTreeQuest1 == false)
-        {
-            AppleText.text = "사과 10개를 가져오자 (완료)";
-            BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
-        }
+        //if(saveData != null && saveData.getApple>=10 &&saveData.getBranch>=3 &&saveData.isTreeQuest1 == false)
+        //{
+        //    AppleText.text = "사과 10개를 가져오자 (완료)";
+        //    BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
+        //}
 
-        if(saveData != null && saveData.isTreeQuest1 == true)
-        {
-            QuestBox.SetActive(false);
-            QuestBox2.SetActive(true);
-        }
-        UpdateQuestUI();
+        //if(saveData != null && saveData.StartNextQuest == true)
+        //{
+        //    QuestBox.SetActive(false);
+        //    QuestBox2.SetActive(true);
+        //    waterDropText.text = "물방울 5개를 가져오자 (" + saveData.waterDrop + "/5)";
+        //}
+
+        UpdateUI();
+        //UpdateQuestUI();
 
         //StartCoroutine(Fade());
     }
@@ -171,10 +175,23 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        AppleText.text = "사과 10개를 가져오자 (" + saveData.getApple + "/10)";
-        BranchText.text = "나뭇가지 3개를 가져오자 (" + saveData.getBranch + "/3)";
+        if (saveData.StartNextQuest == false)
+        {
+            AppleText.text = "사과 10개를 가져오자 (" + saveData.getApple + "/10)";
+            BranchText.text = "나뭇가지 3개를 가져오자 (" + saveData.getBranch + "/3)";
+        }
 
-        if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3 && saveData.isTreeQuest1 == false)
+        if(saveData.StartNextQuest== true && saveData.isTreeQuest2 == false)
+        {
+            if(saveData.waterDrop <5)
+                waterDropText.text = "물방울 5개를 가져오자 (" + saveData.waterDrop + "/5)";
+            else
+                waterDropText.text = "물방울 5개를 가져오자 (완료)";
+
+        }
+
+
+        if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3)
         {
             AppleText.text = "사과 10개를 가져오자 (완료)";
             BranchText.text = "나뭇가지 3개를 가져오자 (완료)";
@@ -197,11 +214,23 @@ public class GameManager : MonoBehaviour
             QuestName.text = saveData.mainQuestText;
             QuestExplain.text = saveData.QuestDetailText;
 
-            if (saveData.getApple<10 &&saveData.getBranch<3)
-                QuestInfo.text = "사과    (" + saveData.getApple + "/10)\n" + "나뭇가지 (" + saveData.getBranch + "/3)";
-            else
-                QuestInfo.text = "사과     (완료)\n"+"나뭇가지 (완료)";
+            if (saveData.StartNextQuest == false)
+            {
+                if (saveData.getApple < 10 && saveData.getBranch < 3)
+                    QuestInfo.text = "사과    (" + saveData.getApple + "/10)\n" + "나뭇가지 (" + saveData.getBranch + "/3)";
+                else
+                    QuestInfo.text = "사과     (완료)\n" + "나뭇가지 (완료)";
+            }
+
+            if(saveData.StartNextQuest ==true && saveData.isTreeQuest2 == false)
+            {
+                if (saveData.waterDrop < 5)
+                    QuestInfo.text = "물방울    (" + saveData.waterDrop + "/5)";
+                else
+                    QuestInfo.text = "물방울     (완료)";
+            }
         }
+
     }
 
     private void Update()
@@ -261,7 +290,7 @@ public class SaveData
 
     public bool StartNextQuest = false; //다음 퀘스트 수락 후
     public bool isTreeQuest2 = false;
-    
+    public int waterDrop = 0;
 
     public List<int> invenArrayNumber = new List<int>();
     public List<string> invenItemName = new List<string>();
