@@ -12,7 +12,9 @@ public class treeSoul : MonoBehaviour
     public GameObject doneQst;
     public Text treeName;
     public Text ChatText;
+
     public Image compensation;
+    public Image GetSkillPopUp;
     public string writerText = "";
 
     public float waitTime =0.01f;
@@ -200,7 +202,7 @@ public class treeSoul : MonoBehaviour
         end = false;
         yield return StartCoroutine(NormalChat("나무정령", "나무로 만든 나무 막대기를 줄게!"));
         yield return StartCoroutine(NormalChat("나무정령", "그리고 획득한 사과를 단축기 등록하면\n체력을 높일 수 있어!"));
-        StartCoroutine(Fade());
+        StartCoroutine(Fade(compensation));
         ChatBar.SetActive(false);
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
@@ -214,8 +216,18 @@ public class treeSoul : MonoBehaviour
         
 
     }
-
     public IEnumerator Quest2Complete()
+    {
+        end = false;
+        yield return StartCoroutine(NormalChat("나무정령", "수련장의 모든 몬스터들을 물리쳐줘서 고마워!\n답례로 '휘두르기 스킬'을 줄게!"));
+        yield return StartCoroutine(NormalChat("나무정령", "스킬은 일시정지, 무기 모양 아이콘을 클릭하면 볼 수 있어"));
+        yield return StartCoroutine(NormalChat("나무정령", "단축키 등록을 해 놓으면 몬스터를 물리칠 때 편리하게 쓸 수 있어!"));
+        ChatBar.SetActive(false);
+        tree.SetActive(false);
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        StartCoroutine(Fade(GetSkillPopUp));
+    }
+    public IEnumerator TreeQuestAllComplete()
     {
         end = false;
         yield return StartCoroutine(NormalChat("나무정령", "그러고 보니 휘두르는 자세가\n네 아버지랑 정말 똑같네!"));
@@ -224,11 +236,12 @@ public class treeSoul : MonoBehaviour
         face.none();
         yield return StartCoroutine(NormalChat("리아", "요정이면 하늘을 날아서 볼 수 있는 거 아니야?"));
         face.af();
-        yield return StartCoroutine(NormalChat("나무정령", "이래뵈도 난 나이가 꽤 많아서\n그렇게 높이까지 날아딘ㄹ 수 없어!"));
+        yield return StartCoroutine(NormalChat("나무정령", "이래뵈도 난 나이가 꽤 많아서\n그렇게 높이까지 날아다닐 수 없어!"));
         yield return StartCoroutine(NormalChat("나무정령", "리아 네가 숲2로 가서 확인해 보는 게 좋겠어"));
         ChatBar.SetActive(false);
         tree.SetActive(false);
-        
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+
     }
 
     public IEnumerator AfterAcceptChat()
@@ -248,25 +261,25 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
     }
 
-    IEnumerator Fade()
+    IEnumerator Fade(Image popUp)
     {
-        compensation.gameObject.SetActive(true);
+        popUp.gameObject.SetActive(true);
         float fadeCount = 0;
         while (fadeCount <1f)
         {
             fadeCount +=0.01f;
             yield return new WaitForSeconds(0.005f);
-            compensation.color = new Color(1,1,1, fadeCount);
+            popUp.color = new Color(1,1,1, fadeCount);
         }
         yield return new WaitForSeconds(1.3f);
         while(fadeCount>0)
         {
             fadeCount -= 0.02f;
             yield return new WaitForSeconds(0.005f);
-            compensation.color = new Color(1,1,1, fadeCount);
+            popUp.color = new Color(1,1,1, fadeCount);
         }
 
-        compensation.gameObject.SetActive(false);
+        popUp.gameObject.SetActive(false);
     }
     
 }

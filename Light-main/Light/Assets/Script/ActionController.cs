@@ -41,6 +41,7 @@ public class ActionController : MonoBehaviour
         {
             GameManager.instance.saveData.waterDrop += 1;
             GameManager.instance.UpdateUI();
+            GameManager.instance.SaveData();
         }
     }
 
@@ -129,6 +130,7 @@ public class ActionController : MonoBehaviour
                     GameManager.instance.SaveData();
                 }
                 GameManager.instance.UpdateUI();
+                GameManager.instance.SaveData();
                 //yield return null;
             }
             yield return null;
