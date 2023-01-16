@@ -65,7 +65,12 @@ public class treeSoul : MonoBehaviour
             StartCoroutine(NoCompleteQst2());
         }
 
-        if(GameManager.instance.saveData.isTreeQuest2 == true)
+        if(GameManager.instance.saveData.isTreeQuest1 == true && GameManager.instance.saveData.isTreeQuest2 == true)
+        {
+            StartCoroutine(TreeQuestAllComplete());
+        }
+
+        else if(GameManager.instance.saveData.isTreeQuest2 == true)
         {
             StartCoroutine(Quest2Complete());
         }

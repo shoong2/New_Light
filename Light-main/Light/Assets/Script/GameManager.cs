@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text QuestExplain;
     public TMP_Text QuestInfo;
 
+    //Skill
+    public GameObject skill;
+
     int ClickCount = 0; // 두번 클릭해서 종료
 
 
@@ -38,7 +41,9 @@ public class GameManager : MonoBehaviour
     public Image QuestEnd;
     public Image QuestReward;
 
-    
+    //Map
+    public AudioSource OpenMap;
+    public AudioSource CloseMap;
 
     private Inventory theInven;
     private void Awake()
@@ -165,10 +170,12 @@ public class GameManager : MonoBehaviour
         if(map.activeSelf == true)
         {
             map.SetActive(false);
+            CloseMap.Play();
         }          
         
         else
         {
+            OpenMap.Play();
             map.SetActive(true);
             
         }
@@ -205,6 +212,11 @@ public class GameManager : MonoBehaviour
                 saveData.isTreeQuest2 = true;
             }
 
+        }
+
+        if(saveData.isTreeQuest2 == true)
+        {
+            skill.SetActive(true);
         }
 
 

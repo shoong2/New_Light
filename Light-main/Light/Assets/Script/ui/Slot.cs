@@ -8,6 +8,8 @@ public class Slot : MonoBehaviour
     public int itemCount;
     public Image itemImage;
 
+    public GameObject AppleInfo;
+
     [SerializeField]
     private Text text_Count;
 
@@ -78,5 +80,14 @@ public class Slot : MonoBehaviour
 
         text_Count.text = "0";
 
+    }
+
+    public void ItemInfo()
+    {
+        if(itemImage.sprite !=null)
+        {
+            if (item.itemName == "Apple")
+                AppleInfo.SetActive(true);
+        }
     }
 }
