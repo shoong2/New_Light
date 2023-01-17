@@ -246,6 +246,8 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        GameManager.instance.saveData.allTreeQuest = true;
+        GameManager.instance.SaveData();
 
     }
 

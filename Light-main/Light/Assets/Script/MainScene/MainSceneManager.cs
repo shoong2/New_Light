@@ -8,10 +8,15 @@ public class MainSceneManager : MonoBehaviour
     public AudioSource tutorialSound;
     public AudioSource mainBackGroundSound;
 
+    public GameObject nyle;
+
     testPlayer playBGM;
     void Start()
     {
-        StartCoroutine(StartTutorial());       
+        StartCoroutine(StartTutorial());
+        if (GameManager.instance.saveData.allTreeQuest == true)
+            nyle.SetActive(true);
+
     }
 
     IEnumerator StartTutorial()

@@ -329,6 +329,7 @@ public class SaveData
     public bool StartNextQuest = false; //다음 퀘스트 수락 후
     public bool isTreeQuest2 = false;
     public int waterDrop = 0;
+    public bool allTreeQuest = false;
 
     public List<int> invenArrayNumber = new List<int>();
     public List<string> invenItemName = new List<string>();

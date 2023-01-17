@@ -306,9 +306,15 @@ public class testPlayer : MonoBehaviour
 
     public void StartTalk()
     {
-        if(talkCheck == 1)
+        if(talkCheck == 1 && GameManager.instance.saveData.allTreeQuest == false)
         {
             GameObject.Find("Tree_soul").GetComponent<treeSoul>().startChat();
+            mainUI.SetActive(false);
+        }
+
+        if(talkCheck == 1 && GameManager.instance.saveData.allTreeQuest== true)
+        {
+            GameObject.Find("Nyle").GetComponent<Nyle>().StartNyleChat();
             mainUI.SetActive(false);
         }
     }
