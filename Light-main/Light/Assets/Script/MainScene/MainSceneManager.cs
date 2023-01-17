@@ -7,6 +7,8 @@ public class MainSceneManager : MonoBehaviour
     public Image tutorial;
     public AudioSource tutorialSound;
     public AudioSource mainBackGroundSound;
+
+    testPlayer playBGM;
     void Start()
     {
         StartCoroutine(StartTutorial());       
@@ -14,7 +16,7 @@ public class MainSceneManager : MonoBehaviour
 
     IEnumerator StartTutorial()
     {
-        //yield return new WaitForSeconds(1.1f);
+        playBGM = FindObjectOfType<testPlayer>();
 
         if (GameManager.instance.saveData.tutorial == false)
         {
@@ -34,13 +36,15 @@ public class MainSceneManager : MonoBehaviour
                 yield return new WaitForSeconds(0.005f);
                 tutorial.color = new Color(1, 1, 1, fadeCount);
             }
-            mainBackGroundSound.Play();
+            //mainBackGroundSound.Play();
+            playBGM.PlayBGM();
             tutorial.gameObject.SetActive(false);
             GameManager.instance.saveData.tutorial = true;
             GameManager.instance.SaveData();
         }
         else
-            mainBackGroundSound.Play();
+            playBGM.PlayBGM();
+        //    mainBackGroundSound.Play();
 
     }
 

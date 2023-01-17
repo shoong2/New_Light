@@ -30,25 +30,14 @@ public class testPlayer : MonoBehaviour
     bool isApple = false;
     bool isBranch = false;
 
-    //GameManager manager;
+    public AudioSource BGM;
+
     SpriteRenderer sprite;
     Inventory theInventory;
-    // public GameObject treeSoul;
-
-    // private void Awake() {
-    //     if(instance != null)
-    //     {
-    //         Destroy(gameObject);
-    //         return;
-    //     }
-
-    //     instance = this;
-    //     DontDestroyOnLoad(gameObject);
-    // }
+    
     void Start()
     {
         joystick = GameObject.FindObjectOfType<JoyStick1>();
-       // manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -84,12 +73,9 @@ public class testPlayer : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.tag == "AppleTree")
-        {
-            //StartCoroutine(SetLayer());
-            Debug.Log("ggg");
-        }
-        if(other.tag == "GoRight")
+        
+
+        if (other.tag == "GoRight")
         {
             joystick.handle.anchoredPosition =Vector2.zero;
            
@@ -199,17 +185,12 @@ public class testPlayer : MonoBehaviour
                 transform.position = new Vector3(4.4f,3.8f,0);
             }
 
-            // else if((SceneManager.GetActiveScene().name == "S_room"))
-            // {
-            //     _LoadScene("main");
-            //     transform.localScale = new Vector3(0.55f,0.55f,0.55f);
-            //     transform.position = new Vector3(-3.4f,0.25f,0);
-            // }
 
             else if((SceneManager.GetActiveScene().name == "S_PlayGround"))
             {
                 _LoadScene("S_2PlayGround");
                 transform.position = new Vector3(-0.5f,3.6f,0);
+                
             }
 
             else if((SceneManager.GetActiveScene().name == "S_room"))
@@ -229,10 +210,6 @@ public class testPlayer : MonoBehaviour
 
         }
 
-        // if(other.tag =="attack")
-        // {
-        //     attack.SetActive(true);
-        // }
 
         if(other.tag =="home")
         {
@@ -247,7 +224,19 @@ public class testPlayer : MonoBehaviour
         {
             battleButton.SetActive(true);
         }
-       
+
+        
+        if(SceneManager.GetActiveScene().name == "main" ||SceneManager.GetActiveScene().name=="S_PlayGround" || SceneManager.GetActiveScene().name =="S_2PlayGround")
+        {
+            PlayBGM();
+        }
+
+        if (SceneManager.GetActiveScene().name != "main" && SceneManager.GetActiveScene().name != "S_PlayGround" && SceneManager.GetActiveScene().name != "S_2PlayGround")
+        {
+            BGM.Stop();
+        }
+
+
 
     }
 
@@ -324,14 +313,7 @@ public class testPlayer : MonoBehaviour
         }
     }
     
-    //public void GetApple() //?òÎ¨¥ ?ëÍ∑º?òÍ≥† ?¥Î¶≠?àÏùÑ ???ëÎèô
-    //{
-    //    attack1 = 1;
-    //    Debug.Log(attack1);
-    //    anim.SetTrigger("tree");
-    //    sprite.sortingOrder =10;
-        
-    //}
+
 
     public void click()
     {
@@ -389,6 +371,12 @@ public class testPlayer : MonoBehaviour
         }
 
         QuestComplete.gameObject.SetActive(false);
+    }
+
+    public void PlayBGM()
+    {
+        if (!BGM.isPlaying)
+            BGM.Play();
     }
 
     private IEnumerator SetLayer()

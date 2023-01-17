@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
     public AudioSource OpenMap;
     public AudioSource CloseMap;
 
+    //BGM
+    public AudioSource BGM;
+
     private Inventory theInven;
     private void Awake()
     {
@@ -279,6 +282,12 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+    //public void PlayBGM()
+    //{
+    //    if (!BGM.isPlaying)
+    //        BGM.Play();
+    //}
 
     void DoubleClick()
     {
