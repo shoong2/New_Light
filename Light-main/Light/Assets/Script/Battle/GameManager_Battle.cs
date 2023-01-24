@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class GameManager_Battle : MonoBehaviour
 {
-    // Start is called before the first frame update
+    int monsterCount = 0;
+    public GameObject monster;
     void Start()
     {
-        
+        monsterCount = Random.Range(1, 6);
+
+        for(int i=0;i<monsterCount;i++)
+        {
+            monster.transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     // Update is called once per frame
