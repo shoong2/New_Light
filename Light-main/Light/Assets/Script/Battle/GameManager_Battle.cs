@@ -8,13 +8,14 @@ public class GameManager_Battle : MonoBehaviour
     public GameObject monster;
     public GameObject monsterHp;
 
+    public GameObject gameStart;
+
     public List<Transform> obj;
     public List<GameObject> bar;
 
-    Camera camera;
     void Start()
     {
-        camera = Camera.main;
+        StartCoroutine(GameStartAnim());
         monsterCount = Random.Range(1, 6);
 
         for(int i=0;i<monsterCount;i++)
@@ -31,9 +32,10 @@ public class GameManager_Battle : MonoBehaviour
         //}
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator GameStartAnim()
     {
-        
+        gameStart.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        gameStart.SetActive(false);
     }
 }
