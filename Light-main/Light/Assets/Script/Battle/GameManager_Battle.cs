@@ -22,8 +22,8 @@ public class GameManager_Battle : MonoBehaviour
         {
             obj[i].gameObject.SetActive(true);
             //monster.transform.GetChild(i).gameObject.SetActive(true);
-            Instantiate(monsterHp, new Vector2(obj[i].position.x, obj[i].position.y+0.8f), Quaternion.identity,
-                GameObject.Find("Canvas").transform);
+            bar.Add(Instantiate(monsterHp, new Vector2(obj[i].position.x, obj[i].position.y+0.9f), Quaternion.identity,
+                GameObject.Find("Canvas").transform));
         }
 
         //for(int i=0; i<monsterCount+1; i++)

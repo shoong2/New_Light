@@ -33,10 +33,8 @@ public class Attack_Battle : MonoBehaviour
 
     IEnumerator CoolTime()
     {
-        Debug.Log("1");
         while (basicAttack.fillAmount < 1f)
         {
-            Debug.Log("1");
             basicAttack.fillAmount += Time.smoothDeltaTime / attackCoolTime;
 
             yield return null;
