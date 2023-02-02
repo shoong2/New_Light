@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager_Battle : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager_Battle : MonoBehaviour
 
     public List<Transform> obj;
     public List<GameObject> bar;
+    public List<GameObject> monster_list;
 
     void Start()
     {
@@ -26,6 +28,9 @@ public class GameManager_Battle : MonoBehaviour
                 GameObject.Find("Canvas").transform));
         }
 
+        
+        
+
         //for(int i=0; i<monsterCount+1; i++)
         //{
         //    bar[i].transform.position = obj[i].position + new Vector3(0,1f,0);
@@ -37,5 +42,22 @@ public class GameManager_Battle : MonoBehaviour
         gameStart.SetActive(true);
         yield return new WaitForSeconds(1f);
         gameStart.SetActive(false);
+        //bar[0].transform.Find("HPBar").GetComponent<Image>().fillAmount -= 0.5f;
+        
+    }
+
+    public void DamageMonster(float power)
+    {
+        if (monsterCount - 1 >= 0)
+        {
+            Image monsterBar = bar[monsterCount - 1].transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            monsterBar.fillAmount -= power / 100f;
+            if (monsterBar.fillAmount <= 0)
+            {
+                Destroy(bar[monsterCount - 1].gameObject);
+                Destroy(obj[monsterCount - 1].gameObject);
+                monsterCount--;
+            }
+        }
     }
 }
