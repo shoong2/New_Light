@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager_Battle : MonoBehaviour
 {
     int monsterCount = 0;
+    public float monsterHP = 100f;
     public GameObject monster;
     public GameObject monsterHp;
 
@@ -51,7 +52,7 @@ public class GameManager_Battle : MonoBehaviour
         if (monsterCount - 1 >= 0)
         {
             Image monsterBar = bar[monsterCount - 1].transform.GetChild(0).GetChild(0).GetComponent<Image>();
-            monsterBar.fillAmount -= power / 100f;
+            monsterBar.fillAmount -= power / monsterHP;
             if (monsterBar.fillAmount <= 0)
             {
                 Destroy(bar[monsterCount - 1].gameObject);
