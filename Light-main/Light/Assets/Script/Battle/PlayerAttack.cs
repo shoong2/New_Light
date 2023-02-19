@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     public float feverTimeNumber = 50f;
 
     public Image playerHP;
+    public Image playerMP;
     public Image feverTimeImg;
 
     public GameManager_Battle battleMananger;
@@ -22,6 +23,8 @@ public class PlayerAttack : MonoBehaviour
 
     bool isFeverTime = false;
 
+    public GameObject lose;
+    public GameObject playerInfo;
     
     void Start()
     {
@@ -70,8 +73,23 @@ public class PlayerAttack : MonoBehaviour
     public void HitByMonster(float monsterPower)
     {
         playerHP.fillAmount -= (monsterPower / playerHPNumber);
+        if(playerHP.fillAmount <=0)
+        {
+            StartCoroutine(DieLia());
+        }
     }
 
+    IEnumerator DieLia()
+    {
+        playerInfo.SetActive(false);
+        Time.timeScale = 0;
+        player.SetTrigger("Die");
+        yield return new WaitForSecondsRealtime(1.1f);
+        lose.SetActive(true);
+        yield return new WaitForSecondsRealtime(1.1f);
+        //¾ÀÀüÈ¯
+
+    }
     IEnumerator FeverTime()
     {
         isFeverTime = true;

@@ -100,7 +100,6 @@ public class ActionController : MonoBehaviour
     
     public IEnumerator CheckButton(GameObject item)
     {
-        Debug.Log("branch problem?");
         Debug.Log(item.transform.GetComponent<ItemPickUp>().item.name);
         Item getItem = item.transform.GetComponent<ItemPickUp>().item;
         while (true)

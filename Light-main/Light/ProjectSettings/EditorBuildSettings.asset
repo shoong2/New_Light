@@ -38,7 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/S_2PlayGround.unity
     guid: 2626b413d6df84c2b83b5c5fb2586143
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/BattleScene.unity
-    guid: afa7a28045d62cd4e8134cc88140fa07
+    path: Assets/Scenes/Fight.unity
+    guid: 39d65ccd7f119614096d6888bbdea6fd
   m_configObjects: {}

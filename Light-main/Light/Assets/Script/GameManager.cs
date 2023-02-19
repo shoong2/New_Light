@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     public AudioSource BGM;
 
     private Inventory theInven;
+
+    public Vector3 beforeBattlePosition;
     private void Awake()
     {
         if(instance == null)

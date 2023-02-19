@@ -220,7 +220,7 @@ public class testPlayer : MonoBehaviour
 
         
 
-        if(other.tag =="Laing")
+        if(other.tag =="Monster")
         {
             battleButton.SetActive(true);
         }
@@ -328,7 +328,8 @@ public class testPlayer : MonoBehaviour
 
     public void acceptBattle() //Î∞??ÑÌà¨ ?òÎùΩ
     {
-        _LoadScene("BattleScene");
+        GameManager.instance.beforeBattlePosition = gameObject.transform.position;
+        _LoadScene("Fight");
         battleButton.SetActive(false);
         gameObject.SetActive(false);
         mainUI.SetActive(false);
