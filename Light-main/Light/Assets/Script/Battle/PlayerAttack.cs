@@ -94,7 +94,7 @@ public class PlayerAttack : MonoBehaviour
     {
         isFeverTime = true;
         feverTimeAnim.gameObject.SetActive(true);
-        basicAttackPower = 5.5f;
+        basicAttackPower += 5.5f;
         yield return new WaitForSeconds(1.4f);
         feverTimeAnim.gameObject.SetActive(false);
 

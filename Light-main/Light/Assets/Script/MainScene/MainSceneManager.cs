@@ -14,14 +14,18 @@ public class MainSceneManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(StartTutorial());
-        if (GameManager.instance.saveData.allTreeQuest == true)
-            nyle.SetActive(true);
+        //if (GameManager.instance.saveData.allTreeQuest == true)
+        //    nyle.SetActive(true);
 
     }
 
     IEnumerator StartTutorial()
     {
+        yield return new WaitForSeconds(0.3f);
         playBGM = FindObjectOfType<testPlayer>();
+
+        if (GameManager.instance.saveData.allTreeQuest == true)
+            nyle.SetActive(true);
 
         if (GameManager.instance.saveData.tutorial == false)
         {

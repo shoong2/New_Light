@@ -22,6 +22,7 @@ TagManager:
   - Laing
   - ming
   - Monster
+  - pocket
   layers:
   - Default
   - TransparentFX
@@ -64,4 +65,7 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 2576650943
+    locked: 0
+  - name: Item
+    uniqueID: 4133517669
     locked: 0

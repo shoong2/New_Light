@@ -9,10 +9,14 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
-   
-   
+
+
     //public SaveData quest;
     //public SaveData qdata;
+    public GameObject Player;
+    public GameObject mainUI;
+    public GameObject itemPocket;
+
     public GameObject QuestBox;
     public GameObject QuestBox2;
 
@@ -282,14 +286,8 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-
     }
 
-    //public void PlayBGM()
-    //{
-    //    if (!BGM.isPlaying)
-    //        BGM.Play();
-    //}
 
     void DoubleClick()
     {
@@ -316,6 +314,22 @@ public class GameManager : MonoBehaviour
 
         PopUp.gameObject.SetActive(false);
     }
+
+    public void AfterBattleCouroutine()
+    {
+        StartCoroutine(AfterBattle());
+    }
+
+    IEnumerator AfterBattle()
+    {
+        SceneManager.LoadScene("S_2PlayGround");
+        Player.SetActive(true);
+        mainUI.SetActive(true);
+        Player.transform.position = beforeBattlePosition;
+        yield return new WaitForSeconds(0.3f);
+        Instantiate(itemPocket,new Vector3(beforeBattlePosition.x, beforeBattlePosition.y-0.5f,0), Quaternion.identity);
+      
+    }
 }
 
 [System.Serializable] 
@@ -325,12 +339,13 @@ public class SaveData
 
     public bool TreeQuest = false; //나무정령 첫번째 퀘스트 수락 여부
     public bool isTreeQuest1 = false; // 사과, 나뭇가지 줍기 퀘스트 완료
+
     public int getApple = 0; //나무정령 퀘스트1 사과 개수
     public int getBranch = 0; // 나무개수
+    public int waterDrop = 0; //물방울 개수
 
     public bool StartNextQuest = false; //다음 퀘스트 수락 후
     public bool isTreeQuest2 = false;
-    public int waterDrop = 0;
     public bool allTreeQuest = false;
 
     public List<int> invenArrayNumber = new List<int>();

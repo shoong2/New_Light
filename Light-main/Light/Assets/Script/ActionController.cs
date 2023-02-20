@@ -54,7 +54,7 @@ public class ActionController : MonoBehaviour
 
         }
 
-        if (collision.tag == "apple" || collision.tag =="branch")
+        if (collision.tag == "apple" || collision.tag =="branch" || collision.tag=="pocket")
         {
             isItem = true;
             ItemInfoAppear(); //pickup true
@@ -71,7 +71,7 @@ public class ActionController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "apple" || collision.tag =="branch")
+        if (collision.tag == "apple" || collision.tag =="branch" || collision.tag == "pocket")
         {
             getImage.SetActive(false);
             InfoDisappear();
@@ -125,6 +125,16 @@ public class ActionController : MonoBehaviour
                     Destroy(item);
                     InfoDisappear();
                     Debug.Log("get branch");
+                    ActiveButton = false;
+                    GameManager.instance.SaveData();
+                }
+                else if(item.tag =="pocket")
+                {
+                    int randomItemCount = Random.Range(1, 4);
+                    GameManager.instance.saveData.waterDrop += randomItemCount;
+                    theInventory.AcquireItem(getItem);
+                    Destroy(item);
+                    InfoDisappear();
                     ActiveButton = false;
                     GameManager.instance.SaveData();
                 }

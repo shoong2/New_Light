@@ -19,7 +19,7 @@ public class MonsterMove : MonoBehaviour
 
     IEnumerator MoveMonster()
     {
-        Debug.Log(test);
+       
      
         //state = (State)UnityEngine.Random.Range(0, Enum.GetNames(typeof(State)).Length);
         state = (State)test;
@@ -66,9 +66,5 @@ public class MonsterMove : MonoBehaviour
        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

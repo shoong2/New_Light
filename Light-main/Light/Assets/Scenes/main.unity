@@ -4066,6 +4066,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907a98706b6762e4ebdff2aa79a97b10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 829570226}
+  mainUI: {fileID: 286557309}
+  itemPocket: {fileID: 824463660194810477, guid: 51c477ade26ea204caff46325e25fc4d,
+    type: 3}
   QuestBox: {fileID: 963696894}
   QuestBox2: {fileID: 8927508}
   map: {fileID: 1087606060}
@@ -4083,15 +4087,16 @@ MonoBehaviour:
   OpenMap: {fileID: 2038741725}
   CloseMap: {fileID: 2127151067}
   BGM: {fileID: 1949142546}
+  beforeBattlePosition: {x: 0, y: 0, z: 0}
   saveData:
     tutorial: 0
     TreeQuest: 0
     isTreeQuest1: 0
     getApple: 0
     getBranch: 0
+    waterDrop: 0
     StartNextQuest: 0
     isTreeQuest2: 0
-    waterDrop: 0
     allTreeQuest: 0
     invenArrayNumber: 
     invenItemName: []

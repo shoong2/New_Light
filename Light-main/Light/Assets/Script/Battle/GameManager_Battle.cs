@@ -45,17 +45,11 @@ public class GameManager_Battle : MonoBehaviour
 
     IEnumerator WinAnim()
     {
-        liaInPlayGround = GameObject.Find("TOP1");
-        if (liaInPlayGround != null)
-            Debug.Log("성공");
-        else
-            Debug.Log("fail");
         win.SetActive(true);
-        yield return new WaitForSeconds(1.5f);
-        liaInPlayGround.SetActive(true);
-        liaInPlayGround.transform.position = GameManager.instance.beforeBattlePosition;
-        SceneManager.LoadScene("S_2PlayGround");
-        //씬 전환하기
+        yield return new WaitForSecondsRealtime(1.5f);
+        //StartCoroutine(GameManager.instance.AfterBattle());
+        GameManager.instance.AfterBattleCouroutine();
+        
     }
 
     public void DamageMonster(float power)
