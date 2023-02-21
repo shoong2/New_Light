@@ -10,6 +10,10 @@ public class treeSoul : MonoBehaviour
     public GameObject tree;
     public GameObject noGetQst;
     public GameObject doneQst;
+
+    public GameObject apple;
+    public GameObject branch;
+
     public Text treeName;
     public Text ChatText;
 
@@ -27,6 +31,8 @@ public class treeSoul : MonoBehaviour
     [SerializeField]
     Lia_face face;
 
+    Inventory theInven;
+
     void Start()
     {
         //GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -40,6 +46,8 @@ public class treeSoul : MonoBehaviour
         {
             doneQst.SetActive(true);
         }
+
+        theInven = FindObjectOfType<Inventory>();
     }
 
 
@@ -67,12 +75,14 @@ public class treeSoul : MonoBehaviour
 
         if(GameManager.instance.saveData.isTreeQuest1 == true && GameManager.instance.saveData.isTreeQuest2 == true)
         {
-            StartCoroutine(TreeQuestAllComplete());
+            StartCoroutine(Quest2Complete());
+            //StartCoroutine(TreeQuestAllComplete());
         }
 
-        else if(GameManager.instance.saveData.isTreeQuest2 == true)
+        if(GameManager.instance.saveData.allTreeQuest == true)
         {
-            StartCoroutine(Quest2Complete());
+            //StartCoroutine(Quest2Complete());
+            StartCoroutine(TreeQuestAllComplete());
         }
     }
 
@@ -210,6 +220,9 @@ public class treeSoul : MonoBehaviour
         StartCoroutine(Fade(compensation));
         ChatBar.SetActive(false);
         tree.SetActive(false);
+        theInven.AcquireItem(apple.GetComponent<ItemPickUp>().item, -10);
+        theInven.AcquireItem(branch.GetComponent<ItemPickUp>().item, -3);
+        GameManager.instance.SaveData();
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         GameManager.instance.saveData.StartNextQuest = true;
         GameManager.instance.saveData.mainQuestText = "나무정령의 부탁 2";
@@ -230,6 +243,9 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        GameManager.instance.saveData.allTreeQuest = true;
+        GameManager.instance.SaveData();
+        GameManager.instance.UpdateUI();
         StartCoroutine(Fade(GetSkillPopUp));
     }
     public IEnumerator TreeQuestAllComplete()
@@ -246,7 +262,7 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
-        GameManager.instance.saveData.allTreeQuest = true;
+        //GameManager.instance.saveData.allTreeQuest = true;
         GameManager.instance.SaveData();
 
     }

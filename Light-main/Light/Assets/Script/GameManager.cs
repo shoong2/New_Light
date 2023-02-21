@@ -192,7 +192,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        if (saveData != null && saveData.StartNextQuest == false)
+        if (saveData != null && saveData.StartNextQuest == false && saveData.allTreeQuest == false)
         {
             if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3)
             {
@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(saveData.StartNextQuest== true)
+        if(saveData.StartNextQuest== true && saveData.allTreeQuest == false)
         {
             QuestBox.SetActive(false);
             QuestBox2.SetActive(true);
@@ -221,6 +221,11 @@ public class GameManager : MonoBehaviour
                 saveData.isTreeQuest2 = true;
             }
 
+        }
+
+        if(saveData.allTreeQuest == true)
+        {
+            QuestBox2.SetActive(false);
         }
 
         if(saveData.isTreeQuest2 == true)

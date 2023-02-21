@@ -132,7 +132,7 @@ public class ActionController : MonoBehaviour
                 {
                     int randomItemCount = Random.Range(1, 4);
                     GameManager.instance.saveData.waterDrop += randomItemCount;
-                    theInventory.AcquireItem(getItem);
+                    theInventory.AcquireItem(getItem, randomItemCount);
                     Destroy(item);
                     InfoDisappear();
                     ActiveButton = false;

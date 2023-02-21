@@ -78,7 +78,7 @@ public class Slot : MonoBehaviour
         itemImage.sprite = null;
         SetColor(0);
 
-        text_Count.text = "0";
+        text_Count.text = "";
 
     }
 
