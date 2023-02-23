@@ -61,7 +61,7 @@ public class Slot : MonoBehaviour
         //GameManager.instance.saveData.getApple += _count;
         text_Count.text = itemCount.ToString();
         //text_Count.text = GameManager.instance.saveData.getApple.ToString();
-
+        GameManager.instance.SaveData();
         if (itemCount <= 0)
             ClearSlot();
 
@@ -78,7 +78,8 @@ public class Slot : MonoBehaviour
         itemImage.sprite = null;
         SetColor(0);
 
-        text_Count.text = "";
+        text_Count.text = "0";
+        text_Count.gameObject.SetActive(false);
 
     }
 

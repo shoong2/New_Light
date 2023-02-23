@@ -23528,6 +23528,11 @@ PrefabInstance:
       propertyPath: AppleInfo
       value: 
       objectReference: {fileID: 1093976214}
+    - target: {fileID: 8881255075703593181, guid: 32f5f2e554e474a4ab6caf2e8ebc9da8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8881255076040846088, guid: 32f5f2e554e474a4ab6caf2e8ebc9da8,
         type: 3}
       propertyPath: m_Pivot.x

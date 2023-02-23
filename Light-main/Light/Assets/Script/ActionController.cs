@@ -114,7 +114,7 @@ public class ActionController : MonoBehaviour
                     InfoDisappear();
                     Debug.Log("get apple");
                     ActiveButton = false;
-                    GameManager.instance.SaveData();
+                    //GameManager.instance.SaveData();
 
                 }
                 
@@ -126,7 +126,7 @@ public class ActionController : MonoBehaviour
                     InfoDisappear();
                     Debug.Log("get branch");
                     ActiveButton = false;
-                    GameManager.instance.SaveData();
+                    //GameManager.instance.SaveData();
                 }
                 else if(item.tag =="pocket")
                 {
@@ -136,7 +136,7 @@ public class ActionController : MonoBehaviour
                     Destroy(item);
                     InfoDisappear();
                     ActiveButton = false;
-                    GameManager.instance.SaveData();
+                    //GameManager.instance.SaveData();
                 }
                 GameManager.instance.UpdateUI();
                 GameManager.instance.SaveData();
