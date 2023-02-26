@@ -13,6 +13,7 @@ public class treeSoul : MonoBehaviour
 
     public GameObject apple;
     public GameObject branch;
+    public GameObject stickWeapon;
 
     public Text treeName;
     public Text ChatText;
@@ -221,13 +222,15 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
         tree.SetActive(false);
        
-        //GameManager.instance.SaveData();
+  
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         GameManager.instance.saveData.StartNextQuest = true;
         GameManager.instance.saveData.mainQuestText = "나무정령의 부탁 2";
         GameManager.instance.saveData.QuestDetailText = "수련장1에 있는 몬스터를 처치해서\n나무정령에게 갖다주자";
         theInven.AcquireItem(apple.GetComponent<ItemPickUp>().item, -10);
-        theInven.AcquireItem(branch.GetComponent<ItemPickUp>().item, -2);
+        theInven.AcquireItem(branch.GetComponent<ItemPickUp>().item, -3);
+
+        theInven.AcquireItem(stickWeapon.GetComponent<ItemPickUp>().item);
         //GameManager.instance.SaveData();
         GameManager.instance.UpdateQuestUI();
         GameManager.instance.QuestBox.SetActive(false);

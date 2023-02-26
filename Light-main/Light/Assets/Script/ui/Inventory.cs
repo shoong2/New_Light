@@ -56,6 +56,8 @@ public class Inventory : MonoBehaviour
                 return;
             }
         }
+
+        //GameManager.instance.SaveData();
     }
 
 

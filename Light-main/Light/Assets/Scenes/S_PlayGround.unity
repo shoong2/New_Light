@@ -4388,6 +4388,8 @@ MonoBehaviour:
   doneQst: {fileID: 1002077025}
   apple: {fileID: 3988098671733213519, guid: eee123a263fce9d478a63d9eaa5e477e, type: 3}
   branch: {fileID: 8976296489195705663, guid: cff126d097a7ad34fb3b4b1f480e2367, type: 3}
+  stickWeapon: {fileID: 7104809685749721550, guid: e59fbaa62c534e1458b63787bf767fe3,
+    type: 3}
   treeName: {fileID: 1522154458}
   ChatText: {fileID: 570865813}
   compensation: {fileID: 1990407892}

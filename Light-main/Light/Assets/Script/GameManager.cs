@@ -123,8 +123,12 @@ public class GameManager : MonoBehaviour
         theInven = FindObjectOfType<Inventory>();
 
         Slot[] slots = theInven.GetSlots();
+
+        saveData.invenArrayNumber.Clear();
+        saveData.invenItemName.Clear();
+        saveData.invenItemNumber.Clear();
         //Debug.Log(slots.Length);
-        for(int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slots.Length; i++)
         {
             if(slots[i].item != null)
             {
