@@ -248,6 +248,7 @@ public class treeSoul : MonoBehaviour
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         GameManager.instance.saveData.allTreeQuest = true;
+        GameManager.instance.saveData.SkillPoint++;
         GameManager.instance.SaveData();
         GameManager.instance.UpdateUI();
         StartCoroutine(Fade(GetSkillPopUp));

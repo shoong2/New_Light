@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class ActionController : MonoBehaviour
 {
@@ -28,6 +30,8 @@ public class ActionController : MonoBehaviour
 
     bool isItem = false;
     public bool isShakeTree = false; // ³ª¹« Èçµé¾ú´ÂÁö Ã¼Å©
+
+    public TMP_Text randomItemText;
 
     //bool hitItem = false;
     private void Start()
@@ -136,7 +140,7 @@ public class ActionController : MonoBehaviour
                     Destroy(item);
                     InfoDisappear();
                     ActiveButton = false;
-                    //GameManager.instance.SaveData();
+                    StartCoroutine(Fade(randomItemCount));
                 }
                 GameManager.instance.UpdateUI();
                 GameManager.instance.SaveData();
@@ -158,5 +162,27 @@ public class ActionController : MonoBehaviour
         anim.SetTrigger("tree");
         //sprite.sortingOrder = 10;
 
+    }
+
+    IEnumerator Fade(int number)
+    {
+        randomItemText.gameObject.SetActive(true);
+        randomItemText.text = "ÇªÇªÀÇ ÀÀÃà¾× " + number + "°³ È¹µæ!";
+        float fadeCount = 0;
+        while (fadeCount < 1f)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.005f);
+            randomItemText.color = new Color(randomItemText.color.r, randomItemText.color.g,randomItemText.color.b, fadeCount);
+        }
+        yield return new WaitForSeconds(1.3f);
+        while (fadeCount > 0)
+        {
+            fadeCount -= 0.02f;
+            yield return new WaitForSeconds(0.005f);
+            randomItemText.color = new Color(randomItemText.color.r, randomItemText.color.g, randomItemText.color.b, fadeCount);
+        }
+
+        randomItemText.gameObject.SetActive(false);
     }
 }

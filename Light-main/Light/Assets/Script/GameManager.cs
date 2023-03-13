@@ -37,7 +37,8 @@ public class GameManager : MonoBehaviour
 
     //Skill
     public GameObject skill;
-
+    public TMP_Text skillPointText;
+    public TMP_Text addSkillPointText;
     int ClickCount = 0; // 두번 클릭해서 종료
 
 
@@ -89,6 +90,7 @@ public class GameManager : MonoBehaviour
         if (saveData.TreeQuest == true)
         {
             QuestBox.SetActive(true);
+
         }
 
         //if (saveData != null && (saveData.getApple < 10 || saveData.getBranch < 3))
@@ -230,12 +232,13 @@ public class GameManager : MonoBehaviour
         if(saveData.allTreeQuest == true)
         {
             QuestBox2.SetActive(false);
+            UpdateSkillUI();
         }
 
-        if(saveData.isTreeQuest2 == true)
-        {
-            skill.SetActive(true);
-        }
+        //if(saveData.isTreeQuest2 == true)
+        //{
+        //    skill.SetActive(true);
+        //}
 
 
         //if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3)
@@ -247,7 +250,7 @@ public class GameManager : MonoBehaviour
         //    //SaveData();
         //}
 
-        UpdateQuestUI();
+
     }
 
     public void UpdateQuestUI()
@@ -278,6 +281,24 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+
+    public void UpdateSkillUI()
+    {
+        skill.SetActive(true);
+        skillPointText.text = saveData.SkillPoint.ToString();
+        addSkillPointText.text = saveData.AddSkillPoint.ToString();
+    }
+
+    public void ClickAddSkillPoint()
+    {
+        if (saveData.allTreeQuest)
+        {
+            saveData.SkillPoint--;
+            saveData.AddSkillPoint++;
+            UpdateSkillUI();
+            SaveData();
+        }
     }
 
     private void Update()
@@ -339,6 +360,7 @@ public class GameManager : MonoBehaviour
         Instantiate(itemPocket,new Vector3(beforeBattlePosition.x, beforeBattlePosition.y-0.5f,0), Quaternion.identity);
       
     }
+
 }
 
 [System.Serializable] 
@@ -363,6 +385,10 @@ public class SaveData
 
     public string mainQuestText = "";
     public string QuestDetailText = "";
+
+    //스킬포인트
+    public int AddSkillPoint = 0;
+    public int SkillPoint = 0;
 
 }
 
