@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         LoadData();
         //StartCoroutine(LoadCoroutine());
 
-        if (saveData.TreeQuest == true)
+        if (saveData.TreeQuest == true && saveData.allTreeQuest ==false)
         {
             QuestBox.SetActive(true);
 
