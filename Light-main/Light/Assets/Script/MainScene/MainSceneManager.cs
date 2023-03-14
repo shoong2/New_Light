@@ -17,6 +17,9 @@ public class MainSceneManager : MonoBehaviour
         //if (GameManager.instance.saveData.allTreeQuest == true)
         //    nyle.SetActive(true);
 
+        if (GameManager.instance.saveData.startNyle == true)
+            nyle.SetActive(true);
+
     }
 
     IEnumerator StartTutorial()
@@ -24,8 +27,8 @@ public class MainSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         playBGM = FindObjectOfType<testPlayer>();
 
-        if (GameManager.instance.saveData.allTreeQuest == true)
-            nyle.SetActive(true);
+        //if (GameManager.instance.saveData.startNyle == true)
+        //    nyle.SetActive(true);
 
         if (GameManager.instance.saveData.tutorial == false)
         {

@@ -34,6 +34,8 @@ public class testPlayer : MonoBehaviour
 
     SpriteRenderer sprite;
     Inventory theInventory;
+
+    GameObject chatWith;
     
     void Start()
     {
@@ -207,6 +209,7 @@ public class testPlayer : MonoBehaviour
         {
             talk.SetActive(true);
             talkCheck =1;
+            chatWith = other.gameObject;
 
         }
 
@@ -240,32 +243,7 @@ public class testPlayer : MonoBehaviour
 
     }
 
-    void OnTriggerStay2D(Collider2D other)
-    {
 
-        //if (other.tag == "attack" && isApple == false && isBranch == false)
-        //{
-        //    attack.SetActive(true);
-        //}
-    }
-
-        //    if (other.tag == "apple")
-        //    {
-        //        isApple = true;
-        //        attack.SetActive(false);
-        //        get.SetActive(true);
-        //        //StartCoroutine(clickCheck(other.gameObject));
-
-        //    }
-
-        //    if (other.tag == "branch")
-        //    {
-        //        isBranch = true;
-        //        attack.SetActive(false);
-        //        get.SetActive(true);
-        //        //StartCoroutine(clickCheck(other.gameObject));
-        //    }
-        //}
 
     void OnTriggerExit2D(Collider2D other) {
         //if(other.tag == "AppleTree")
@@ -278,41 +256,19 @@ public class testPlayer : MonoBehaviour
             talkCheck =0;
         }
 
-        //if(other.tag =="attack")
-        //{
-        //    attack.SetActive(false);
-        //}
 
-        //if (other.tag == "apple")
-        //{
-        //    isApple = false;
-        //    get.SetActive(false);
-
-        //}
-
-        //if (other.tag == "branch")
-        //{
-        //    isBranch = false;
-        //    get.SetActive(false);
-        //}
     }
     
-    // private void OnTriggerStay(Collider other) {
-    //     if(other.tag =="chat")
-    //     {
-    //         talk.SetActive(true);
-    //     }
-    //}
 
     public void StartTalk()
     {
-        if(talkCheck == 1 && GameManager.instance.saveData.allTreeQuest == false)
+        if(talkCheck == 1 &&chatWith.name=="Tree_soul")//&& GameManager.instance.saveData.startNyle == false)
         {
             GameObject.Find("Tree_soul").GetComponent<treeSoul>().startChat();
             mainUI.SetActive(false);
         }
 
-        if(talkCheck == 1 && GameManager.instance.saveData.allTreeQuest== true)
+        if(talkCheck == 1 && chatWith.name == "Nyle")//&& GameManager.instance.saveData.startNyle ==true)
         {
             GameObject.Find("Nyle").GetComponent<Nyle>().StartNyleChat();
             mainUI.SetActive(false);

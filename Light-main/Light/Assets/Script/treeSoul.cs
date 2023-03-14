@@ -74,13 +74,14 @@ public class treeSoul : MonoBehaviour
             StartCoroutine(NoCompleteQst2());
         }
 
-        if(GameManager.instance.saveData.isTreeQuest1 == true && GameManager.instance.saveData.isTreeQuest2 == true)
+        if(GameManager.instance.saveData.isTreeQuest1 == true && GameManager.instance.saveData.isTreeQuest2 == true
+            &&GameManager.instance.saveData.allTreeQuest == false)
         {
             StartCoroutine(Quest2Complete());
             //StartCoroutine(TreeQuestAllComplete());
         }
 
-        if(GameManager.instance.saveData.allTreeQuest == true)
+        if(GameManager.instance.saveData.allTreeQuest == true && GameManager.instance.saveData.startNyle ==false)
         {
             //StartCoroutine(Quest2Complete());
             StartCoroutine(TreeQuestAllComplete());
@@ -256,7 +257,7 @@ public class treeSoul : MonoBehaviour
     public IEnumerator TreeQuestAllComplete()
     {
         end = false;
-        yield return StartCoroutine(NormalChat("나무정령", "그러고 보니 휘두르는 자세가\n네 아버지랑 정말 똑같네!"));
+        yield return StartCoroutine(NormalChat("나무정령", "그러고 보니 휘두르는 자세가 네 아버지랑 정말 똑같네!"));
         yield return StartCoroutine(NormalChat("나무정령", "너라면 더 강해질 수 있을거야!"));
         yield return StartCoroutine(NormalChat("나무정령", "아, 그러고 보니 숲1에서 비명 소리가 들렸는데\n무슨일이 생긴 건지 잘 모르겠네"));
         face.none();
@@ -267,7 +268,7 @@ public class treeSoul : MonoBehaviour
         ChatBar.SetActive(false);
         tree.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
-        //GameManager.instance.saveData.allTreeQuest = true;
+        GameManager.instance.saveData.startNyle = true;
         GameManager.instance.SaveData();
 
     }

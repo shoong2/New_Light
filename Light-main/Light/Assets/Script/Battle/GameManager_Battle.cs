@@ -13,8 +13,9 @@ public class GameManager_Battle : MonoBehaviour
 
     public GameObject gameStart;
     public GameObject win;
-    GameObject liaInPlayGround; 
+    GameObject liaInPlayGround;
 
+    public GameObject skill;
     public List<Transform> obj;
     public List<GameObject> bar;
     public List<GameObject> monster_list;
@@ -32,7 +33,12 @@ public class GameManager_Battle : MonoBehaviour
                 GameObject.Find("Canvas_Battle").transform));
         }
 
-        
+        if (GameManager.instance.saveData.registerSkill == true)
+        {
+            skill.SetActive(true);
+        }
+        else
+            skill.SetActive(false);
     }
 
     IEnumerator GameStartAnim()

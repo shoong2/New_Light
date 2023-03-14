@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public GameObject skill;
     public TMP_Text skillPointText;
     public TMP_Text addSkillPointText;
+    public GameObject registerSkill;
+    public GameObject cancelSkill;
+
     int ClickCount = 0; // 두번 클릭해서 종료
 
 
@@ -285,6 +288,16 @@ public class GameManager : MonoBehaviour
 
     public void UpdateSkillUI()
     {
+        if (saveData.registerSkill == true)
+        {
+            registerSkill.SetActive(false);
+            cancelSkill.SetActive(true);
+        }
+        else
+        {
+            registerSkill.SetActive(true);
+            cancelSkill.SetActive(false);
+        }
         skill.SetActive(true);
         skillPointText.text = saveData.SkillPoint.ToString();
         addSkillPointText.text = saveData.AddSkillPoint.ToString();
@@ -299,6 +312,17 @@ public class GameManager : MonoBehaviour
             UpdateSkillUI();
             SaveData();
         }
+    }
+
+    public void RegisterSkill()
+    {
+        if (saveData.registerSkill == true)
+            saveData.registerSkill = false;
+        else
+            saveData.registerSkill = true;
+
+        UpdateSkillUI();
+        SaveData();
     }
 
     private void Update()
@@ -389,6 +413,14 @@ public class SaveData
     //스킬포인트
     public int AddSkillPoint = 0;
     public int SkillPoint = 0;
+
+    //나일 퀘스트
+    public bool startNyle = false;
+    public int chatHelper = 0;
+    public bool nyleQuest1 = false;
+
+    //배틀데이터
+    public bool registerSkill = false;
 
 }
 
