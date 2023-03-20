@@ -5,11 +5,22 @@ using UnityEngine.UI;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public Image basicAttack;
-    Animator player;
 
-    public float attackCoolTime = 3f;
+    //basicAttack
+    public Image basicAttack;
+    public float attackCoolTime = 1f;
     public float basicAttackPower = 5f;
+    public float addFeverTimeBasicPower = 0.5f;
+    public float basicFeverTimeCoolTime = 0.1f;
+
+    //skill
+    public Image skill;
+    public float skillPower = 5.5f;
+    public float skillCoolTime = 1.7f;
+    public float addFeverTimeSkillPower = 1f;
+    public float skillFeverTimeCoolTime = 0.17f;
+
+    Animator player;
     public float playerHPNumber = 100f;
     public float feverTimeNumber = 50f;
 
@@ -25,6 +36,8 @@ public class PlayerAttack : MonoBehaviour
 
     public GameObject lose;
     public GameObject playerInfo;
+
+    
     
     void Start()
     {
@@ -51,20 +64,34 @@ public class PlayerAttack : MonoBehaviour
             if (feverTimeImg.fillAmount >= 1 && isFeverTime == false)
             {
                 StartCoroutine(FeverTime());
-                StartCoroutine(Timer());
             }
             battleMananger.DamageMonster(basicAttackPower);
-            StartCoroutine(CoolTime());
+            StartCoroutine(CoolTime(attackCoolTime));
     
         }
 
     }
 
-    IEnumerator CoolTime()
+    public void LiaSkill()
+    {
+        if(skill.fillAmount == 1)
+        {
+            skill.fillAmount = 0;
+            feverTimeImg.fillAmount += skillPower / feverTimeNumber;
+            if (feverTimeImg.fillAmount >= 1 && isFeverTime == false)
+            {
+                StartCoroutine(FeverTime());
+            }
+            battleMananger.DamageMonster(skillPower);
+            StartCoroutine(CoolTime(skillCoolTime));
+        }
+    }
+
+    IEnumerator CoolTime(float time)
     {
         while (basicAttack.fillAmount < 1f)
         {
-            basicAttack.fillAmount += Time.smoothDeltaTime / attackCoolTime;
+            basicAttack.fillAmount += Time.smoothDeltaTime / time;
 
             yield return null;
         }
@@ -94,9 +121,22 @@ public class PlayerAttack : MonoBehaviour
     {
         isFeverTime = true;
         feverTimeAnim.gameObject.SetActive(true);
-        basicAttackPower += 5.5f;
         yield return new WaitForSeconds(1.4f);
         feverTimeAnim.gameObject.SetActive(false);
+        basicAttackPower += addFeverTimeBasicPower;
+        skillPower += addFeverTimeSkillPower;
+        attackCoolTime += basicFeverTimeCoolTime;
+        skillCoolTime += skillFeverTimeCoolTime;
+
+
+        yield return new WaitForSeconds(10f);
+        basicAttackPower -= addFeverTimeBasicPower;
+        skillPower -= addFeverTimeSkillPower;
+        attackCoolTime -= basicFeverTimeCoolTime;
+        skillCoolTime -= skillFeverTimeCoolTime;
+        feverTimeImg.fillAmount = 0f;
+        isFeverTime = false;
+
 
     }
 
