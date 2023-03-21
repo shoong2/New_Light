@@ -89,11 +89,23 @@ public class PlayerAttack : MonoBehaviour
 
     IEnumerator CoolTime(float time)
     {
-        while (basicAttack.fillAmount < 1f)
+        if (time == attackCoolTime)
         {
-            basicAttack.fillAmount += Time.smoothDeltaTime / time;
+            while (basicAttack.fillAmount < 1f)
+            {
+                basicAttack.fillAmount += Time.smoothDeltaTime / time;
 
-            yield return null;
+                yield return null;
+            }
+        }
+        else
+        {
+            while (skill.fillAmount < 1f)
+            {
+                skill.fillAmount += Time.smoothDeltaTime / time;
+
+                yield return null;
+            }
         }
     }
 

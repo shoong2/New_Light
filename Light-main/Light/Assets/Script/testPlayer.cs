@@ -226,6 +226,7 @@ public class testPlayer : MonoBehaviour
         if(other.tag =="Monster")
         {
             battleButton.SetActive(true);
+            GameManager.instance.monsterName = other.name;
         }
 
         

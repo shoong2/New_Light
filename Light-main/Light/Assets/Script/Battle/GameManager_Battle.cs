@@ -20,16 +20,34 @@ public class GameManager_Battle : MonoBehaviour
     public List<GameObject> bar;
     public List<GameObject> monster_list;
 
+    Transform battleMonster;
+
     void Start()
     {
         StartCoroutine(GameStartAnim());
+
+        if (GameManager.instance.monsterName == "Green_PlayGround")
+        {
+            battleMonster = obj[0];
+        }
+        else if (GameManager.instance.monsterName == "Pooling")
+        {
+            battleMonster = obj[1];
+        }
+        else if (GameManager.instance.monsterName == "Ming")
+        {
+            battleMonster = obj[2];
+        }
+        else
+            battleMonster = obj[3];
+
         monsterCount = Random.Range(1, 6);
 
         for (int i = 0; i < monsterCount; i++)
         {
-            obj[i].gameObject.SetActive(true);
+            battleMonster.GetChild(i).gameObject.SetActive(true);
             //monster.transform.GetChild(i).gameObject.SetActive(true);
-            bar.Add(Instantiate(monsterHp, new Vector2(obj[i].position.x, obj[i].position.y + 0.9f), Quaternion.identity,
+            bar.Add(Instantiate(monsterHp, new Vector2(battleMonster.GetChild(i).position.x, battleMonster.GetChild(i).position.y + 0.9f), Quaternion.identity,
                 GameObject.Find("Canvas_Battle").transform));
         }
 

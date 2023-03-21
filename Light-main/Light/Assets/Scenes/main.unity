@@ -4093,6 +4093,7 @@ MonoBehaviour:
   CloseMap: {fileID: 2127151067}
   BGM: {fileID: 1949142546}
   beforeBattlePosition: {x: 0, y: 0, z: 0}
+  monsterName: 
   saveData:
     tutorial: 0
     TreeQuest: 0

@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
     private Inventory theInven;
 
     public Vector3 beforeBattlePosition;
+    public string monsterName;
     private void Awake()
     {
         if(instance == null)
