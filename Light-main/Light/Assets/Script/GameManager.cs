@@ -118,8 +118,11 @@ public class GameManager : MonoBehaviour
 
         UpdateUI();
         Debug.Log(saveData.getApple);
-        //UpdateQuestUI();
-
+        UpdateQuestUI();
+        if (saveData.allTreeQuest == true)
+        {
+            UpdateSkillUI();
+        }
         //StartCoroutine(Fade());
     }
 
@@ -236,7 +239,7 @@ public class GameManager : MonoBehaviour
         if(saveData.allTreeQuest == true)
         {
             QuestBox2.SetActive(false);
-            UpdateSkillUI();
+            //UpdateSkillUI();
         }
 
         //if(saveData.isTreeQuest2 == true)
@@ -253,7 +256,7 @@ public class GameManager : MonoBehaviour
         //    saveData.isTreeQuest1 = true;
         //    //SaveData();
         //}
-
+        //SaveData();
 
     }
 
@@ -285,6 +288,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        SaveData();
+
     }
 
     public void UpdateSkillUI()
@@ -302,6 +307,7 @@ public class GameManager : MonoBehaviour
         skill.SetActive(true);
         skillPointText.text = saveData.SkillPoint.ToString();
         addSkillPointText.text = saveData.AddSkillPoint.ToString();
+        SaveData();
     }
 
     public void ClickAddSkillPoint()
@@ -323,7 +329,7 @@ public class GameManager : MonoBehaviour
             saveData.registerSkill = true;
 
         UpdateSkillUI();
-        SaveData();
+        //SaveData();
     }
 
     private void Update()

@@ -86,6 +86,11 @@ public class treeSoul : MonoBehaviour
             //StartCoroutine(Quest2Complete());
             StartCoroutine(TreeQuestAllComplete());
         }
+
+        if(GameManager.instance.saveData.startNyle == true)
+        {
+            StartCoroutine(EndTreeChat());
+        }
     }
 
    public IEnumerator NormalChat(string narrator, string narration)
@@ -186,7 +191,7 @@ public class treeSoul : MonoBehaviour
         GameManager.instance.saveData.TreeQuest = true;
         GameManager.instance.saveData.mainQuestText = "나무정령의 부탁 1";
         GameManager.instance.saveData.QuestDetailText = "수련장1에 있는 나무를 흔들어 얻은 나뭇가지와 사과를\n나무정령에게 갖다주자";
-        GameManager.instance.SaveData();
+       // GameManager.instance.SaveData();
         GameManager.instance.UpdateQuestUI();
         //string jsonData = JsonUtility.ToJson(GameManager.instance.saveData);
         //File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
@@ -236,7 +241,8 @@ public class treeSoul : MonoBehaviour
         GameManager.instance.UpdateQuestUI();
         GameManager.instance.QuestBox.SetActive(false);
         GameManager.instance.QuestBox2.SetActive(true);
-        
+        //GameManager.instance.SaveData();
+
 
     }
     public IEnumerator Quest2Complete()
@@ -250,9 +256,12 @@ public class treeSoul : MonoBehaviour
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         GameManager.instance.saveData.allTreeQuest = true;
         GameManager.instance.saveData.SkillPoint++;
-        GameManager.instance.SaveData();
+        GameManager.instance.saveData.mainQuestText = "";
+        GameManager.instance.saveData.QuestDetailText = "";
+        GameManager.instance.UpdateQuestUI();
         GameManager.instance.UpdateUI();
         StartCoroutine(Fade(GetSkillPopUp));
+        //GameManager.instance.SaveData();
     }
     public IEnumerator TreeQuestAllComplete()
     {
@@ -271,6 +280,15 @@ public class treeSoul : MonoBehaviour
         GameManager.instance.saveData.startNyle = true;
         GameManager.instance.SaveData();
 
+    }
+
+    IEnumerator EndTreeChat()
+    {
+        end = false;
+        yield return StartCoroutine(NormalChat("나무정령", "숲2에서 비명소리가 들렸어!"));
+        ChatBar.SetActive(false);
+        tree.SetActive(false);
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
     }
 
     public IEnumerator AfterAcceptChat()

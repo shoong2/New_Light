@@ -39,15 +39,6 @@ public class ActionController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GameManager.instance.saveData.waterDrop += 1;
-            GameManager.instance.UpdateUI();
-            GameManager.instance.SaveData();
-        }
-    }
 
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -143,7 +134,7 @@ public class ActionController : MonoBehaviour
                     StartCoroutine(Fade(randomItemCount));
                 }
                 GameManager.instance.UpdateUI();
-                GameManager.instance.SaveData();
+                //GameManager.instance.SaveData();
                 //yield return null;
             }
             yield return null;

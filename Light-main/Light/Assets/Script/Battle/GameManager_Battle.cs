@@ -85,7 +85,8 @@ public class GameManager_Battle : MonoBehaviour
             if (monsterBar.fillAmount <= 0)
             {
                 Destroy(bar[monsterCount - 1].gameObject);
-                Destroy(obj[monsterCount - 1].gameObject);
+                //Destroy(obj[monsterCount - 1].gameObject);
+                Destroy(battleMonster.GetChild(monsterCount - 1).gameObject);
                 monsterCount--;
             }
 
