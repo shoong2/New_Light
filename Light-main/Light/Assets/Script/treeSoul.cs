@@ -191,10 +191,8 @@ public class treeSoul : MonoBehaviour
         GameManager.instance.saveData.TreeQuest = true;
         GameManager.instance.saveData.mainQuestText = "나무정령의 부탁 1";
         GameManager.instance.saveData.QuestDetailText = "수련장1에 있는 나무를 흔들어 얻은 나뭇가지와 사과를\n나무정령에게 갖다주자";
-       // GameManager.instance.SaveData();
         GameManager.instance.UpdateQuestUI();
-        //string jsonData = JsonUtility.ToJson(GameManager.instance.saveData);
-        //File.WriteAllText(Application.persistentDataPath + "/Data.json", jsonData);
+        GameManager.instance.SaveData();
     }
 
     public void escapeQ()
@@ -241,7 +239,7 @@ public class treeSoul : MonoBehaviour
         GameManager.instance.UpdateQuestUI();
         GameManager.instance.QuestBox.SetActive(false);
         GameManager.instance.QuestBox2.SetActive(true);
-        //GameManager.instance.SaveData();
+        GameManager.instance.SaveData();
 
 
     }
@@ -261,7 +259,7 @@ public class treeSoul : MonoBehaviour
         GameManager.instance.UpdateQuestUI();
         GameManager.instance.UpdateUI();
         StartCoroutine(Fade(GetSkillPopUp));
-        //GameManager.instance.SaveData();
+        GameManager.instance.SaveData();
     }
     public IEnumerator TreeQuestAllComplete()
     {

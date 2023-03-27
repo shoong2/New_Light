@@ -63,6 +63,14 @@ public class Nyle : MonoBehaviour
         click = true;
     }
 
+    void EndChat()
+    {
+        end = true;
+        chatBar.SetActive(false);
+        nyle.SetActive(false);
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+    }
+
     public void StartNyleChat()
     {
         if(GameManager.instance.saveData.startNyle == true)
@@ -102,13 +110,18 @@ public class Nyle : MonoBehaviour
             "짙은 물방울, 잿빛 물방울, 어두운 물방울을 1개씩 가져오면 인정해줄게!"));
 
         GameManager.instance.saveData.mainQuestText = "나일의 부탁1";
-        GameManager.instance.saveData.QuestDetailText = "몬스터들을 물리치고 물방울을 획득하자.";
-        GameManager.instance.UpdateQuestUI();
+        GameManager.instance.saveData.QuestDetailText = "추추, 푸링, 밍을 물리치고 나오는 물방울을 가지고 " +
+            "\n나일에게 가져가서 실력을 증명해보자.";
 
-        end = true;
-        chatBar.SetActive(false);
-        nyle.SetActive(false);
-        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        GameManager.instance.saveData.nyleQuest1 = true;
+        GameManager.instance.UpdateQuestUI();
+        GameManager.instance.UpdateUI();
+        GameManager.instance.SaveData();
+        //end = true;
+        //chatBar.SetActive(false);
+        //nyle.SetActive(false);
+        //GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        EndChat();
     }
 
     public IEnumerator NoCompleteQ1()
@@ -116,10 +129,11 @@ public class Nyle : MonoBehaviour
         end = false;
         yield return StartCoroutine(NormalChat("나일", "얼른 추추, 푸링, 밍의 물방울을 1개씩 가져와봐!"));
 
-        end = true;
-        chatBar.SetActive(false);
-        nyle.SetActive(false);
-        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        //end = true;
+        //chatBar.SetActive(false);
+        //nyle.SetActive(false);
+        //GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        EndChat();
     }
 
 
@@ -141,10 +155,11 @@ public class Nyle : MonoBehaviour
         yield return StartCoroutine(NormalChat("나일", "나랑 같이 동생을 구하러 가지 않을래?"));
         yield return StartCoroutine(NormalChat("나일", "너라면 충분히 강하니까 같이 싸우면 대왕 밍을 이길 수 있을지도 몰라!"));
 
-        end = true;
-        chatBar.SetActive(false);
-        nyle.SetActive(false);
-        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        //end = true;
+        //chatBar.SetActive(false);
+        //nyle.SetActive(false);
+        //GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        EndChat();
     }
 
 }

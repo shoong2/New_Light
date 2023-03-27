@@ -287,6 +287,7 @@ public class testPlayer : MonoBehaviour
     {
         GameManager.instance.beforeBattlePosition = gameObject.transform.position;
         _LoadScene("Fight");
+        GameManager.instance.beforeBattleScene = SceneManager.GetActiveScene().name;
         battleButton.SetActive(false);
         gameObject.SetActive(false);
         mainUI.SetActive(false);

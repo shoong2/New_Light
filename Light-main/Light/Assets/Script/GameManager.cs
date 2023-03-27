@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject QuestBox;
     public GameObject QuestBox2;
+    public GameObject questBox3;
 
     public GameObject map;
     public Text AppleText;
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text QuestName;
     public TMP_Text QuestExplain;
     public TMP_Text QuestInfo;
+
+    public TMP_Text nyleQuest1Text;
 
     //Skill
     public GameObject skill;
@@ -59,6 +62,9 @@ public class GameManager : MonoBehaviour
     private Inventory theInven;
 
     public Vector3 beforeBattlePosition;
+    public string beforeBattleScene;
+
+    //몬스터 구별 문자열
     public string monsterName;
     private void Awake()
     {
@@ -205,6 +211,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateUI()
     {
+        //나무정령 퀘스트1 UI
         if (saveData != null && saveData.StartNextQuest == false && saveData.allTreeQuest == false)
         {
             if (saveData != null && saveData.getApple >= 10 && saveData.getBranch >= 3)
@@ -222,6 +229,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        //나무정령 퀘스트2 UI
         if(saveData.StartNextQuest== true && saveData.allTreeQuest == false)
         {
             QuestBox.SetActive(false);
@@ -234,6 +242,14 @@ public class GameManager : MonoBehaviour
                 saveData.isTreeQuest2 = true;
             }
 
+        }
+
+        if(saveData.nyleQuest1 == true)
+        {
+            questBox3.SetActive(true);
+            nyleQuest1Text.text = "추추의 물방울 " + saveData.chuchu+
+                "\n푸링의 물방울 " + saveData.pooling+
+                "\n밍의 물방울 "+ saveData.ming;
         }
 
         if(saveData.allTreeQuest == true)
@@ -288,7 +304,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        SaveData();
+        //SaveData();
 
     }
 
@@ -307,7 +323,7 @@ public class GameManager : MonoBehaviour
         skill.SetActive(true);
         skillPointText.text = saveData.SkillPoint.ToString();
         addSkillPointText.text = saveData.AddSkillPoint.ToString();
-        SaveData();
+        //SaveData();
     }
 
     public void ClickAddSkillPoint()
@@ -317,7 +333,7 @@ public class GameManager : MonoBehaviour
             saveData.SkillPoint--;
             saveData.AddSkillPoint++;
             UpdateSkillUI();
-            SaveData();
+            //SaveData();
         }
     }
 
@@ -383,7 +399,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator AfterBattle()
     {
-        SceneManager.LoadScene("S_2PlayGround");
+        SceneManager.LoadScene(beforeBattleScene);
         Player.SetActive(true);
         mainUI.SetActive(true);
         Player.transform.position = beforeBattlePosition;
@@ -425,6 +441,10 @@ public class SaveData
     public bool startNyle = false;
     public int chatHelper = 0;
     public bool nyleQuest1 = false;
+
+    public string chuchu = "(0/1)";
+    public string pooling = "(0/1)";
+    public string ming = "(0/1)";
 
     //배틀데이터
     public bool registerSkill = false;

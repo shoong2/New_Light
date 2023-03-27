@@ -134,7 +134,8 @@ public class ActionController : MonoBehaviour
                     StartCoroutine(Fade(randomItemCount));
                 }
                 GameManager.instance.UpdateUI();
-                //GameManager.instance.SaveData();
+                GameManager.instance.UpdateQuestUI();
+                GameManager.instance.SaveData();
                 //yield return null;
             }
             yield return null;
