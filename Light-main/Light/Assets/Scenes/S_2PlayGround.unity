@@ -2520,7 +2520,7 @@ PrefabInstance:
     - target: {fileID: 6280244829295332699, guid: eee983d5732f469479e36e137084234d,
         type: 3}
       propertyPath: m_Name
-      value: Green_PlayGround (2)
+      value: Green_PlayGround
       objectReference: {fileID: 0}
     - target: {fileID: 6280244829295332700, guid: eee983d5732f469479e36e137084234d,
         type: 3}
@@ -2890,7 +2890,7 @@ PrefabInstance:
     - target: {fileID: 6280244829295332699, guid: eee983d5732f469479e36e137084234d,
         type: 3}
       propertyPath: m_Name
-      value: Green_PlayGround (1)
+      value: Green_PlayGround
       objectReference: {fileID: 0}
     - target: {fileID: 6280244829295332700, guid: eee983d5732f469479e36e137084234d,
         type: 3}
@@ -3281,7 +3281,7 @@ PrefabInstance:
     - target: {fileID: 6280244829295332699, guid: eee983d5732f469479e36e137084234d,
         type: 3}
       propertyPath: m_Name
-      value: Green_PlayGround (3)
+      value: Green_PlayGround
       objectReference: {fileID: 0}
     - target: {fileID: 6280244829295332700, guid: eee983d5732f469479e36e137084234d,
         type: 3}
@@ -6192,3 +6192,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eee983d5732f469479e36e137084234d, type: 3}
+--- !u!1 &2413820905583022299 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6280244829295332699, guid: eee983d5732f469479e36e137084234d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2413820905583022298}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2413820905583022300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2413820905583022299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5782bc23b53ac744587b49342d26de07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: dd1e82ef4f0f95e4b9cb2ec09faea77e, type: 2}

@@ -125,13 +125,48 @@ public class ActionController : MonoBehaviour
                 }
                 else if(item.tag =="pocket")
                 {
-                    int randomItemCount = Random.Range(1, 4);
-                    GameManager.instance.saveData.waterDrop += randomItemCount;
-                    theInventory.AcquireItem(getItem, randomItemCount);
+                    Item monster = GameObject.Find(GameManager.instance.monsterName).transform.GetComponent<ItemPickUp>().item;
+                    if (GameManager.instance.monsterName == "Green_PlayGround")
+                    {
+                        int randomItemCount = Random.Range(1, 4);
+                        GameManager.instance.saveData.waterDrop += randomItemCount;
+                        if (GameManager.instance.saveData.waterDrop > 5)
+                            GameManager.instance.saveData.waterDrop = 5;
+
+                        theInventory.AcquireItem(monster, randomItemCount);
+                        StartCoroutine(Fade(randomItemCount));
+                        //Destroy(item);
+                    }
+                    else if(GameManager.instance.monsterName == "Pooling")
+                    {
+                        GameManager.instance.saveData.pooling = "(완료)";
+                        theInventory.AcquireItem(monster);
+                    }
+
+                    else if (GameManager.instance.monsterName == "Ming")
+                    {
+                        GameManager.instance.saveData.ming = "(완료)";
+                        theInventory.AcquireItem(monster);
+                    }
+                    else
+                    {
+                        GameManager.instance.saveData.chuchu = "(완료)";
+                        theInventory.AcquireItem(monster);
+                    }
+
+                    if(GameManager.instance.saveData.chuchu == "(완료)"&&
+                        GameManager.instance.saveData.ming == "(완료)"&&
+                        GameManager.instance.saveData.pooling == "(완료)")
+                    {
+                        GameManager.instance.saveData.chatHelper++;
+                    }
+                    //int randomItemCount = Random.Range(1, 4);
+                    //GameManager.instance.saveData.waterDrop += randomItemCount;
+                    //theInventory.AcquireItem(getItem, randomItemCount);
                     Destroy(item);
                     InfoDisappear();
                     ActiveButton = false;
-                    StartCoroutine(Fade(randomItemCount));
+                 
                 }
                 GameManager.instance.UpdateUI();
                 GameManager.instance.UpdateQuestUI();

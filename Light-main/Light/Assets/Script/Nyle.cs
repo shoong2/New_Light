@@ -86,6 +86,10 @@ public class Nyle : MonoBehaviour
             {
                 StartCoroutine(NoCompleteQ1());
             }
+            else if (GameManager.instance.saveData.chatHelper == 2)
+            {
+                StartCoroutine(CompleteQ1());
+            }
         }
     }
 
@@ -143,7 +147,8 @@ public class Nyle : MonoBehaviour
         yield return StartCoroutine(NormalChat("나일", "너.. 정말 강한 사람이었구나? 아까 내가 말한 건 잊어줘..."));
         yield return StartCoroutine(NormalChat("나일", "그리고 미안하니까 내가 알고 있는 정보를 알려줄게"));
         yield return StartCoroutine(NormalChat("나일", "모든 종류의 몬스터들에게서 물방울들을 각각 1개씩 얻어서\n" +
-            "한 가지 무기를 우물에 빠트리면 신령이 나타나서 더 좋은 걸로 바꿔준다는 소문이 있어! 한번 시도해봐!"));
+            "무기를 우물에 빠트리면 신령이 나타나서 더 좋은 걸로 바꿔준다는 소문이 있어!"));
+        yield return StartCoroutine(NormalChat("나일", "한번 시도해봐!"));
         face.embarrassed();
         yield return StartCoroutine(NormalChat("리아", "그렇구나! 고마워!"));
         face.af();

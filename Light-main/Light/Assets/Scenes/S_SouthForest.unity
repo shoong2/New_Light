@@ -5766,5 +5766,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pooling
       objectReference: {fileID: 0}
+    - target: {fileID: 3320986707142679239, guid: 347804299f203de45ba12181fccc1297,
+        type: 3}
+      propertyPath: m_TagString
+      value: Monster
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 347804299f203de45ba12181fccc1297, type: 3}
+--- !u!1 &3320986708128947935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3320986707142679239, guid: 347804299f203de45ba12181fccc1297,
+    type: 3}
+  m_PrefabInstance: {fileID: 3320986708128947934}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3320986708128947936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3320986708128947935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5782bc23b53ac744587b49342d26de07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 5b1d32b030bb3ca43a51a1a6091f0df5, type: 2}

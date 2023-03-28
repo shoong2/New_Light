@@ -4084,7 +4084,7 @@ MonoBehaviour:
   QuestName: {fileID: 1022410485}
   QuestExplain: {fileID: 1461432601}
   QuestInfo: {fileID: 1063804300}
-  nyleQuest1Text: {fileID: 0}
+  nyleQuest1Text: {fileID: 1248918775}
   skill: {fileID: 435048739}
   skillPointText: {fileID: 1892943893}
   addSkillPointText: {fileID: 1592880622}
@@ -4096,6 +4096,7 @@ MonoBehaviour:
   CloseMap: {fileID: 2127151067}
   BGM: {fileID: 1949142546}
   beforeBattlePosition: {x: 0, y: 0, z: 0}
+  beforeBattleScene: 
   monsterName: 
   saveData:
     tutorial: 0
@@ -4373,6 +4374,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a41c0883b78a1db45887c0f6206c9e4f, type: 2}
   - {fileID: 11400000, guid: dd1e82ef4f0f95e4b9cb2ec09faea77e, type: 2}
   - {fileID: 11400000, guid: 68de0dd5478d38c4f82dd1331b2361b8, type: 2}
+  - {fileID: 11400000, guid: 5b1d32b030bb3ca43a51a1a6091f0df5, type: 2}
+  - {fileID: 11400000, guid: 144987c20a78a4d4b98e8b66c3ef6a03, type: 2}
+  - {fileID: 11400000, guid: b41abed5557529242bc62088c14a3805, type: 2}
 --- !u!1 &351682071
 GameObject:
   m_ObjectHideFlags: 0
