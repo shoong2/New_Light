@@ -16,11 +16,16 @@ public class GameManager_Battle : MonoBehaviour
     GameObject liaInPlayGround;
 
     public GameObject skill;
+
+    //skill Effect
+    public GameObject skillEffect;
     public List<Transform> obj;
     public List<GameObject> bar;
     public List<GameObject> monster_list;
 
     Transform battleMonster;
+
+
 
     void Start()
     {
@@ -76,11 +81,22 @@ public class GameManager_Battle : MonoBehaviour
         
     }
 
+    IEnumerator SkillEffect()
+    {
+        yield return new WaitForSeconds(0.3f);
+        GameObject effect = Instantiate(skillEffect, new Vector2(battleMonster.GetChild(monsterCount - 1).position.x,
+            battleMonster.GetChild(monsterCount - 1).position.y), Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        Destroy(effect);
+
+    }
+
     public void DamageMonster(float power)
     {
         if (monsterCount - 1 >= 0)
         {
             Image monsterBar = bar[monsterCount - 1].transform.GetChild(0).GetChild(0).GetComponent<Image>();
+            StartCoroutine(SkillEffect());
             monsterBar.fillAmount -= power / monsterHP;
             if (monsterBar.fillAmount <= 0)
             {

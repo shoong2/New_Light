@@ -423,7 +423,8 @@ public class SaveData
     //나일 퀘스트
     public bool startNyle = false;
     public int chatHelper = 0;
-    public bool nyleQuest1 = false;
+    public bool nyleQuest1 = false; //진행여부
+    public bool nyleQuest2 = false; //진행여부
 
     public string chuchu = "(0/1)";
     public string pooling = "(0/1)";

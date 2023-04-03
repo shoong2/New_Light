@@ -18,6 +18,8 @@ public class Nyle : MonoBehaviour
     bool click = false;
     bool end = false;
 
+    public Image AddNylePopUp;
+
 
  
     public Lia_face face;
@@ -90,26 +92,23 @@ public class Nyle : MonoBehaviour
             {
                 StartCoroutine(CompleteQ1());
             }
+            else if( GameManager.instance.saveData.chatHelper == 3)
+            {
+                StartCoroutine(NoCompleteQ2());
+            }
         }
     }
 
     public IEnumerator NyleQuestChat_1()
     {
-        //face.none();
         yield return StartCoroutine(NormalChat("리아", "무슨일이야 나일?"));
         yield return StartCoroutine(NormalChat("리아", "왜 울고 있는거야?"));
-        //face.af();
         yield return StartCoroutine(NormalChat("나일", "먹을 것을 구해서 집으로 가는 길이었는데\n" +
             "엄청나게 큰 몬스터가 내 동생을 잡아갔어...!"));
-        //face.none();
         yield return StartCoroutine(NormalChat("리아", "내가 도와줄까?"));
-        //face.af();
         yield return StartCoroutine(NormalChat("나일", "리아 네가 어떻게 몬스터를 물리쳐?\n" +
             "난 네가 싸우는 모습을 본 적이 없는데?"));
-        //face.embarrassed();
-        yield return StartCoroutine(NormalChat("리아", "난 아까 몬스터도 물리치고 왔는걸?","embarrassed"));
-        //face.af();
-       
+        yield return StartCoroutine(NormalChat("리아", "난 아까 몬스터도 물리치고 왔는걸?","embarrassed"));   
         yield return StartCoroutine(NormalChat("나일", "그럼 증명해봐! 북쪽 숲과 남쪽 숲, 숲2 에서 몬스터를 물리치고\n" +
             "짙은 물방울, 잿빛 물방울, 어두운 물방울을 1개씩 가져오면 인정해줄게!"));
 
@@ -121,10 +120,6 @@ public class Nyle : MonoBehaviour
         GameManager.instance.UpdateQuestUI();
         GameManager.instance.UpdateUI();
         GameManager.instance.SaveData();
-        //end = true;
-        //chatBar.SetActive(false);
-        //nyle.SetActive(false);
-        //GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         EndChat();
     }
 
@@ -132,11 +127,6 @@ public class Nyle : MonoBehaviour
     {
         end = false;
         yield return StartCoroutine(NormalChat("나일", "얼른 추추, 푸링, 밍의 물방울을 1개씩 가져와봐!"));
-
-        //end = true;
-        //chatBar.SetActive(false);
-        //nyle.SetActive(false);
-        //GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
         EndChat();
     }
 
@@ -159,12 +149,54 @@ public class Nyle : MonoBehaviour
         yield return StartCoroutine(NormalChat("나일", "정말 고마워! 내 동생이 대왕 밍에게 잡혀갔어!\n아마 숲 속 어딘가에 있을거야..."));
         yield return StartCoroutine(NormalChat("나일", "나랑 같이 동생을 구하러 가지 않을래?"));
         yield return StartCoroutine(NormalChat("나일", "너라면 충분히 강하니까 같이 싸우면 대왕 밍을 이길 수 있을지도 몰라!"));
-
-        //end = true;
-        //chatBar.SetActive(false);
-        //nyle.SetActive(false);
-        //GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        StartCoroutine(Fade(AddNylePopUp));
+        GameManager.instance.saveData.chatHelper++;
+        GameManager.instance.saveData.mainQuestText = "나일의 부탁2";
+        GameManager.instance.saveData.QuestDetailText = "대왕 밍을 물리치고 동생을 구하러 가자.";
+        GameManager.instance.saveData.nyleQuest2 = true;
+        GameManager.instance.UpdateQuestUI();
+        GameManager.instance.UpdateUI();
+        GameManager.instance.SaveData();
         EndChat();
+    }
+
+    public IEnumerator NoCompleteQ2()
+    {
+        end = false;
+        yield return StartCoroutine(NormalChat("나일", "내 동생이 대왕 밍에게 잡혀갔어!"));
+        EndChat();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    IEnumerator Fade(Image PopUp)
+    {
+        PopUp.gameObject.SetActive(true);
+        float fadeCount = 0;
+        while (fadeCount < 1f)
+        {
+            fadeCount += 0.01f;
+            yield return new WaitForSeconds(0.005f);
+            PopUp.color = new Color(1, 1, 1, fadeCount);
+        }
+        yield return new WaitForSeconds(1.3f);
+        while (fadeCount > 0)
+        {
+            fadeCount -= 0.02f;
+            yield return new WaitForSeconds(0.005f);
+            PopUp.color = new Color(1, 1, 1, fadeCount);
+        }
+
+        PopUp.gameObject.SetActive(false);
     }
 
 }
