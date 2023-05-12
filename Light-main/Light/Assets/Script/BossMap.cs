@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class BossMap : MonoBehaviour
 {
     public float waitTime = 0.01f;
@@ -10,6 +11,7 @@ public class BossMap : MonoBehaviour
     bool end = false;
 
     public GameObject chatBar;
+    public GameObject acceptPopUp;
 
     public TMP_Text chatName;
     public TMP_Text chatText;
@@ -22,7 +24,9 @@ public class BossMap : MonoBehaviour
     {
         if(collision.tag =="Player")
         {
-            if(GameManager.instance.saveData.nyleQuest2 == false)
+            GameObject.Find("Joystick").GetComponent<JoyStick1>().InitTrigger();
+            GameObject.Find("TOP1").GetComponent<testPlayer>().moveSpeed = 0;
+            if (GameManager.instance.saveData.nyleQuest2 == false)
             {
                 StartCoroutine(NoBossMap());
             }
@@ -42,8 +46,26 @@ public class BossMap : MonoBehaviour
     {
         end = true;
         chatBar.SetActive(false);
+  
         //nyle.SetActive(false);
         GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(true);
+        GameObject.Find("Joystick").GetComponent<JoyStick1>().InitTrigger();
+
+
+    }
+
+    public void Accept()
+    {
+        EndChat();
+        SceneManager.LoadScene("Fight");
+    }
+
+    public void Deny()
+    {
+        acceptPopUp.SetActive(false);
+        face.af();
+        GameObject.Find("TOP1").GetComponent<testPlayer>().moveSpeed = 3;
+        EndChat();
     }
 
     public IEnumerator NormalChat(string narrator, string narration, string face = "none")
@@ -86,12 +108,17 @@ public class BossMap : MonoBehaviour
     IEnumerator NoBossMap()
     {
         end = false;
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(false);
         yield return StartCoroutine(NormalChat("리아", "여기는 아직 들어갈 수 없어..."));
+        yield return new WaitForSeconds(1.2f);
+        GameObject.Find("TOP1").GetComponent<testPlayer>().moveSpeed = 3;
         EndChat();
     }
 
     IEnumerator GoBossMap()
     {
+        GameObject.Find("TOP1").GetComponent<testPlayer>().mainUI.SetActive(false);
+        acceptPopUp.SetActive(true);
         yield return StartCoroutine(NormalChat("리아", "어두운 기운이 감돌고 있어... \n정말 이쪽으로 들어갈까?"));
         EndChat();
     }

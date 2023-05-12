@@ -40,6 +40,7 @@ public class JoyStick1 : MonoBehaviour, IDragHandler, IPointerDownHandler, IPoin
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("PointerDown");
+        handle.anchoredPosition = Vector2.zero;
         isDown = true;
         // OnDrag(eventData);
     }

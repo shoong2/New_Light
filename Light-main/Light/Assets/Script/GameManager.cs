@@ -91,19 +91,15 @@ public class GameManager : MonoBehaviour
             Debug.Log("make file");
             saveData = new SaveData();
             Directory.CreateDirectory(SAVE_DATA_DIRECTORY);
-            //tutorial.gameObject.SetActive(true);
         }
 
         LoadData();
-        //StartCoroutine(LoadCoroutine());
 
         if (saveData.TreeQuest == true && saveData.allTreeQuest ==false)
         {
             QuestBox.SetActive(true);
 
         }
-
-
 
         UpdateUI();
         Debug.Log(saveData.getApple);
@@ -112,7 +108,7 @@ public class GameManager : MonoBehaviour
         {
             UpdateSkillUI();
         }
-        //StartCoroutine(Fade());
+
     }
 
 
@@ -150,13 +146,6 @@ public class GameManager : MonoBehaviour
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
 
             StartCoroutine(LoadCoroutine());
-            //theInven = FindObjectOfType<Inventory>();
-
-            //for(int i =0; i< saveData.invenItemName.Count; i++)
-            //{
-            //    theInven.LoadToInven(saveData.invenArrayNumber[i], saveData.invenItemName[i], saveData.invenItemNumber[i]);
-
-            //}
         }
 
         else
